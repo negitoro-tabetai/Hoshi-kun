@@ -123,3 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpForce: 14.6
   _moveSpeed: 5
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  _rayLength: 0.5
+  _radius: 0.5
