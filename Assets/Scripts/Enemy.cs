@@ -10,6 +10,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _speed;
     [SerializeField] int _life;
     const int _rotationAngle = 180;
+    [SerializeField] int _attackPoint;
+
+    public int AttackPoint
+    {
+        get
+        {
+            return _attackPoint;
+        }
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +31,7 @@ public class Enemy : MonoBehaviour
     {
         MoveTimer();
         Damage();
-        
+        //Physics.Raycast(transform.right,Vector2.down, )
     }
 
     void FixedUpdate()
