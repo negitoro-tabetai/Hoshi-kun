@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rigidbody.velocity = new Vector2(Vector2.right.x * _speed , _rigidbody.velocity.y);
+        _rigidbody.velocity = new Vector2(transform.right.x * _speed , _rigidbody.velocity.y);
     }
     void MoveTimer()
     {
