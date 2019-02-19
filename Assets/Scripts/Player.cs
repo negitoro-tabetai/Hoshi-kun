@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody _rigidbody;
+    SphereCollider _sphereCollider;
 
     [SerializeField, Tooltip("体力")] int _hp;
     [SerializeField, Tooltip("移動速度")] float _moveSpeed;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     bool _isInvincible;
     // 硬直しているか
     bool _isStunning;
+    // 引力を使用しているか
+    bool _isUsingGravity;
 
     // Layer名
     const string PlayerLayer = "Player";
@@ -51,6 +54,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool IsUsingGravity
+    {
+        get
+        {
+            return _isUsingGravity;
+        }
+    }
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -58,7 +69,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded() && !_isStunning)
         {
             Jump();
         }
@@ -71,6 +82,16 @@ public class Player : MonoBehaviour
         else
         {
             _isRunning = false;
+        }
+
+        // LeftAltキーで引力使用
+        if (Input.GetButton("Fire2"))
+        {
+            _isUsingGravity = true;
+        }
+        else
+        {
+            _isUsingGravity = false;
         }
 
         _inputX = Input.GetAxisRaw("Horizontal");
@@ -93,31 +114,27 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        _rigidbody.AddForce((Vector3.up + Vector3.right) * _jumpForce, ForceMode.Impulse);
+        _rigidbody.AddForce((Vector3.up) * _jumpForce, ForceMode.Impulse);
     }
 
+    /// <param name="enemyPosition">衝突した敵の位置</param>
     void KnockBack(Vector3 enemyPosition)
     {
         _rigidbody.velocity = Vector3.zero;
-        const float HorizontalForce = 2;
+        const float VerticalForce = 2;
 
-        Vector3 direction = new Vector3 (transform.position.x - enemyPosition.x, 0, 0).normalized;
-        direction = new Vector3 (direction.x, HorizontalForce, 0).normalized;
+        //自分の位置と敵の位置を比較して方向を決定
+        Vector3 direction = new Vector3(transform.position.x - enemyPosition.x, 0, 0).normalized;
+        direction = new Vector3(direction.x, VerticalForce, 0).normalized;
         _rigidbody.AddForce(direction * _knockBackForce, ForceMode.Impulse);
     }
 
-    /// <summary>
-    /// ダメージをくらう
-    /// </summary>
     /// <param name="attackPoint">ダメージ量</param>
     void Damage(int attackPoint)
     {
         Hp -= attackPoint;
     }
 
-    /// <summary>
-    /// 体力回復
-    /// </summary>
     /// <param name="healPoint">回復量</param>
     void Heal(int healPoint)
     {
