@@ -121,10 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbe1380afdf049658d154cd482925f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 14.6
   _moveSpeed: 5
+  _runSpeed: 7.5
+  _jumpForce: 14.6
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1
   _rayLength: 0.5
-  _radius: 0.5
+  _width: 0.5

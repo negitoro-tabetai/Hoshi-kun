@@ -12,6 +12,7 @@ public class Revolution : MonoBehaviour
     
     //弾道を表示する点の親オブジェクト
     [SerializeField]   private Transform dummyObjParent;
+    [SerializeField]   private GameObject dummyParent;
     
     //初速のベクトル
     [SerializeField]   private Vector3 initalvelocity;
@@ -26,15 +27,15 @@ public class Revolution : MonoBehaviour
     [SerializeField]   private float offsetSpeed = 0.5f;
     
     private float offset;
-    
+
+    //弾道予測を表示するための点のリスト
     private List<GameObject> dummySphereList = new List<GameObject>();
 
     private Rigidbody rigid;
-
     
     void Start()
     {
-        
+        dummyParent.SetActive(false);//ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
         rigid = GetComponent<Rigidbody>();
 
         if (!rigid)
@@ -45,18 +46,18 @@ public class Revolution : MonoBehaviour
 
         dummyObjParent.transform.position = transform.position;
 
+        
+            //弾道予測を表示するための点を生成
 
+            for (int i = 0; i < dummyCount; i++)
+            {
 
-        //弾道予測を表示するための点を生成
+                var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
 
-        for (int i = 0; i < dummyCount; i++)
-        {
+                dummySphereList.Add(obj);
 
-            var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
-
-            dummySphereList.Add(obj);
-
-        }
+            }
+        
 
     }
 
@@ -68,45 +69,87 @@ public class Revolution : MonoBehaviour
 
         offset = Mathf.Repeat(Time.time * offsetSpeed, secInterval);
 
+        //標準を操作
+        Operate();
+
+        
+            //弾道予測の位置に点を移動
+            for (int i = 0; i < dummyCount; i++)
+
+            {
+
+                var t = (i * secInterval) + offset;
+
+                var x = t * initalvelocity.x;
+
+                var z = t * initalvelocity.z;
+
+                var y = (initalvelocity.y * t) - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2.0f);
+
+                dummySphereList[i].transform.localPosition = new Vector3(x, y, z);
+
+            //　↑鉛直上方投射！！！
+
+            }
 
 
-        //弾道予測の位置に点を移動
 
-        for (int i = 0; i < dummyCount; i++)
+            //Enterで飛ばす
 
+            if (Input.GetKeyDown(KeyCode.Return))
+
+            {
+
+                rigid.isKinematic = false;
+
+                rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
+
+
+            
+        }
+        
+
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+
+        //ステージに当たったら消える
+        if (col.tag == "Stage")
         {
+            Destroy(gameObject);
 
-            var t = (i * secInterval) + offset;
 
-            var x = t * initalvelocity.x;
+            //ここで消す
+            dummyParent.SetActive(false);
 
-            var z = t * initalvelocity.z;
-
-            var y = (initalvelocity.y * t) - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2.0f);
-
-            dummySphereList[i].transform.localPosition = new Vector3(x, y, z);
 
         }
 
-
-
-        //スペースキーで球の弾道を確認
-
-        if (Input.GetKeyDown(KeyCode.Space))
-
-        {
-
-            rigid.isKinematic = false;
-
-            rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
-
-        }
 
     }
 
     void Operate()
     {
+        
 
+        //操作
+        if (Input.GetKey(KeyCode.A))
+        {
+            initalvelocity.x--; dummyParent.SetActive(true);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            initalvelocity.x++;
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            initalvelocity.y++;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            initalvelocity.y--;
+        }
     }
 
 
