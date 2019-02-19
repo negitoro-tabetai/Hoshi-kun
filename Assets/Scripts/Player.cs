@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody _rigidbody;
+
+    [SerializeField] int _hp;
     // 移動速度
     [SerializeField] float _moveSpeed;
     // 走る速度
@@ -20,6 +22,19 @@ public class Player : MonoBehaviour
     
     float _inputX;
     bool _isRunning;
+
+    public int Hp
+    {
+        get
+        {
+            return _hp;
+        }
+        set
+        {
+            _hp = value;
+            Mathf.Clamp(_hp, 0, 100);
+        }
+    }
 
     void Start()
     {
@@ -48,7 +63,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if  (_isRunning)
+        if (_isRunning)
         {
             _rigidbody.velocity = new Vector3(_inputX * _runSpeed, _rigidbody.velocity.y, 0);
         }
@@ -64,6 +79,15 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
+    /// ダメージをくらう
+    /// </summary>
+    /// <param name="damage">ダメージ量</param>
+    void Damage(int damage)
+    {
+        Hp -= damage;
+    }
+
+    /// <summary>
     /// 左端と右端に下向きのRayを飛ばし、片方でも地面に当たればtrueを返す
     /// </summary>
     /// <returns>地面についているか</returns>
@@ -75,5 +99,11 @@ public class Player : MonoBehaviour
         bool isGrounded = Physics.Raycast(rayLeft, _rayLength, _groundLayer) || Physics.Raycast(rayRight, _rayLength, _groundLayer);
 
         return isGrounded;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        Damage(other.gameObject.GetComponent<Enemy>().AttackPoint);
+
     }
 }
