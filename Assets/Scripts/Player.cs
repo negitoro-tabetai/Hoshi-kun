@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
     {
         _rigidbody.velocity = Vector3.zero;
         const float HorizontalForce = 2;
-        
+
         Vector3 direction = new Vector3 (transform.position.x - enemyPosition.x, 0, 0).normalized;
         direction = new Vector3 (direction.x, HorizontalForce, 0).normalized;
         _rigidbody.AddForce(direction * _knockBackForce, ForceMode.Impulse);
@@ -109,10 +109,19 @@ public class Player : MonoBehaviour
     /// <summary>
     /// ダメージをくらう
     /// </summary>
-    /// <param name="damage">ダメージ量</param>
-    void Damage(int damage)
+    /// <param name="attackPoint">ダメージ量</param>
+    void Damage(int attackPoint)
     {
-        Hp -= damage;
+        Hp -= attackPoint;
+    }
+
+    /// <summary>
+    /// 体力回復
+    /// </summary>
+    /// <param name="healPoint">回復量</param>
+    void Heal(int healPoint)
+    {
+        Hp += healPoint;
     }
 
     /// <summary>
@@ -137,6 +146,15 @@ public class Player : MonoBehaviour
             KnockBack(other.transform.position);
             StartCoroutine(Stun());
             StartCoroutine(BecomesInvincible());
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "HealItem")
+        {
+            Heal(other.GetComponent<HealItem>().HealPoint);
+            Destroy(other.gameObject);
         }
     }
 
