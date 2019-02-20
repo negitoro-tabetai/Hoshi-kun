@@ -84,15 +84,18 @@ public class Player : MonoBehaviour
             _isRunning = false;
         }
 
-        // LeftAltキーで引力使用
-        if (Input.GetButton("UseGravity"))
+        if (IsGrounded())
         {
-            _isUsingGravity = true;
-            Debug.Log("UseGravity");
-        }
-        else
-        {
-            _isUsingGravity = false;
+            // Vキーで引力使用
+            if (Input.GetButtonDown("UseGravity"))
+            {
+                _isUsingGravity = true;
+                Debug.Log("UseGravity");
+            }
+            if (Input.GetButtonUp("UseGravity"))
+            {
+                _isUsingGravity = false;
+            }
         }
 
         // 引力を使用していないときは左右入力を受け付ける
