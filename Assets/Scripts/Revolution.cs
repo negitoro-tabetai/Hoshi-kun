@@ -7,24 +7,20 @@ using UnityEngine;
 public class Revolution : MonoBehaviour
 
 {
-    //弾道を表示するための点のプレハブ
-    [SerializeField]   private GameObject dummyObjPref;
+   
+    [SerializeField,Tooltip("弾道を表示するための点のプレファブ")]   private GameObject dummyObjPref;
     
-    //弾道を表示する点の親オブジェクト
-    [SerializeField]   private Transform dummyObjParent;
-    [SerializeField]   private GameObject dummyParent;
+    [SerializeField,Tooltip("点をいっぱい出すので空の親オブジェクトを設定")]   private Transform dummyObjParent;
+    [SerializeField,Tooltip("↑と同じ")]   private GameObject dummyParent;
     
-    //初速のベクトル
-    [SerializeField]   private Vector3 initalvelocity;
     
-    //弾道予測の点の数
-    [SerializeField]   private int dummyCount;
+    [SerializeField,Tooltip("初速のベクトル")]   private Vector3 initalvelocity;
     
-    //弾道を表示する間隔の秒数
-    [SerializeField]   private float secInterval;
+    [SerializeField,Tooltip("弾道予測の点の数")]   private int dummyCount;
     
-    //点が移動する速度
-    [SerializeField]   private float offsetSpeed = 0.5f;
+    [SerializeField,Tooltip("弾道を表示する間隔の秒数")]   private float secInterval;
+    
+    [SerializeField,Tooltip("点が移動する速度")]   private float offsetSpeed = 0.5f;
     
     private float offset;
 
