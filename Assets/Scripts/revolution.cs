@@ -12,6 +12,7 @@ public class Revolution : MonoBehaviour
     
     //弾道を表示する点の親オブジェクト
     [SerializeField]   private Transform dummyObjParent;
+    [SerializeField]   private GameObject dummyParent;
     
     //初速のベクトル
     [SerializeField]   private Vector3 initalvelocity;
@@ -31,10 +32,14 @@ public class Revolution : MonoBehaviour
     private List<GameObject> dummySphereList = new List<GameObject>();
 
     private Rigidbody rigid;
+<<<<<<< HEAD
+=======
+    private bool enter;
+>>>>>>> Haruka
     
     void Start()
     {
-        
+        Off();//ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
         rigid = GetComponent<Rigidbody>();
 
         if (!rigid)
@@ -70,6 +75,7 @@ public class Revolution : MonoBehaviour
 
         //標準を操作
         Operate();
+<<<<<<< HEAD
 
         
             //弾道予測の位置に点を移動
@@ -90,9 +96,51 @@ public class Revolution : MonoBehaviour
 
 
             }
+=======
+
+        
+            //弾道予測の位置に点を移動
+            for (int i = 0; i < dummyCount; i++)
+
+            {
+
+                var t = (i * secInterval) + offset;
+
+                var x = t * initalvelocity.x;
+
+                var z = t * initalvelocity.z;
+
+                var y = (initalvelocity.y * t) - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2.0f);
+
+                dummySphereList[i].transform.localPosition = new Vector3(x, y, z);
+
+            //　↑鉛直上方投射！！！
+
+            }
 
 
 
+        //Enterで飛ばす
+
+
+        if (enter == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+
+            {
+
+                rigid.isKinematic = false;
+
+                rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
+
+>>>>>>> Haruka
+
+
+            }
+        }
+        
+
+<<<<<<< HEAD
             //Enterで飛ばす
 
             if (Input.GetKeyDown(KeyCode.Return))
@@ -103,15 +151,33 @@ public class Revolution : MonoBehaviour
 
                 rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
             GetComponent<Revolution>().enabled = false;
+=======
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+
+        //ステージに当たったら消える
+        if (col.tag == "Stage")
+        {
+            Destroy(gameObject);
+
+
+            //ここで消す
+           Off();
+
+>>>>>>> Haruka
 
         }
         
+
 
     }
 
     
     void Operate()
     {
+<<<<<<< HEAD
         
         if (Input.GetKey(KeyCode.A))
         {
@@ -129,6 +195,41 @@ public class Revolution : MonoBehaviour
         {
             initalvelocity.y--;
         }
+=======
+
+        //キャンセル
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Off();
+        }
+
+        //操作
+        if (Input.GetKey(KeyCode.A))
+        {
+            initalvelocity.x--; On();
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            initalvelocity.x++; On();
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            initalvelocity.y++; On();
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            initalvelocity.y--; On();
+        }
+    }
+
+    void On()
+    {
+        dummyParent.SetActive(true);enter = true;
+    }
+    void Off()
+    {
+        dummyParent.SetActive(false);enter = false;
+>>>>>>> Haruka
     }
 
 
