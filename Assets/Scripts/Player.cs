@@ -69,13 +69,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && IsGrounded() && !_isStunning)
+        if (Input.GetButtonDown("Jump") && IsGrounded() && !_isStunning && !_isUsingGravity)
         {
             Jump();
         }
 
         // LeftShiftキーで走る
-        if (Input.GetButton("Fire3"))
+        if (Input.GetButton("Run"))
         {
             _isRunning = true;
         }
@@ -85,16 +85,25 @@ public class Player : MonoBehaviour
         }
 
         // LeftAltキーで引力使用
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButton("UseGravity"))
         {
             _isUsingGravity = true;
+            Debug.Log("UseGravity");
         }
         else
         {
             _isUsingGravity = false;
         }
 
-        _inputX = Input.GetAxisRaw("Horizontal");
+        // 引力を使用していないときは左右入力を受け付ける
+        if (!_isUsingGravity)
+        {
+            _inputX = Input.GetAxisRaw("Horizontal");
+        }
+        else
+        {
+            _inputX = 0;
+        }
     }
 
     void FixedUpdate()
