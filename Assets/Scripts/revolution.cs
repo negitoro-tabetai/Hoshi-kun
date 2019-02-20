@@ -32,10 +32,11 @@ public class Revolution : MonoBehaviour
     private List<GameObject> dummySphereList = new List<GameObject>();
 
     private Rigidbody rigid;
+    private bool enter;
     
     void Start()
     {
-        dummyParent.SetActive(false);//ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+        Off();//ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
         rigid = GetComponent<Rigidbody>();
 
         if (!rigid)
@@ -94,8 +95,11 @@ public class Revolution : MonoBehaviour
 
 
 
-            //Enterで飛ばす
+        //Enterで飛ばす
 
+
+        if (enter == true)
+        {
             if (Input.GetKeyDown(KeyCode.Return))
 
             {
@@ -105,7 +109,8 @@ public class Revolution : MonoBehaviour
                 rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
 
 
-            
+
+            }
         }
         
 
@@ -121,7 +126,7 @@ public class Revolution : MonoBehaviour
 
 
             //ここで消す
-            dummyParent.SetActive(false);
+           Off();
 
 
         }
@@ -131,25 +136,39 @@ public class Revolution : MonoBehaviour
 
     void Operate()
     {
-        
+
+        //キャンセル
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Off();
+        }
 
         //操作
         if (Input.GetKey(KeyCode.A))
         {
-            initalvelocity.x--; dummyParent.SetActive(true);
+            initalvelocity.x--; On();
         }
         if (Input.GetKey(KeyCode.D))
         {
-            initalvelocity.x++;
+            initalvelocity.x++; On();
         }
         if (Input.GetKey(KeyCode.W))
         {
-            initalvelocity.y++;
+            initalvelocity.y++; On();
         }
         if (Input.GetKey(KeyCode.S))
         {
-            initalvelocity.y--;
+            initalvelocity.y--; On();
         }
+    }
+
+    void On()
+    {
+        dummyParent.SetActive(true);enter = true;
+    }
+    void Off()
+    {
+        dummyParent.SetActive(false);enter = false;
     }
 
 
