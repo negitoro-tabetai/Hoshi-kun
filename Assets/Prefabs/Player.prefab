@@ -12,11 +12,13 @@ GameObject:
   - component: {fileID: 3913885252867292865}
   - component: {fileID: 3913885252867292864}
   - component: {fileID: 3913885252867292867}
+  - component: {fileID: 4679535389830516195}
   - component: {fileID: 3913885252867292866}
   - component: {fileID: 3913885252867292895}
+  - component: {fileID: 1202936261}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,6 +95,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &4679535389830516195
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913885252867292869}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3913885252867292866
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -121,11 +136,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbe1380afdf049658d154cd482925f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hp: 100
   _moveSpeed: 5
   _runSpeed: 7.5
+  _invincibleTime: 1
+  _stunningTime: 0.5
   _jumpForce: 14.6
+  _knockBackForce: 10
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
   _rayLength: 0.5
   _width: 0.5
+--- !u!135 &1202936261
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913885252867292869}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
