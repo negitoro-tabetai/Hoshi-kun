@@ -788,6 +788,16 @@ PrefabInstance:
       propertyPath: _attackPoint
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: _rayLength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: _groundLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 4834801873316322046, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
         type: 3}
       propertyPath: m_Constraints
@@ -999,11 +1009,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3913885252867292895, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
-        type: 3}
-      propertyPath: _knockBackForce
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}

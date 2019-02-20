@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButtonDown("Pause"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }       
