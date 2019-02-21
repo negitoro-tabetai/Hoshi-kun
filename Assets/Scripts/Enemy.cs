@@ -13,14 +13,18 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("地面のレイヤーマスク")] LayerMask _groundLayer;
     [SerializeField, Tooltip("攻撃力")] int _attackPoint;
     [SerializeField, Tooltip("rayの長さ")] float _rayLength;
+    [SerializeField, Tooltip("プレイヤーと接触した後の、通常に戻るための距離")] float _distanceLimit = 5;
     [SerializeField] GameObject _player;
-   
+    
+    //プレイヤーとの距離
+    Vector2 _playerToDistance;
+    float _convertionPosition;
+    
     //回転する角度
     const int _rotationAngle = 180;
     //プレイヤーと接触したか
     bool _isTouching;
-    //プレイヤー
-    Vector2 _playerToDirection;
+
 
 
     public int AttackPoint
@@ -30,53 +34,65 @@ public class Enemy : MonoBehaviour
             return _attackPoint;
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        _convertionPosition = transform.position.y;
         if (!_isTouching)
         {
             MoveTimer();
         }
+        else
+        {
+            Direction();
+            _playerToDistance = _player.transform.position - transform.position;
+
+            //接触してから一定距離離れた場合通常に戻る
+            if(Mathf.Abs(_playerToDistance.x) >= _distanceLimit)
+            {
+                _isTouching = false;
+            }
+        }
         Damage();
-        Debug.DrawRay(transform.position + transform.right, Vector2.down, Color.red, Time.deltaTime);
+        Debug.DrawRay(transform.position + transform.forward, Vector2.down, Color.red, Time.deltaTime);
     }
 
     /// <summary>
     /// 移動処理
     /// </summary>
     void FixedUpdate()
-    {
+    { 
         if (_isTouching)
         {
-            
-            _rigidbody.velocity = new Vector2(_playerToDirection.y * _speed, _rigidbody.velocity.y);
+            _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
         }
         else
         {
-            _rigidbody.velocity = new Vector2(transform.right.x * _speed, _rigidbody.velocity.y);
+            _rigidbody.velocity = transform.forward * _speed;
         }
-        
     }
-
+    
     /// <summary>
     /// 方向転換するまでの時間計測
     /// </summary>
     void MoveTimer()
     {
         _time += Time.deltaTime;
-        if(_time > _moveTime || 
-            !Physics.Raycast(transform.position + transform.right, Vector2.down, _rayLength, _groundLayer))
+        if(_time > _moveTime || !Physics.Raycast(transform.position + transform.forward, Vector2.down, _rayLength, _groundLayer))
         {
-            Dir();
+            Direction();
             _time = 0;
         }
     }
+
     /// <summary>
     /// ダメージ処理
     /// </summary>
@@ -95,14 +111,19 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// オブジェクトの方向転換
     /// </summary>
-    void Dir()
+    void Direction()
     {
         if (_isTouching)
         {
-            //transform.Rotate(0, _playerToDirection.y * _rotationAngle, 0);
+            //回転軸をyだけに制限し
+            //ターゲットの方向に方向転換する
+            Vector3 target = _player.transform.position;
+            target.y = transform.position.y;
+            transform.LookAt(target);
         }
         else
         {
+            
             transform.Rotate(0, _rotationAngle, 0);
         }
     }
