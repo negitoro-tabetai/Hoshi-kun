@@ -12,8 +12,8 @@ public class Revolution : MonoBehaviour
     
     [SerializeField,Tooltip("点をいっぱい出すので空の親オブジェクトを設定")]   private Transform dummyObjParent;
     [SerializeField,Tooltip("↑と同じ")]   private GameObject dummyParent;
-    
-    
+
+    [SerializeField, Tooltip("ほしくん")] private Transform Hoshikun;
     [SerializeField,Tooltip("初速のベクトル")]   private Vector3 initalvelocity;
     
     [SerializeField,Tooltip("弾道予測の点の数")]   private int dummyCount;
@@ -63,6 +63,9 @@ public class Revolution : MonoBehaviour
     void Update()
 
     {
+        //まわる！！！！！
+        transform.RotateAround(Hoshikun.position, Hoshikun.up, 300 * Time.deltaTime);
+
 
         offset = Mathf.Repeat(Time.time * offsetSpeed, secInterval);
 
