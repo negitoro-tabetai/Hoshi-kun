@@ -29,10 +29,12 @@ public class Revolution : MonoBehaviour
 
     private Rigidbody rigid;
     private bool enter;
+    private bool guruguru=true;
     
     void Start()
     {
         Off();
+        this.GetComponent<BoxCollider>().isTrigger = false;//回ってる間は判定オフ
         rigid = GetComponent<Rigidbody>();
 
         if (!rigid)
@@ -64,8 +66,10 @@ public class Revolution : MonoBehaviour
 
     {
         //まわる！！！！！
-        transform.RotateAround(Hoshikun.position, Hoshikun.up, 300 * Time.deltaTime);
-
+        if (guruguru == true)
+        {
+            transform.RotateAround(Hoshikun.position, Hoshikun.up, 300 * Time.deltaTime);
+        }
 
         offset = Mathf.Repeat(Time.time * offsetSpeed, secInterval);
 
@@ -102,11 +106,13 @@ public class Revolution : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
 
             {
-
+                this.GetComponent<BoxCollider>().isTrigger = true;//判定オンに
                 rigid.isKinematic = false;
+                guruguru = false;
 
+                //transform.rotation=new Quaternion(0,0,0,0);
                 rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
-
+                
 
 
             }
