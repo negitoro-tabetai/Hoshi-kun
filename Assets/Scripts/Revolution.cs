@@ -30,9 +30,19 @@ public class Revolution : MonoBehaviour
     private Rigidbody rigid;
     private bool enter;
     private bool guruguru=true;
+
     
+
+
     void Start()
     {
+        float scaleX = this.transform.localScale.x;
+        float scaleY = this.transform.localScale.y;
+        float scaleZ = this.transform.localScale.z;
+
+
+
+        transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);//体積ちいさく
         Off();
         this.GetComponent<BoxCollider>().isTrigger = false;//回ってる間は判定オフ
         rigid = GetComponent<Rigidbody>();
@@ -65,6 +75,9 @@ public class Revolution : MonoBehaviour
     void Update()
 
     {
+        float scaleX = this.transform.localScale.x;
+        float scaleY = this.transform.localScale.y;
+        float scaleZ = this.transform.localScale.z;
         //まわる！！！！！
         if (guruguru == true)
         {
@@ -106,10 +119,11 @@ public class Revolution : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
 
             {
+
                 this.GetComponent<BoxCollider>().isTrigger = true;//判定オンに
                 rigid.isKinematic = false;
                 guruguru = false;
-
+                transform.localScale = new Vector3(scaleX*2, scaleY*2, scaleZ*2);
                 transform.position = (dummyObjParent.transform.position);
 
                 rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
