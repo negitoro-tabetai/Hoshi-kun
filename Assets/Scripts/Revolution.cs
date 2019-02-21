@@ -21,7 +21,7 @@ public class Revolution : MonoBehaviour
     [SerializeField,Tooltip("弾道を表示する間隔の秒数")]   private float secInterval;
     
     [SerializeField,Tooltip("点が移動する速度")]   private float offsetSpeed = 0.5f;
-    
+    [SerializeField, Tooltip("公転する速さ")] private float speed = 300;
     private float offset;
 
     //弾道予測を表示するための点のリスト
@@ -68,7 +68,7 @@ public class Revolution : MonoBehaviour
         //まわる！！！！！
         if (guruguru == true)
         {
-            transform.RotateAround(Hoshikun.position, Hoshikun.up, 300 * Time.deltaTime);
+            transform.RotateAround(Hoshikun.position, Hoshikun.up, speed * Time.deltaTime);
         }
 
         offset = Mathf.Repeat(Time.time * offsetSpeed, secInterval);
@@ -110,7 +110,8 @@ public class Revolution : MonoBehaviour
                 rigid.isKinematic = false;
                 guruguru = false;
 
-                //transform.rotation=new Quaternion(0,0,0,0);
+                transform.position = (dummyObjParent.transform.position);
+
                 rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
                 
 
