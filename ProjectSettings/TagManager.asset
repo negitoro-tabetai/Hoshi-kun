@@ -8,6 +8,8 @@ TagManager:
   - HealItem
   - Normal
   - Field
+  - Stage
+  - RevolutionBlock
   layers:
   - Default
   - TransparentFX

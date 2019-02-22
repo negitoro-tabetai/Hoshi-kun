@@ -8,28 +8,32 @@ public class Revolution : MonoBehaviour
 
 {
    
-    [SerializeField,Tooltip("弾道を表示するための点のプレファブ")]   private GameObject dummyObjPref;
+    [SerializeField,Tooltip("弾道を表示するための点のプレファブ")]   GameObject dummyObjPref;
     
-    [SerializeField,Tooltip("点をいっぱい出すので空の親オブジェクトを設定")]   private Transform dummyObjParent;
-    [SerializeField,Tooltip("↑と同じ")]   private GameObject dummyParent;
+    [SerializeField,Tooltip("点をいっぱい出すので空の親オブジェクトを設定")]   Transform dummyObjParent;
+    [SerializeField,Tooltip("↑と同じ")]  GameObject dummyParent;
 
-    [SerializeField, Tooltip("ほしくん")] private Transform Hoshikun;
-    [SerializeField,Tooltip("初速のベクトル")]   private Vector3 initalvelocity;
+    [SerializeField, Tooltip("ほしくん")] Transform Hoshikun;
+    [SerializeField,Tooltip("初速のベクトル")]   Vector3 initalvelocity;
     
-    [SerializeField,Tooltip("弾道予測の点の数")]   private int dummyCount;
+    [SerializeField,Tooltip("弾道予測の点の数")]   int dummyCount;
     
-    [SerializeField,Tooltip("弾道を表示する間隔の秒数")]   private float secInterval;
+    [SerializeField,Tooltip("弾道を表示する間隔の秒数")]  float secInterval;
     
-    [SerializeField,Tooltip("点が移動する速度")]   private float offsetSpeed = 0.5f;
-    [SerializeField, Tooltip("公転する速さ")] private float speed = 300;
-    private float offset;
+    [SerializeField,Tooltip("点が移動する速度")]  float offsetSpeed = 0.5f;
+    [SerializeField, Tooltip("公転する速さ")] float speed = 300;
+    [SerializeField, Tooltip("プレイヤーとどのくらい近ければ公転するかって数字")] private float distance;
+     float this_distance;
+     float offset;
 
     //弾道予測を表示するための点のリスト
-    private List<GameObject> dummySphereList = new List<GameObject>();
+    List<GameObject> dummySphereList = new List<GameObject>();
 
-    private Rigidbody rigid;
-    private bool enter;
-    private bool guruguru=true;
+    Rigidbody rigid;
+    bool enter;//弾道予測を表示してるかどうか
+    bool guruguru=false;//まわすスイッチ
+    bool fly_now=false;//とんでるかどうか
+    
 
     
 
@@ -41,19 +45,16 @@ public class Revolution : MonoBehaviour
         float scaleZ = this.transform.localScale.z;
 
 
-
+        Off();//弾道予測はまだ表示しない
         transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);//体積ちいさく
-        Off();
-        this.GetComponent<BoxCollider>().isTrigger = false;//回ってる間は判定オフ
+        
+        this.GetComponent<BoxCollider>().isTrigger = false;//回ってる間は当たり判定オフ
         rigid = GetComponent<Rigidbody>();
-
-        if (!rigid)
-
-            rigid = gameObject.AddComponent<Rigidbody>();
-
+        
         rigid.isKinematic = true;
 
-        dummyObjParent.transform.position = transform.position;
+        //点の開始位置
+        dummyObjParent.transform.position = Hoshikun.transform.position;
 
         
             //弾道予測を表示するための点を生成
@@ -75,9 +76,21 @@ public class Revolution : MonoBehaviour
     void Update()
 
     {
+
+        //まわすかどうか判定
+        this_distance = transform.position.x - Hoshikun.position.x;
+        this_distance = System.Math.Abs(this_distance);
+
+        if (this_distance <= distance)
+        {
+            if (fly_now==false)guruguru = true;//まわす
+        }
+
         float scaleX = this.transform.localScale.x;
         float scaleY = this.transform.localScale.y;
         float scaleZ = this.transform.localScale.z;
+
+
         //まわる！！！！！
         if (guruguru == true)
         {
@@ -112,9 +125,7 @@ public class Revolution : MonoBehaviour
 
 
         //Enterで飛ばす
-
-
-        if (enter == true)
+        if (enter == true)//弾道予測がでてるときしかとばせない
         {
             if (Input.GetKeyDown(KeyCode.Return))
 
@@ -123,6 +134,7 @@ public class Revolution : MonoBehaviour
                 this.GetComponent<BoxCollider>().isTrigger = true;//判定オンに
                 rigid.isKinematic = false;
                 guruguru = false;
+                fly_now = true;//とんでるよーという合図
                 transform.localScale = new Vector3(scaleX*2, scaleY*2, scaleZ*2);
                 transform.position = (dummyObjParent.transform.position);
 
@@ -136,15 +148,13 @@ public class Revolution : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col)
     {
 
         //ステージに当たったら消える
         if (col.tag == "Stage")
         {
             Destroy(gameObject);
-
-
             //ここで消す
            Off();
 
@@ -163,20 +173,20 @@ public class Revolution : MonoBehaviour
             Off();
         }
 
-        //操作
-        if (Input.GetKey(KeyCode.A))
+        //Rスティック操作
+        if (Input.GetKey(KeyCode.A)||Input.GetAxis("R_Horizontal")<0)
         {
             initalvelocity.x--; On();
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D)||Input.GetAxis("R_Horizontal")>0)
         {
             initalvelocity.x++; On();
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)||Input.GetAxis("R_Vertical")<0)
         {
             initalvelocity.y++; On();
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S)||Input.GetAxis("R_Vertical")>0)
         {
             initalvelocity.y--; On();
         }
