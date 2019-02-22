@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 52515660}
   m_Layer: 0
   m_Name: block
-  m_TagString: Untagged
+  m_TagString: RevolutionBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,8 +199,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52515654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -2.78, z: -0.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.43, y: -2.8, z: 0.52}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -222,11 +222,13 @@ MonoBehaviour:
   dummyObjParent: {fileID: 822022570}
   dummyParent: {fileID: 822022569}
   Hoshikun: {fileID: 414152172}
+  Hoshikun_obj: {fileID: 414152167}
   initalvelocity: {x: 8, y: 8, z: 0}
   dummyCount: 50
   secInterval: 0.03
   offsetSpeed: 0.1
   speed: 300
+  distance: 1.5
 --- !u!54 &52515660
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -414,7 +416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414152167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.009999998, y: -2.74, z: 0.39}
+  m_LocalPosition: {x: 0, y: -2.74, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -8,178 +8,169 @@ public class Revolution : MonoBehaviour
 
 {
    
-    [SerializeField,Tooltip("弾道を表示するための点のプレファブ")]   private GameObject dummyObjPref;
+    [SerializeField,Tooltip("弾道を表示するための点のプレファブ")]   GameObject dummyObjPref;
+    [SerializeField,Tooltip("点をいっぱい出すので空の親オブジェクトを設定")]   Transform dummyObjParent;
+    [SerializeField,Tooltip("↑と同じ")]  GameObject dummyParent;
+    [SerializeField, Tooltip("ほしくん")] Transform Hoshikun;
+    [SerializeField, Tooltip("ほしくん")] GameObject Hoshikun_obj;
+    [SerializeField,Tooltip("初速のベクトル")]   Vector3 initalvelocity;
+    [SerializeField,Tooltip("弾道予測の点の数")]   int dummyCount;
+    [SerializeField,Tooltip("弾道を表示する間隔の秒数")]  float secInterval;
+    [SerializeField,Tooltip("点が移動する速度")]  float offsetSpeed = 0.5f;
+    [SerializeField, Tooltip("公転する速さ")] float speed = 300;
+    [SerializeField, Tooltip("プレイヤーとどのくらい近ければ公転するかって数字")] private float distance;
+     float this_distance;
+     float offset;
+    float this_volume;
+    float hoshi_volume;
+    Rigidbody rigid;
     
-    [SerializeField,Tooltip("点をいっぱい出すので空の親オブジェクトを設定")]   private Transform dummyObjParent;
-    [SerializeField,Tooltip("↑と同じ")]   private GameObject dummyParent;
-
-    [SerializeField, Tooltip("ほしくん")] private Transform Hoshikun;
-    [SerializeField,Tooltip("初速のベクトル")]   private Vector3 initalvelocity;
+    List<GameObject> dummySphereList = new List<GameObject>();//弾道予測を表示するための点のリスト
+    bool enter;//弾道予測を表示してるかどうか
+    bool guruguru=false;//まわすスイッチ
+    bool fly_now=false;//とんでるかどうか
+    bool small = true;//ちいさく
     
-    [SerializeField,Tooltip("弾道予測の点の数")]   private int dummyCount;
     
-    [SerializeField,Tooltip("弾道を表示する間隔の秒数")]   private float secInterval;
-    
-    [SerializeField,Tooltip("点が移動する速度")]   private float offsetSpeed = 0.5f;
-    [SerializeField, Tooltip("公転する速さ")] private float speed = 300;
-    private float offset;
-
-    //弾道予測を表示するための点のリスト
-    private List<GameObject> dummySphereList = new List<GameObject>();
-
-    private Rigidbody rigid;
-    private bool enter;
-    private bool guruguru=true;
-
-    
-
-
     void Start()
     {
-        float scaleX = this.transform.localScale.x;
-        float scaleY = this.transform.localScale.y;
-        float scaleZ = this.transform.localScale.z;
-
-
-
-        transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);//体積ちいさく
+        //float scaleX = transform.localScale.x;
+        //float scaleY = transform.localScale.y;
+        //float scaleZ = transform.localScale.z;
+        
         Off();
-        this.GetComponent<BoxCollider>().isTrigger = false;//回ってる間は判定オフ
+        //transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);//体積ちいさく★★★
+
         rigid = GetComponent<Rigidbody>();
-
-        if (!rigid)
-
-            rigid = gameObject.AddComponent<Rigidbody>();
-
         rigid.isKinematic = true;
 
-        dummyObjParent.transform.position = transform.position;
-
+        //点の開始位置
+        dummyObjParent.transform.position = Hoshikun.transform.position;
         
             //弾道予測を表示するための点を生成
-
             for (int i = 0; i < dummyCount; i++)
             {
-
                 var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
-
                 dummySphereList.Add(obj);
-
             }
-        
-
     }
-
-
-
+    
     void Update()
-
     {
-        float scaleX = this.transform.localScale.x;
-        float scaleY = this.transform.localScale.y;
-        float scaleZ = this.transform.localScale.z;
+        //まわすかどうか判定！！！！！！！！！
+        this_distance = transform.position.x - Hoshikun.position.x;
+        this_distance = System.Math.Abs(this_distance);
+        //↑距離が近いか
+
+        hoshi_volume = Hoshikun_obj.transform.localScale.x * Hoshikun_obj.transform.localScale.y * Hoshikun_obj.transform.localScale.z;
+        this_volume = transform.localScale.x * transform.localScale.y * transform.localScale.z;
+        //↑体積がほしくん以下か
+
+        if (this_distance <= distance&&this_volume<hoshi_volume)
+        {
+            if (Input.GetButtonDown("Revolution")||Input.GetKeyDown(KeyCode.R))
+            {
+                if (fly_now == false) guruguru = true;//まわす
+                
+                if (small == true)
+                {
+                    float scaleX = transform.localScale.x;
+                    float scaleY = transform.localScale.y;
+                    float scaleZ = transform.localScale.z;
+
+                    //ここで体積変える？？？？？
+                    transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);
+                    small = false;
+                }
+            }
+        }
+        
         //まわる！！！！！
         if (guruguru == true)
         {
+            Operate();//操作
             transform.RotateAround(Hoshikun.position, Hoshikun.up, speed * Time.deltaTime);
+            this.GetComponent<BoxCollider>().isTrigger = false;//回ってる間は当たり判定オフ
         }
 
         offset = Mathf.Repeat(Time.time * offsetSpeed, secInterval);
 
-        //標準を操作
-        Operate();
-
-        
             //弾道予測の位置に点を移動
             for (int i = 0; i < dummyCount; i++)
-
             {
-
                 var t = (i * secInterval) + offset;
-
                 var x = t * initalvelocity.x;
-
                 var z = t * initalvelocity.z;
-
                 var y = (initalvelocity.y * t) - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2.0f);
 
                 dummySphereList[i].transform.localPosition = new Vector3(x, y, z);
-
-            //　↑鉛直上方投射！！！
+            //　↑鉛直上方投射のあれ
 
             }
-
-
-
+        
         //Enterで飛ばす
-
-
-        if (enter == true)
+        if (enter == true)//弾道予測がでてるときしかとばせない
         {
-            if (Input.GetKeyDown(KeyCode.Return))
-
+            if (Input.GetKeyDown(KeyCode.Return)||Input.GetButtonDown("Throw"))
             {
-
-                this.GetComponent<BoxCollider>().isTrigger = true;//判定オンに
-                rigid.isKinematic = false;
-                guruguru = false;
-                transform.localScale = new Vector3(scaleX*2, scaleY*2, scaleZ*2);
-                transform.position = (dummyObjParent.transform.position);
-
-                rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
-                
-
-
+                Throw();
             }
         }
-        
+    }
+    
+    void Throw()
+    {
+        float scaleX = transform.localScale.x;
+        float scaleY = transform.localScale.y;
+        float scaleZ = transform.localScale.z;
 
+        this.GetComponent<BoxCollider>().isTrigger = true;//判定オンに
+        rigid.isKinematic = false;
+        guruguru = false;
+        fly_now = true;//とんでるよーという合図
+
+        transform.localScale = new Vector3(scaleX * 2, scaleY * 2, scaleZ * 2);//大きさ戻す
+        transform.position = (dummyObjParent.transform.position);
+        rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
     }
 
-    private void OnTriggerEnter(Collider col)
-    {
 
+    void OnTriggerEnter(Collider col)
+    {
         //ステージに当たったら消える
         if (col.tag == "Stage")
         {
             Destroy(gameObject);
-
-
             //ここで消す
            Off();
-
-
         }
-
-
     }
 
     void Operate()
     {
-
         //キャンセル
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             Off();
         }
-
-        //操作
-        if (Input.GetKey(KeyCode.A))
+        //Rスティック操作
+        if (Input.GetKey(KeyCode.A)||Input.GetAxis("R_Horizontal")<0)
         {
             initalvelocity.x--; On();
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D)||Input.GetAxis("R_Horizontal")>0)
         {
             initalvelocity.x++; On();
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)||Input.GetAxis("R_Vertical")>0)
         {
             initalvelocity.y++; On();
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S)||Input.GetAxis("R_Vertical")<0)
         {
             initalvelocity.y--; On();
         }
+        
     }
 
     void On()
@@ -190,6 +181,5 @@ public class Revolution : MonoBehaviour
     {
         dummyParent.SetActive(false);enter = false;
     }
-
-
+    
 }
