@@ -9,6 +9,9 @@ public class AttractionMove : MonoBehaviour
     Vector3 _convertionPosition;
     Rigidbody2D _rigidbody;
     [SerializeField] GameObject _player;
+    bool _isTouch = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +20,7 @@ public class AttractionMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
@@ -27,25 +30,24 @@ public class AttractionMove : MonoBehaviour
     /// </summary>
     void Move()
     {
-        if (_grantBlock.IsOn)
+        if (_grantBlock.IsOn && !_isTouch)
         {
-            //_rigidbody.isKinematic = false;
             _convertionPosition = (_grantBlock.gameObject.transform.position - transform.position).normalized;
             _rigidbody.MovePosition(transform.position + _convertionPosition * _speed * Time.fixedDeltaTime);
-        }
-        else
-        {
-            //_rigidbody.isKinematic = true;
         }
     }
 
 
-    void OnCollisionStay2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "GrantBlock")
         {
-            Debug.Log("触れている");
-            _rigidbody.isKinematic = true;
+            _isTouch = true;
+        }
+
+        if(collision.gameObject.tag == "Player")
+        {
+            _player.transform.SetParent(transform);
         }
     }
 
