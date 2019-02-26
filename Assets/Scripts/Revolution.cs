@@ -18,14 +18,14 @@ public class Revolution : MonoBehaviour
     [SerializeField,Tooltip("弾道を表示する間隔の秒数")]  float secInterval;
     [SerializeField,Tooltip("点が移動する速度")]  float offsetSpeed = 0.5f;
     [SerializeField, Tooltip("公転する速さ")] float speed = 300;
-    [SerializeField, Tooltip("プレイヤーとどのくらい近ければ公転するかって数字")] private float distance;
+    [SerializeField, Tooltip("プレイヤーとどのくらい近ければ公転するか")] private float distance;
      float this_distance;
      float offset;
     float this_volume;
     float hoshi_volume;
     Rigidbody rigid;
     
-    List<GameObject> dummySphereList = new List<GameObject>();//弾道予測を表示するための点のリスト
+    List<GameObject> dummySpheres = new List<GameObject>();//弾道予測を表示するための点のリスト
     bool enter;//弾道予測を表示してるかどうか
     bool guruguru=false;//まわすスイッチ
     bool fly_now=false;//とんでるかどうか
@@ -34,13 +34,9 @@ public class Revolution : MonoBehaviour
     
     void Start()
     {
-        //float scaleX = transform.localScale.x;
-        //float scaleY = transform.localScale.y;
-        //float scaleZ = transform.localScale.z;
+        
         
         Off();
-        //transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);//体積ちいさく★★★
-
         rigid = GetComponent<Rigidbody>();
         rigid.isKinematic = true;
 
@@ -51,7 +47,7 @@ public class Revolution : MonoBehaviour
             for (int i = 0; i < dummyCount; i++)
             {
                 var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
-                dummySphereList.Add(obj);
+                dummySpheres.Add(obj);
             }
     }
     
@@ -91,9 +87,6 @@ public class Revolution : MonoBehaviour
             Operate();//操作
             transform.RotateAround(Hoshikun.position, Hoshikun.up, speed * Time.deltaTime);
             this.GetComponent<BoxCollider>().isTrigger = false;//回ってる間は当たり判定オフ
-        }
-
-        offset = Mathf.Repeat(Time.time * offsetSpeed, secInterval);
 
             //弾道予測の位置に点を移動
             for (int i = 0; i < dummyCount; i++)
@@ -103,10 +96,16 @@ public class Revolution : MonoBehaviour
                 var z = t * initalvelocity.z;
                 var y = (initalvelocity.y * t) - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2.0f);
 
-                dummySphereList[i].transform.localPosition = new Vector3(x, y, z);
-            //　↑鉛直上方投射のあれ
+                dummySpheres[i].transform.localPosition = new Vector3(x, y, z);
+                //　↑鉛直上方投射のあれ
 
             }
+
+        }
+
+        offset = Mathf.Repeat(Time.time * offsetSpeed, secInterval);
+
+            
         
         //Enterで飛ばす
         if (enter == true)//弾道予測がでてるときしかとばせない
