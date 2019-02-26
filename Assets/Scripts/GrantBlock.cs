@@ -5,18 +5,16 @@ using UnityEngine;
 public class GrantBlock : MonoBehaviour
 {
     [SerializeField] GameObject[] _blockPrefab = new GameObject[3];
-    bool _isTouching = false;
-    // Start is called before the first frame update
-    void Start()
-    { 
+    bool _isOn = false;
 
-    }
-
-    // Update is called once per frame
-    void Update()
+    public bool IsOn
     {
-        
+        get
+        {
+            return _isOn;
+        }
     }
+
 
     /// <summary>
     /// スイッチonとoffで色を変える
@@ -35,24 +33,20 @@ public class GrantBlock : MonoBehaviour
     }
 
 
-
-
-
     void OnCollisionEnter(Collision collision)
     {
-        if((collision.gameObject.tag == "Player" || collision.gameObject.tag == "RevolutionBlock"))
+        if((collision.gameObject.tag == "Player" || 
+            collision.gameObject.tag == "RevolutionBlock"))
         {
-            if (_isTouching)
+            if (_isOn)
             {
-                _isTouching = false;
-                Debug.Log(_isTouching);
+                _isOn = false;
             }
             else
             {
-                _isTouching = true;
-                Debug.Log(_isTouching);
+                _isOn = true;
             }
-            Switch(_isTouching);
+            Switch(_isOn);
         }
     }
 }
