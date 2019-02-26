@@ -4,91 +4,67 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    
     [SerializeField]
-    GameObject Startobj;
+    GameObject StartObject;
     [SerializeField]
-    GameObject Endobj;
+    GameObject EndObject;
     private float elapsedTime;
-    private Vector3 StartPos;
-    private Vector3 EndPos;
-    public float time;
-    private bool Moves=false;
-    private bool HitStart=false;
-    private bool HitEnd = false;
+    private Vector3 StartPosition;
+    private Vector3 EndPosition;
+    private bool Moves = false;
+    private Rigidbody2D _rigidbody;
+    [SerializeField] private float _speed;
     void Start()
     {
-        StartPos = Startobj.gameObject.transform.position;
-        EndPos = Endobj.gameObject.transform.position;
-        this.transform.position = StartPos; 
+
+        StartPosition = StartObject.transform.position;
+        EndPosition = EndObject.transform.position;
+        this.transform.position = StartPosition;
+        _rigidbody = GetComponent<Rigidbody2D>();
+
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKey(KeyCode.V))
         {
             Moves = true;
-            HitStart = false;
-            transform.position += ((EndPos - StartPos) / time) * Time.deltaTime;
+
+
         }
         if (Input.GetKeyUp(KeyCode.V))
         {
-            Moves = false;           
+            Moves = false;
         }
         if (elapsedTime >= 5)
         {
-            HitEnd = false;
+
+            elapsedTime = 0;
         }
-        
+
     }
 
-     void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Start")
-        {
-            Debug.Log("Hit");
-            HitStart = true;
-        }
-        if (other.gameObject.tag == "End")
-        {
-            Debug.Log("Hit2");
-            HitEnd = true;
-        }     
-    }
-     void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Start")
-        {
-           // HitStart = true;
-        }
-            if (other.gameObject.tag == "End")
-        {
-            elapsedTime += Time.deltaTime;
-            Debug.Log(elapsedTime);
-        }
-    }
+
+
+
     void FixedUpdate()
     {
+        //オブジェクトの移動
+        float step = _speed * Time.fixedDeltaTime;
         if (Moves)
         {
-             transform.position += ((EndPos - StartPos) / time) * Time.deltaTime;                  
+            _rigidbody.MovePosition(transform.position = Vector3.MoveTowards(transform.position, EndPosition, step));
+
         }
-        else 
+        else
         {
-            transform.position += ((StartPos - EndPos) / time) * Time.deltaTime;
+            _rigidbody.MovePosition(transform.position = Vector3.MoveTowards(transform.position, StartPosition, step));
         }
-        if (HitEnd)
-        {
-            transform.position = EndPos;
-        }
-        if (HitStart)
-        {
-            transform.position = StartPos;
-        }
+
     }
     void Ray()
     {
         int distance = 10;
-        Ray ray = new Ray(transform.position, new Vector3(0,-1,0));
+        Ray ray = new Ray(transform.position, new Vector3(0, -1, 0));
         Debug.DrawLine(ray.origin, ray.direction * distance, Color.red);
     }
 }
