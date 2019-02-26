@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody _rigidbody;
-    SphereCollider _sphereCollider;
+    Rigidbody2D _rigidbody2D;
 
     [SerializeField, Tooltip("体力")] int _hp;
     [SerializeField, Tooltip("移動速度")] float _moveSpeed;
@@ -28,6 +27,8 @@ public class Player : MonoBehaviour
     bool _isStunning;
     // 引力を使用しているか
     bool _isUsingGravity;
+
+    Vector3 _previousPosition;
 
     // Layer名
     const string PlayerLayer = "Player";
@@ -62,18 +63,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool IsMoving
+    {
+        get
+        {
+            return transform.position != _previousPosition || _inputX != 0;
+        }
+    }
+
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && IsGrounded() && !_isStunning && !_isUsingGravity)
-        {
-            Jump();
-        }
-
         // LeftShiftキーで走る
         if (Input.GetButton("Run"))
         {
@@ -90,23 +94,36 @@ public class Player : MonoBehaviour
             if (Input.GetButtonDown("UseGravity"))
             {
                 _isUsingGravity = true;
+                _rigidbody2D.isKinematic = true;
                 Debug.Log("UseGravity");
             }
             if (Input.GetButtonUp("UseGravity"))
             {
                 _isUsingGravity = false;
+                _rigidbody2D.isKinematic = false;
             }
-        }
-
-        // 引力を使用していないときは左右入力を受け付ける
-        if (!_isUsingGravity)
-        {
-            _inputX = Input.GetAxisRaw("Horizontal");
         }
         else
         {
+            _rigidbody2D.isKinematic = false;
+            _isUsingGravity = false;
+        }
+
+        if (Input.GetButtonDown("Jump") && IsGrounded() && !_isStunning && !_isUsingGravity)
+        {
+            Jump();
+        }
+        // 左右入力
+        if (_isUsingGravity)
+        {
             _inputX = 0;
         }
+        else
+        {
+            _inputX = Input.GetAxisRaw("Horizontal");
+        }
+
+        _previousPosition = transform.position;
     }
 
     void FixedUpdate()
@@ -115,30 +132,30 @@ public class Player : MonoBehaviour
         {
             if (_isRunning)
             {
-                _rigidbody.velocity = new Vector3(_inputX * _runSpeed, _rigidbody.velocity.y, 0);
+                _rigidbody2D.velocity = new Vector3(_inputX * _runSpeed, _rigidbody2D.velocity.y, 0);
             }
             else
             {
-                _rigidbody.velocity = new Vector3(_inputX * _moveSpeed, _rigidbody.velocity.y, 0);
+                _rigidbody2D.velocity = new Vector3(_inputX * _moveSpeed, _rigidbody2D.velocity.y, 0);
             }
         }
     }
 
     void Jump()
     {
-        _rigidbody.AddForce((Vector3.up) * _jumpForce, ForceMode.Impulse);
+        _rigidbody2D.AddForce((Vector2.up) * _jumpForce, ForceMode2D.Impulse);
     }
 
     /// <param name="enemyPosition">衝突した敵の位置</param>
     void KnockBack(Vector3 enemyPosition)
     {
-        _rigidbody.velocity = Vector3.zero;
+        _rigidbody2D.velocity = Vector3.zero;
         const float VerticalForce = 2;
 
         //自分の位置と敵の位置を比較して方向を決定
         Vector3 direction = new Vector3(transform.position.x - enemyPosition.x, 0, 0).normalized;
         direction = new Vector3(direction.x, VerticalForce, 0).normalized;
-        _rigidbody.AddForce(direction * _knockBackForce, ForceMode.Impulse);
+        _rigidbody2D.AddForce(direction * _knockBackForce, ForceMode2D.Impulse);
     }
 
     /// <param name="attackPoint">ダメージ量</param>
@@ -159,30 +176,26 @@ public class Player : MonoBehaviour
     /// <returns>地面についているか</returns>
     bool IsGrounded()
     {
-        Ray rayRight = new Ray(transform.position + new Vector3(_width, 0, 0), Vector3.down);
-        Ray rayLeft = new Ray(transform.position + new Vector3(-_width, 0, 0), Vector3.down);
-
-        bool isGrounded = Physics.Raycast(rayLeft, _rayLength, _groundLayer) || Physics.Raycast(rayRight, _rayLength, _groundLayer);
-
+        bool isGrounded = Physics2D.Raycast(transform.position + new Vector3(_width, 0, 0), Vector3.down, _rayLength, _groundLayer) || Physics2D.Raycast(transform.position + new Vector3(-_width, 0, 0), Vector3.down, _rayLength, _groundLayer);
         return isGrounded;
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy" && !_isInvincible)
         {
-            Damage(other.gameObject.GetComponent<Enemy>().AttackPoint);
+            _isUsingGravity = false;
+            _rigidbody2D.isKinematic = false;
             KnockBack(other.transform.position);
             StartCoroutine(Stun());
             StartCoroutine(BecomesInvincible());
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "HealItem")
         {
-            Heal(other.GetComponent<HealItem>().HealPoint);
             Destroy(other.gameObject);
         }
     }
