@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3536508089402768176}
   - component: {fileID: 2438393618539149238}
   - component: {fileID: 8947843344268691658}
-  - component: {fileID: 7585693492958013769}
-  - component: {fileID: 2051452367637258866}
+  - component: {fileID: 5135449717923532579}
+  - component: {fileID: 5668793691679676754}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -93,20 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 8528486011927091968, guid: 1eb2b839ed4ab6b4985a878d152fdc0c, type: 3}
---- !u!135 &7585693492958013769
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3998622233608966268}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2051452367637258866
+--- !u!54 &5135449717923532579
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,3 +109,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &5668793691679676754
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998622233608966268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
