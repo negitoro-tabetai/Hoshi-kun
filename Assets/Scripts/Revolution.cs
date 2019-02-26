@@ -23,7 +23,7 @@ public class Revolution : MonoBehaviour
      float offset;
     float this_volume;
     float hoshi_volume;
-    Rigidbody rigid;
+    Rigidbody2D rigid;
     
     List<GameObject> dummySpheres = new List<GameObject>();//弾道予測を表示するための点のリスト
     bool enter;//弾道予測を表示してるかどうか
@@ -37,7 +37,7 @@ public class Revolution : MonoBehaviour
         
         
         Off();
-        rigid = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody2D>();
         rigid.isKinematic = true;
 
         //点の開始位置
@@ -86,7 +86,7 @@ public class Revolution : MonoBehaviour
         {
             Operate();//操作
             transform.RotateAround(Hoshikun.position, Hoshikun.up, speed * Time.deltaTime);
-            this.GetComponent<BoxCollider>().isTrigger = false;//回ってる間は当たり判定オフ
+            this.GetComponent<BoxCollider2D>().isTrigger = false;//回ってる間は当たり判定オフ
 
             //弾道予測の位置に点を移動
             for (int i = 0; i < dummyCount; i++)
@@ -97,7 +97,7 @@ public class Revolution : MonoBehaviour
                 var y = (initalvelocity.y * t) - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2.0f);
 
                 dummySpheres[i].transform.localPosition = new Vector3(x, y, z);
-                //　↑鉛直上方投射のあれ
+                //　↑鉛直上方投射の公式
 
             }
 
@@ -123,14 +123,14 @@ public class Revolution : MonoBehaviour
         float scaleY = transform.localScale.y;
         float scaleZ = transform.localScale.z;
 
-        this.GetComponent<BoxCollider>().isTrigger = true;//判定オンに
+        this.GetComponent<BoxCollider2D>().isTrigger = true;//判定オンに
         rigid.isKinematic = false;
         guruguru = false;
         fly_now = true;//とんでるよーという合図
 
         transform.localScale = new Vector3(scaleX * 2, scaleY * 2, scaleZ * 2);//大きさ戻す
         transform.position = (dummyObjParent.transform.position);
-        rigid.AddForce(initalvelocity, ForceMode.VelocityChange);
+        rigid.AddForce(initalvelocity, ForceMode2D.Impulse);//とばす
     }
 
 
@@ -153,19 +153,19 @@ public class Revolution : MonoBehaviour
             Off();
         }
         //Rスティック操作
-        if (Input.GetKey(KeyCode.A)||Input.GetAxis("R_Horizontal")<0)
+        if (Input.GetKey(KeyCode.LeftArrow)||Input.GetAxis("R_Horizontal")<0)
         {
             initalvelocity.x--; On();
         }
-        if (Input.GetKey(KeyCode.D)||Input.GetAxis("R_Horizontal")>0)
+        if (Input.GetKey(KeyCode.RightArrow)||Input.GetAxis("R_Horizontal")>0)
         {
             initalvelocity.x++; On();
         }
-        if (Input.GetKey(KeyCode.W)||Input.GetAxis("R_Vertical")>0)
+        if (Input.GetKey(KeyCode.UpArrow)||Input.GetAxis("R_Vertical")>0)
         {
             initalvelocity.y++; On();
         }
-        if (Input.GetKey(KeyCode.S)||Input.GetAxis("R_Vertical")<0)
+        if (Input.GetKey(KeyCode.DownArrow)||Input.GetAxis("R_Vertical")<0)
         {
             initalvelocity.y--; On();
         }
