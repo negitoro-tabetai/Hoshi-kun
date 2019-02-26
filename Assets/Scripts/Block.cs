@@ -14,17 +14,18 @@ public class Block : MonoBehaviour
     [SerializeField, Tooltip("Rayの長さ")] float _rayLength;
     [SerializeField, Tooltip("Rayの飛ばす範囲")] float _width;
 
-    private Rigidbody rb;
+    //private Rigidbody rb;
     private GameObject Cube;
-
-
+    [SerializeField]
+     Rigidbody rb;
+   
     void Start()
     {
 
         rb = GetComponent<Rigidbody>();
       
         rb.isKinematic = true;
-      
+       
     }
     void Update()
     {
@@ -80,7 +81,7 @@ public class Block : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            rb.isKinematic = true;
+          rb.isKinematic = true;
 
 
         }
@@ -91,7 +92,7 @@ public class Block : MonoBehaviour
         if (other.gameObject.tag == "Field" && IsGrounded())
         {
             rb.isKinematic = true;
-          
+        
         }
         
     }
