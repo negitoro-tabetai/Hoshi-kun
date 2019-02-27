@@ -16,7 +16,7 @@ public class Sphere : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
 
         
@@ -26,7 +26,7 @@ public class Sphere : MonoBehaviour
 
             //パーティクル出す
             Instantiate(effect, transform.position, transform.rotation);
-            
+            Debug.Log("ぱーてぃくる");
 
 
         }
