@@ -4,67 +4,57 @@ using UnityEngine;
 
 public class Rail : MonoBehaviour
 {
-    [SerializeField]
-    GameObject StartObject;
-    [SerializeField]
-    GameObject EndObject;
-    [SerializeField]
-    GameObject Player;
-    private float elapsedTime;
-    private Vector3 StartPosition;
-    private Vector3 EndPosition;
-    private bool Moves = false;
-    private Rigidbody2D _rigidbody;
-    [SerializeField] private float _speed;
-    private bool _IsUsingGravity = false;
+    [SerializeField, Tooltip("始点")] Transform _start;
+    [SerializeField, Tooltip("終点")] Transform _end;
+    [SerializeField, Tooltip("スピード")] float _speed;
+    Player _player;
+    bool _isMoving;
+    Rigidbody2D _rigidbody2D;
+
     void Start()
     {
-
-        StartPosition = StartObject.transform.position;
-        EndPosition = EndObject.transform.position;
-        this.transform.position = StartPosition;
-        _rigidbody = GetComponent<Rigidbody2D>();
-
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
-    void Update()
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (Input.GetKey(KeyCode.V))
+        if (other.tag == "Field")
         {
-            Moves = true;
-
-
+            if (!_player)
+            {
+                _player = other.transform.root.GetComponent<Player>();
+            }
+            Debug.Log(_player.IsUsingGravity);
+            if (_player)
+            {
+                if (_player.IsUsingGravity)
+                {
+                    _isMoving = true;
+                }
+                else
+                {
+                    _isMoving = false;
+                }
+            }
         }
-        if (Input.GetKeyUp(KeyCode.V))
-        {
-            Moves = false;
-        }
-
-
     }
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "field")
-        {
-            Moves = true;
-        }
-    }
-
-
-
     void FixedUpdate()
     {
         //オブジェクトの移動
         float step = _speed * Time.fixedDeltaTime;
-        if (_IsUsingGravity && Moves)
+        if (_isMoving)
         {
-            // _rigidbody.MovePosition(transform.position = Vector3.MoveTowards(transform.position, EndPosition, step));
-            Vector3 targetPosition = Vector3.Lerp(StartPosition, EndPosition, (StartPosition.y - Player.transform.position.y) / (StartPosition.y - EndPosition.y));
-            _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, targetPosition, step));
+            Vector3 targetPosition = Vector3.Lerp(_start.position, _end.position, (_start.position.y - _player.transform.position.y) / (_start.position.y - _end.position.y));
+            _rigidbody2D.MovePosition(Vector3.MoveTowards(transform.position, targetPosition, step));
         }
         else
         {
-            _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, StartPosition, step));
+            _rigidbody2D.MovePosition(Vector3.MoveTowards(transform.position, _start.position, step));
         }
+    }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(_start.position, _end.position);
     }
 }
