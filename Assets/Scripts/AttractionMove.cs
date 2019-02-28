@@ -32,6 +32,7 @@ public class AttractionMove : MonoBehaviour
     /// </summary>
     void Move()
     {
+        //付与ブロックがONで且つ付与ブロックに触れていないとき
         if (_grantBlock.IsOn && !_isTouch)
         {
             transform.position = Vector3.MoveTowards(transform.position, _grantBlock.gameObject.transform.position , _speed * Time.deltaTime);
