@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 127072890}
   - component: {fileID: 127072887}
   - component: {fileID: 4526753233445136670}
+  - component: {fileID: 3188677367841058348}
   m_Layer: 9
   m_Name: block
-  m_TagString: Untagged
+  m_TagString: RevolutionBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,3 +151,20 @@ MonoBehaviour:
   offsetSpeed: 0.5
   speed: 300
   distance: 0
+  Block: {fileID: 0}
+--- !u!111 &3188677367841058348
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127072884}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 81387b1f557514b44bf42f09be228901, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 81387b1f557514b44bf42f09be228901, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
