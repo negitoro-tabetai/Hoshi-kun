@@ -170,19 +170,19 @@ CompositeCollider2D:
   - m_Collider: {fileID: 374561482}
     m_ColliderPaths:
     - - X: 50000000
-        Y: 50000000
+        Y: 50000
       - X: -50000000
-        Y: 50000000
+        Y: 50000
       - X: -50000000
-        Y: -50000000
+        Y: -50000
       - X: 50000000
-        Y: -50000000
+        Y: -50000
   m_CompositePaths:
     m_Paths:
-    - - {x: 5, y: 5}
-      - {x: -5, y: 5}
-      - {x: -5, y: -5}
-      - {x: 5, y: -5}
+    - - {x: 5, y: 0.005}
+      - {x: -5, y: 0.005}
+      - {x: -5, y: -0.005}
+      - {x: 5, y: -0.005}
   m_VertexDistance: 0.0005
 --- !u!4 &374561481
 Transform:
@@ -222,7 +222,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 10, y: 0.01}
   m_EdgeRadius: 0
 --- !u!50 &374561483
 Rigidbody2D:
@@ -390,8 +390,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676056559}
-  m_LocalRotation: {x: 0.122183286, y: 0.000000028655185, z: -0.0000000035276153,
-    w: 0.9925076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5.5, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -519,7 +518,7 @@ MonoBehaviour:
   m_ZDamping: 1
   m_AngularDampingMode: 0
   m_PitchDamping: 0
-  m_YawDamping: 16.8
+  m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
 --- !u!114 &1049371911
@@ -714,9 +713,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681231740}
-  m_LocalRotation: {x: 0.122183286, y: 0.000000028655185, z: -0.0000000035276153,
-    w: 0.9925076}
-  m_LocalPosition: {x: 0, y: 5.5, z: -20}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.005, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
