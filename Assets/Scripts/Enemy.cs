@@ -133,7 +133,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         
         if(collision.gameObject.tag == "Player")
@@ -148,11 +148,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Field")
         {
-            if (other.transform.root.GetComponent<Player>().IsUsingGravity)
+            if (other.transform.parent.GetComponent<Player>().IsUsingGravity)
             {
                 enabled = false;
                 _movable.enabled = true;
