@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4834801873014228674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0, z: 0.52}
+  m_LocalPosition: {x: 0.52, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4834801873316322045}
@@ -90,10 +90,10 @@ GameObject:
   - component: {fileID: 4834801873316322047}
   - component: {fileID: 4834801873316322043}
   - component: {fileID: 1482889473431837854}
-  - component: {fileID: 1306359854182912171}
+  - component: {fileID: 175412228}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _attackPoint: 0
-  _rayLength: 0
+  _rayLength: 1
   _distanceLimit: 5
   _player: {fileID: 0}
 --- !u!50 &1482889473431837854
@@ -202,7 +202,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &1306359854182912171
+--- !u!61 &175412228
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

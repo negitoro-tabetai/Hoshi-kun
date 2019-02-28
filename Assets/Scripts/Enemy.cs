@@ -12,12 +12,11 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("ライフポイント")] int _life;
     [SerializeField, Tooltip("地面のレイヤーマスク")] LayerMask _groundLayer;
     [SerializeField, Tooltip("攻撃力")] int _attackPoint;
-    [SerializeField, Tooltip("rayの長さ")] float _rayLength;
+    [SerializeField, Tooltip("rayの長さ")] float _rayLength = 0.6f;
     [SerializeField, Tooltip("プレイヤーと接触した後の、通常に戻るための距離")] float _distanceLimit = 5;
     [SerializeField] GameObject _player;
     //プレイヤーとの距離
     Vector2 _playerToDistance;
-    
     //回転する角度
     const int _rotationAngle = 180;
     //プレイヤーと接触したか
@@ -57,8 +56,13 @@ public class Enemy : MonoBehaviour
                 _isTouching = false;
             }
         }
-        Damage();
-        //Debug.DrawRay(transform.position + transform.forward, Vector2.down, Color.red, Time.deltaTime);
+
+        //左右にrayを打って地面のレイヤーを持つオブジェクトに当たったらダメージを受ける
+        if(Physics2D.Raycast(transform.position , Vector2.left, _rayLength, _groundLayer) &&
+            Physics2D.Raycast(transform.position, Vector2.right, _rayLength, _groundLayer))
+        {
+            Damage();
+        }
     }
 
     /// <summary>
@@ -69,12 +73,11 @@ public class Enemy : MonoBehaviour
         if (_isTouching || 
             !Physics2D.Raycast(transform.position, Vector2.down, _rayLength, _groundLayer))
         {
-            
             _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
         }
         else
         {
-            _rigidbody.velocity = transform.forward * _speed;
+            _rigidbody.velocity = transform.right * _speed;
         }
     }
     
@@ -84,8 +87,7 @@ public class Enemy : MonoBehaviour
     void MoveTimer()
     {
         _time += Time.deltaTime;
-        if(_time > _moveTime || 
-            !Physics2D.Raycast(transform.position + transform.forward, Vector2.down, _rayLength, _groundLayer))
+        if(_time > _moveTime || !Physics2D.Raycast(transform.position + transform.right, Vector2.down,_rayLength, _groundLayer))
         {
             Direction();
             _time = 0;
@@ -97,13 +99,13 @@ public class Enemy : MonoBehaviour
     /// </summary>
     void Damage()
     {
-        if (Input.GetKeyDown(KeyCode.B) && _life != 0)
+        if (_life != 0)
         {
             _life--;
         }
         if (_life == 0)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -118,7 +120,8 @@ public class Enemy : MonoBehaviour
             //ターゲットの方向に方向転換する
             Vector3 target = _player.transform.position;
             target.y = transform.position.y;
-            transform.LookAt(target);
+            transform.right = target - transform.position;
+
         }
         else if(!_isTouching && 
             Physics2D.Raycast(transform.position, Vector2.down, _rayLength, _groundLayer))
@@ -134,5 +137,13 @@ public class Enemy : MonoBehaviour
         {
             _isTouching = true;
         }
+
+        //公転で飛ばされたブロックに当たった場合ダメージを受ける
+        if(collision.gameObject.tag == "RevolutionBlock")
+        {
+            Damage();
+        }
     }
+
+
 }
