@@ -7,6 +7,7 @@ public class GrantBlock : MonoBehaviour
     [SerializeField] GameObject[] _blockPrefab = new GameObject[3];
     bool _isOn = false;
 
+
     public bool IsOn
     {
         get

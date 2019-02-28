@@ -87,7 +87,7 @@ public class MovableBlock : MonoBehaviour
         {
             if (!_player)
             {
-                _player = other.transform.root.GetComponent<Player>();
+                _player = other.transform.parent.GetComponent<Player>();
             }
 
             if (_player)
