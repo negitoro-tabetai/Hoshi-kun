@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4834801873014228675}
   - component: {fileID: 4834801873014228702}
   - component: {fileID: 4834801873014228673}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,8 @@ GameObject:
   - component: {fileID: 4834801873316322043}
   - component: {fileID: 1482889473431837854}
   - component: {fileID: 175412228}
-  m_Layer: 0
+  - component: {fileID: 6538317811016165222}
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -177,7 +178,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  _attackPoint: 0
+  _attackPoint: 1
   _rayLength: 1
   _distanceLimit: 5
   _player: {fileID: 0}
@@ -228,3 +229,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6538317811016165222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834801873316322017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4207c1f6b354b15b3e4507249c9430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _rayLength: 0.6
+  _width: 0.5
