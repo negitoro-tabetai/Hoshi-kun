@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField, Tooltip("接地判定するレイヤー")] LayerMask _groundLayer;
     [SerializeField, Tooltip("Rayの長さ")] float _rayLength;
     [SerializeField, Tooltip("Rayの飛ばす範囲")] float _width;
-
+    [SerializeField, Tooltip("引力の範囲の表示")] GameObject _field;
     // 左右入力
     float _inputX;
     // 走っているか
@@ -95,7 +95,6 @@ public class Player : MonoBehaviour
             {
                 _isUsingGravity = true;
                 _rigidbody2D.isKinematic = true;
-                Debug.Log("UseGravity");
             }
             if (Input.GetButtonUp("UseGravity"))
             {
@@ -121,6 +120,16 @@ public class Player : MonoBehaviour
         else
         {
             _inputX = Input.GetAxisRaw("Horizontal");
+        }
+
+        // 範囲表示
+        if (_isUsingGravity)
+        {
+            _field.SetActive(true);
+        }
+        else
+        {
+            _field.SetActive(false);
         }
 
         _previousPosition = transform.position;
@@ -176,8 +185,10 @@ public class Player : MonoBehaviour
     /// <returns>地面についているか</returns>
     bool IsGrounded()
     {
-        bool isGrounded = Physics2D.Raycast(transform.position + new Vector3(_width, 0, 0), Vector3.down, _rayLength, _groundLayer) || Physics2D.Raycast(transform.position + new Vector3(-_width, 0, 0), Vector3.down, _rayLength, _groundLayer);
-        return isGrounded;
+        RaycastHit2D right = Physics2D.Raycast(transform.position + new Vector3(_width, 0, 0), Vector3.down, _rayLength, _groundLayer);
+        RaycastHit2D left = Physics2D.Raycast(transform.position + new Vector3(-_width, 0, 0), Vector3.down, _rayLength, _groundLayer);
+        
+        return right || left;
     }
 
     void OnCollisionEnter2D(Collision2D other)
