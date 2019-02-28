@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("rayの長さ")] float _rayLength = 0.6f;
     [SerializeField, Tooltip("プレイヤーと接触した後通常に戻るための距離")] float _distanceLimit = 5;
     [SerializeField] GameObject _player;
+<<<<<<< Updated upstream
+=======
+    MovableBlock _movable;
+>>>>>>> Stashed changes
     //プレイヤーとの距離
     Vector2 _playerToDistance;
     //回転する角度
@@ -146,5 +150,24 @@ public class Enemy : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
 
+=======
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Field")
+        {
+            if (other.transform.root.GetComponent<Player>().IsUsingGravity)
+            {
+                enabled = false;
+                _movable.enabled = true;
+            }
+            else
+            {
+                enabled = true;
+                _movable.enabled = false;
+            }
+        }
+    }
+>>>>>>> Stashed changes
 }
