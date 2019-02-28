@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("地面のレイヤーマスク")] LayerMask _groundLayer;
     [SerializeField, Tooltip("攻撃力")] int _attackPoint;
     [SerializeField, Tooltip("rayの長さ")] float _rayLength = 0.6f;
-    [SerializeField, Tooltip("プレイヤーと接触した後の、通常に戻るための距離")] float _distanceLimit = 5;
+    [SerializeField, Tooltip("プレイヤーと接触した後通常に戻るための距離")] float _distanceLimit = 5;
     [SerializeField] GameObject _player;
     //プレイヤーとの距離
     Vector2 _playerToDistance;
@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     const int _rotationAngle = 180;
     //プレイヤーと接触したか
     bool _isTouching;
+
 
 
 
