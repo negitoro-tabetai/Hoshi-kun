@@ -136,7 +136,7 @@ public class Revolution : MonoBehaviour
         this.tag = "RevolutionBlock";
         this.GetComponent<BoxCollider2D>().enabled = true;//判定オンに
         this.GetComponent<BoxCollider2D>().isTrigger = true;
-      
+
         rigid.isKinematic = false;
         guruguru = false;
         fly_now = true;//とんでる
