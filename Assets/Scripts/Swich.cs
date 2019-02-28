@@ -32,12 +32,13 @@ public class Swich : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         
         if (col.tag == "RevolutionBlock")
         {
             swich = true;
+            Debug.Log("オン");
         }
     }
 }
