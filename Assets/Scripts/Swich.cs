@@ -39,6 +39,7 @@ public class Swich : MonoBehaviour
         {
             swich = true;
             Debug.Log("オン");
+            Destroy(gameObject);
         }
     }
 }
