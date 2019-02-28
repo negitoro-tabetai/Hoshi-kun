@@ -38,14 +38,7 @@ public class GrantBlock : MonoBehaviour
         if((collision.gameObject.tag == "Player" || 
             collision.gameObject.tag == "RevolutionBlock"))
         {
-            if (_isOn)
-            {
-                _isOn = false;
-            }
-            else
-            {
-                _isOn = true;
-            }
+            _isOn = !_isOn;
             Switch(_isOn);
         }
     }
