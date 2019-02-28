@@ -32,7 +32,7 @@ public class Revolution : MonoBehaviour
     void Start()
     {
         GetComponent<Animation>().enabled = false;
-        
+        this.tag = "Untagged";
         Off();
         rigid = GetComponent<Rigidbody2D>();
         rigid.isKinematic = true;
@@ -93,7 +93,7 @@ public class Revolution : MonoBehaviour
             GetComponent<Animation>().enabled = true;
 
 
-            this.GetComponent<BoxCollider2D>().isTrigger = false;//回ってる間は当たり判定オフ
+            this.GetComponent<BoxCollider2D>().enabled = false;//回ってる間は当たり判定オフ
 
             //弾道予測の位置に点を移動
             for (int i = 0; i < dummyCount; i++)
@@ -133,7 +133,7 @@ public class Revolution : MonoBehaviour
 
         GetComponent<Animation>().enabled = false;
 
-
+        this.tag = "RevolutionBlock";
         this.GetComponent<BoxCollider2D>().isTrigger = true;//判定オンに
         rigid.isKinematic = false;
         guruguru = false;
