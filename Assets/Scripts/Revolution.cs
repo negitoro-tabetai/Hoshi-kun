@@ -35,22 +35,23 @@ public class Revolution : MonoBehaviour
         this.tag = "Untagged";
         Off();
         rigid = GetComponent<Rigidbody2D>();
-        rigid.isKinematic = true;
-        
-        //弾道予測を表示するための点を生成
-        for (int i = 0; i < dummyCount; i++)
-        {
-            var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
-            dummySpheres.Add(obj);
-        }
+       
+
+        ////弾道予測を表示するための点を生成
+        //for (int i = 0; i < dummyCount; i++)
+        //{
+        //    var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
+        //    dummySpheres.Add(obj);
+        //}
     }
     
     void Update()
     {
             //点の開始位置
             dummyObjParent.transform.position = Hoshikun.transform.position;
-        
-            
+
+
+
         //まわすかどうか判定！！！！！！！！！
         this_distance = transform.position.x - Hoshikun.position.x;
         this_distance = System.Math.Abs(this_distance);
@@ -64,7 +65,15 @@ public class Revolution : MonoBehaviour
         {
             if (Input.GetButtonDown("Revolution")||Input.GetKeyDown(KeyCode.R))
             {
-                
+
+
+                if (this.GetComponent<Enemy>() != null)
+                {
+                    GetComponent<Enemy>().enabled = false;
+                }
+
+
+
                 if (fly_now == false)
                 {
                     guruguru = true; //まわす
@@ -74,7 +83,14 @@ public class Revolution : MonoBehaviour
                         float scaleX = transform.localScale.x;
                         float scaleY = transform.localScale.y;
                         float scaleZ = transform.localScale.z;
-                        
+
+                        //弾道予測を表示するための点を生成
+                        for (int i = 0; i < dummyCount; i++)
+                        {
+                            var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
+                            dummySpheres.Add(obj);
+                        }
+                        rigid.isKinematic = true;
                         //ここで体積変える？？？？？
                         transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);
                         small = false;
@@ -132,7 +148,10 @@ public class Revolution : MonoBehaviour
         float scaleZ = transform.localScale.z;
 
         GetComponent<Animation>().enabled = false;
-
+        //消す★★★
+        DestroyChildObject(dummyObjParent);
+        //Destroy(dummyParent);
+        //dummySpheres.Clear();
         this.tag = "RevolutionBlock";
         this.GetComponent<BoxCollider2D>().enabled = true;//判定オンに
         this.GetComponent<BoxCollider2D>().isTrigger = true;
@@ -146,6 +165,16 @@ public class Revolution : MonoBehaviour
         rigid.AddForce(initalvelocity, ForceMode2D.Impulse);//とばす
     }
 
+    public static void DestroyChildObject(Transform parent_trans)
+    {
+        for (int i = 0; i < parent_trans.childCount; i++)
+        {
+            GameObject.Destroy(parent_trans.GetChild(i).gameObject);
+        }
+        
+      
+
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
