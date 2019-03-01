@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     void Update()
     {
         if (Input.GetButtonDown("Pause"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }       
+            ReroadScene();
+        }
+    }
+
+    public void ReroadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -171,6 +171,10 @@ public class Player : MonoBehaviour
     void Damage(int attackPoint)
     {
         Hp -= attackPoint;
+        if (Hp == 0)
+        {
+            GameManager.Instance.ReroadScene();
+        }
     }
 
     /// <param name="healPoint">回復量</param>
@@ -197,6 +201,7 @@ public class Player : MonoBehaviour
         {
             _isUsingGravity = false;
             _rigidbody2D.isKinematic = false;
+            Damage(other.gameObject.GetComponent<Enemy>().AttackPoint);
             KnockBack(other.transform.position);
             StartCoroutine(Stun());
             StartCoroutine(BecomesInvincible());
@@ -207,6 +212,7 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "HealItem")
         {
+            Heal(other.GetComponent<HealItem>().HealPoint);
             Destroy(other.gameObject);
         }
     }
