@@ -512,6 +512,11 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1021676355}
+    - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: _distanceLimit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1482889473431837854, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
         type: 3}
       propertyPath: m_UseAutoMass
