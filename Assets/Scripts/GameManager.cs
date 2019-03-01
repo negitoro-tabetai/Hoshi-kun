@@ -9,7 +9,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if (Input.GetButtonDown("Pause"))
         {
-            ReroadScene();
+            SceneManager.LoadScene("StageSelect");
         }
     }
 

@@ -27,12 +27,13 @@ public class Revolution : MonoBehaviour
     bool guruguru=false;//まわすスイッチ
     bool fly_now=false;//とんでるかどうか
     bool small = true;//ちいさく
+    
    
     
     void Start()
     {
         GetComponent<Animation>().enabled = false;
-        this.tag = "Untagged";
+
         Off();
         rigid = GetComponent<Rigidbody2D>();
        
