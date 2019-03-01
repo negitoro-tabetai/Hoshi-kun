@@ -38,20 +38,13 @@ public class Revolution : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
        
 
-        ////弾道予測を表示するための点を生成
-        //for (int i = 0; i < dummyCount; i++)
-        //{
-        //    var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
-        //    dummySpheres.Add(obj);
-        //}
     }
     
     void Update()
     {
             //点の開始位置
             dummyObjParent.transform.position = Hoshikun.transform.position;
-
-
+        
 
         //まわすかどうか判定！！！！！！！！！
         this_distance = transform.position.x - Hoshikun.position.x;
@@ -72,9 +65,7 @@ public class Revolution : MonoBehaviour
                 {
                     GetComponent<Enemy>().enabled = false;
                 }
-
-
-
+                
                 if (fly_now == false)
                 {
                     guruguru = true; //まわす
@@ -91,8 +82,19 @@ public class Revolution : MonoBehaviour
                             var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
                             dummySpheres.Add(obj);
                         }
+
+                        ////引き寄せるスクリプトを無効に
+                        //this.GetComponent<MovableBlock>().enabled = false;//
+                        Destroy(GetComponent<MovableBlock>());
+                        if (GetComponent<Enemy>())
+                        {
+                            Destroy(GetComponent<Enemy>());
+
+                        }
+
                         rigid.isKinematic = true;
                         //ここで体積変える？？？？？
+                        
                         transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);
                         small = false;
                     }
@@ -128,8 +130,6 @@ public class Revolution : MonoBehaviour
         }
 
         offset = Mathf.Repeat(Time.time * offsetSpeed, secInterval);
-
-            
         
         //Enterで飛ばす
         if (enter == true)//弾道予測がでてるときしかとばせない
@@ -144,20 +144,22 @@ public class Revolution : MonoBehaviour
     
     void Throw()
     {
+
+        rigid.isKinematic = false;//重力を考慮する
+        Debug.Log("重力オンのはず");
+        
         float scaleX = transform.localScale.x;
         float scaleY = transform.localScale.y;
         float scaleZ = transform.localScale.z;
 
         GetComponent<Animation>().enabled = false;
-        //消す★★★
+
         DestroyChildObject(dummyObjParent);
-        //Destroy(dummyParent);
-        //dummySpheres.Clear();
+       
         this.tag = "RevolutionBlock";
         this.GetComponent<BoxCollider2D>().enabled = true;//判定オンに
         this.GetComponent<BoxCollider2D>().isTrigger = true;
-
-        rigid.isKinematic = false;
+     
         guruguru = false;
         fly_now = true;//とんでる
 
@@ -173,7 +175,7 @@ public class Revolution : MonoBehaviour
             GameObject.Destroy(parent_trans.GetChild(i).gameObject);
         }
         
-      
+
 
     }
 
