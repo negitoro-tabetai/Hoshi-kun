@@ -32,7 +32,7 @@ public class Revolution : MonoBehaviour
     void Start()
     {
         GetComponent<Animation>().enabled = false;
-        this.tag = "Untagged";
+
         Off();
         rigid = GetComponent<Rigidbody2D>();
        
