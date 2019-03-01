@@ -135,16 +135,9 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        
         if(collision.gameObject.tag == "Player")
         {
             _isTouching = true;
-        }
-
-        //公転で飛ばされたブロックに当たった場合ダメージを受ける
-        if(collision.gameObject.tag == "RevolutionBlock")
-        {
-            Damage();
         }
     }
 
@@ -162,6 +155,12 @@ public class Enemy : MonoBehaviour
                 enabled = true;
                 _movable.enabled = false;
             }
+        }
+
+        //公転で飛ばされたブロックに当たった場合ダメージを受ける
+        if (other.gameObject.tag == "RevolutionBlock")
+        {
+            Damage();
         }
     }
 }
