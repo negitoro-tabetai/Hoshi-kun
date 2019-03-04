@@ -17,11 +17,11 @@ public class Load_NextScene : MonoBehaviour
 
     }
 
-    void OntriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Player")
         {
-            Load();
+            StartCoroutine(Load());
         }
     }
 

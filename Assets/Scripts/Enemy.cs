@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //----------------------------------------------------------------------------------
+    //変数宣言
     Rigidbody2D _rigidbody;
-
     [SerializeField, Tooltip("移動後の経過時間")] float _time = 0;
     [SerializeField, Tooltip("移動する制限時間")] float _moveTime;
     [SerializeField, Tooltip("移動の速さ")] float _speed;
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
     const int _rotationAngle = 180;
     //プレイヤーと接触したか
     bool _isTouching;
-
+    //----------------------------------------------------------------------------------
 
 
 
@@ -73,14 +74,14 @@ public class Enemy : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     { 
-        if (_isTouching || 
-            !Physics2D.Raycast(transform.position, Vector2.down, _rayLength, _groundLayer))
+        if (!_isTouching && 
+            Physics2D.Raycast(transform.position, Vector2.down, _rayLength, _groundLayer))
         {
-            _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+            _rigidbody.velocity = transform.right * _speed;
         }
         else
         {
-            _rigidbody.velocity = transform.right * _speed;
+            _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
         }
     }
     
@@ -135,16 +136,9 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        
         if(collision.gameObject.tag == "Player")
         {
             _isTouching = true;
-        }
-
-        //公転で飛ばされたブロックに当たった場合ダメージを受ける
-        if(collision.gameObject.tag == "RevolutionBlock")
-        {
-            Damage();
         }
     }
 
@@ -162,6 +156,12 @@ public class Enemy : MonoBehaviour
                 enabled = true;
                 _movable.enabled = false;
             }
+        }
+
+        //公転で飛ばされたブロックに当たった場合ダメージを受ける
+        if (other.gameObject.tag == "RevolutionBlock")
+        {
+            Damage();
         }
     }
 }
