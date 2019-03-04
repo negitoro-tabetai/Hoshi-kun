@@ -8,11 +8,16 @@ public class Revolution : MonoBehaviour
     [SerializeField,Tooltip("点の親オブジェクト")]  GameObject dummyParent;
     [SerializeField, Tooltip("ほしくん")] GameObject Hoshikun_obj;
     [SerializeField,Tooltip("初速のベクトル")]   Vector3 initalvelocity;
-    [SerializeField,Tooltip("弾道予測の点の数")]   int dummyCount;
-    [SerializeField,Tooltip("弾道を表示する間隔の秒数")]  float secInterval;
-    [SerializeField,Tooltip("点が移動する速度")]  float offsetSpeed = 0.5f;
-    [SerializeField, Tooltip("公転する速さ")] float speed = 300;
-    [SerializeField, Tooltip("プレイヤーとどのくらい近ければ公転するか")] private float distance;
+    //弾道予測の点の数   
+    int dummyCount=50;
+    //弾道を表示する間隔の秒数
+    float secInterval=0.02f;
+    //点が移動する速度
+    float offsetSpeed = 0.5f;
+    //公転する速さ
+    float speed = 300;
+    //プレイヤーとどのくらい近ければ公転するか
+     float distance=1.5f;
     [SerializeField, Tooltip("ブロックの親")] GameObject Block;
      float this_distance;
      float offset;
