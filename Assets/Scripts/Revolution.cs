@@ -5,9 +5,7 @@ using UnityEngine;
 public class Revolution : MonoBehaviour
 {
     [SerializeField,Tooltip("弾道を表示するための点のプレファブ")]   GameObject dummyObjPref;
-    [SerializeField,Tooltip("点をいっぱい出すので空の親オブジェクトを設定")]   Transform dummyObjParent;
-    [SerializeField,Tooltip("↑と同じ")]  GameObject dummyParent;
-    [SerializeField, Tooltip("ほしくん")] Transform Hoshikun;
+    [SerializeField,Tooltip("点の親オブジェクト")]  GameObject dummyParent;
     [SerializeField, Tooltip("ほしくん")] GameObject Hoshikun_obj;
     [SerializeField,Tooltip("初速のベクトル")]   Vector3 initalvelocity;
     [SerializeField,Tooltip("弾道予測の点の数")]   int dummyCount;
@@ -15,7 +13,7 @@ public class Revolution : MonoBehaviour
     [SerializeField,Tooltip("点が移動する速度")]  float offsetSpeed = 0.5f;
     [SerializeField, Tooltip("公転する速さ")] float speed = 300;
     [SerializeField, Tooltip("プレイヤーとどのくらい近ければ公転するか")] private float distance;
-    [SerializeField, Tooltip("親")] GameObject Block;
+    [SerializeField, Tooltip("ブロックの親")] GameObject Block;
      float this_distance;
      float offset;
     float this_volume;
@@ -42,12 +40,12 @@ public class Revolution : MonoBehaviour
     
     void Update()
     {
-            //点の開始位置
-            dummyObjParent.transform.position = Hoshikun.transform.position;
+        //点の開始位置
+        dummyParent.transform.position = Hoshikun_obj.transform.position;
         
 
         //まわすかどうか判定！！！！！！！！！
-        this_distance = transform.position.x - Hoshikun.position.x;
+        this_distance = transform.position.x - Hoshikun_obj.transform.position.x;
         this_distance = System.Math.Abs(this_distance);
         //↑距離が近いか
 
@@ -79,7 +77,7 @@ public class Revolution : MonoBehaviour
                         //弾道予測を表示するための点を生成
                         for (int i = 0; i < dummyCount; i++)
                         {
-                            var obj = (GameObject)Instantiate(dummyObjPref, dummyObjParent);
+                            var obj = (GameObject)Instantiate(dummyObjPref, dummyParent.transform);
                             dummySpheres.Add(obj);
                         }
 
@@ -107,7 +105,7 @@ public class Revolution : MonoBehaviour
         {
             Operate();//操作
             //transform.RotateAround(Hoshikun.position, Hoshikun.up, speed * Time.deltaTime);//まわす
-            Block.transform.position = Hoshikun.transform.position;//親オブジェクトがほしくんについていく
+            Block.transform.position = Hoshikun_obj.transform.position;//親オブジェクトがほしくんについていく
 
             GetComponent<Animation>().enabled = true;
 
@@ -146,7 +144,7 @@ public class Revolution : MonoBehaviour
     {
 
         rigid.isKinematic = false;//重力を考慮する
-        Debug.Log("重力オンのはず");
+        
         
         float scaleX = transform.localScale.x;
         float scaleY = transform.localScale.y;
@@ -154,7 +152,7 @@ public class Revolution : MonoBehaviour
 
         GetComponent<Animation>().enabled = false;
 
-        DestroyChildObject(dummyObjParent);
+        DestroyChildObject(dummyParent.transform);
        
         this.tag = "RevolutionBlock";
         this.GetComponent<BoxCollider2D>().enabled = true;//判定オンに
@@ -164,7 +162,7 @@ public class Revolution : MonoBehaviour
         fly_now = true;//とんでる
 
         transform.localScale = new Vector3(scaleX * 2, scaleY * 2, scaleZ * 2);//大きさ戻す
-        transform.position = (dummyObjParent.transform.position);
+        transform.position = (dummyParent.transform.position);
         rigid.AddForce(initalvelocity, ForceMode2D.Impulse);//とばす
     }
 
@@ -175,8 +173,6 @@ public class Revolution : MonoBehaviour
             GameObject.Destroy(parent_trans.GetChild(i).gameObject);
         }
         
-
-
     }
 
     void OnTriggerEnter2D(Collider2D col)
