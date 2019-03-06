@@ -123,6 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6843189}
   - component: {fileID: 6843190}
+  - component: {fileID: 6843191}
   m_Layer: 5
   m_Name: Stages
   m_TagString: Untagged
@@ -159,20 +160,78 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6843188}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6186103c57bf436e87766991197b920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stages:
-  - name: Stage1
-    image: {fileID: 1656427654}
-  - name: Stage2
-    image: {fileID: 848655376}
-  - name: Stage3
-    image: {fileID: 937878639}
+--- !u!114 &6843191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae64d2bf75c44db68de5fe0243016ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputAxis: 0
+  _elements:
+  - image: {fileID: 1656427654}
+    _event:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6843190}
+          m_MethodName: LoadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Stage1
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - image: {fileID: 848655376}
+    _event:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6843190}
+          m_MethodName: LoadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Stage2
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - image: {fileID: 937878639}
+    _event:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6843190}
+          m_MethodName: LoadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Stage2
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
   _normalColor: {r: 0.8745099, g: 0.8745099, b: 0.8745099, a: 1}
-  _selectedColor: {r: 1, g: 0.81916124, b: 0.4292453, a: 1}
+  _selectedColor: {r: 1, g: 0.82745105, b: 0.38431376, a: 1}
 --- !u!1 &380722121
 GameObject:
   m_ObjectHideFlags: 0
