@@ -6,23 +6,23 @@ public class Enemy : MonoBehaviour
 {
     //----------------------------------------------------------------------------------
     //変数宣言
-    Rigidbody2D _rigidbody;
     [SerializeField, Tooltip("移動後の経過時間")] float _time = 0;
     [SerializeField, Tooltip("移動する制限時間")] float _moveTime;
     [SerializeField, Tooltip("移動の速さ")] float _speed;
     [SerializeField, Tooltip("ライフポイント")] int _life;
+    [SerializeField, Tooltip("プレイヤーと接触した後通常に戻るための距離")] float _distanceLimit = 5;
     [SerializeField, Tooltip("地面のレイヤーマスク")] LayerMask _groundLayer;
     [SerializeField, Tooltip("攻撃力")] int _attackPoint;
     [SerializeField, Tooltip("rayの長さ")] float _rayLength = 0.6f;
-    [SerializeField, Tooltip("プレイヤーと接触した後通常に戻るための距離")] float _distanceLimit = 5;
-    [SerializeField] GameObject _player;
+    protected bool _isTouching;
+    protected Rigidbody2D _rigidbody;
+    [SerializeField] protected GameObject _player;
     MovableBlock _movable;
     //プレイヤーとの距離
     Vector2 _playerToDistance;
     //回転する角度
     const int _rotationAngle = 180;
     //プレイヤーと接触したか
-    bool _isTouching;
     //----------------------------------------------------------------------------------
 
 
@@ -35,16 +35,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public bool IsTouching
+    {
+        get
+        {
+            return _isTouching;
+        }
+    }
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         _movable = GetComponent<MovableBlock>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
+        Move();
         if (!_isTouching)
         {
             MoveTimer();
@@ -62,8 +71,8 @@ public class Enemy : MonoBehaviour
         }
 
         //左右にrayを打って地面のレイヤーを持つオブジェクトに当たったらダメージを受ける
-        if(Physics2D.Raycast(transform.position , Vector2.left, _rayLength, _groundLayer) &&
-            Physics2D.Raycast(transform.position, Vector2.right, _rayLength, _groundLayer))
+        if(Physics2D.Raycast(transform.position , Vector2.left / 2, _rayLength, _groundLayer) &&
+            Physics2D.Raycast(transform.position, Vector2.right / 2, _rayLength, _groundLayer))
         {
             Damage();
         }
@@ -72,16 +81,13 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// 移動処理
     /// </summary>
-    void FixedUpdate()
-    { 
-        if (!_isTouching && 
+    protected virtual void Move()
+    {
+        if (!_isTouching &&
             Physics2D.Raycast(transform.position, Vector2.down, _rayLength, _groundLayer))
         {
-            _rigidbody.velocity = transform.right * _speed;
-        }
-        else
-        {
-            _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+            
+            transform.Translate(Vector2.right * _speed * Time.deltaTime);
         }
     }
     
@@ -103,7 +109,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     void Damage()
     {
-        if (_life != 0)
+        if (_life >= 0)
         {
             _life--;
         }
@@ -125,7 +131,6 @@ public class Enemy : MonoBehaviour
             Vector3 target = _player.transform.position;
             target.y = transform.position.y;
             transform.right = target - transform.position;
-
         }
         else if(!_isTouching && 
             Physics2D.Raycast(transform.position, Vector2.down, _rayLength, _groundLayer))
