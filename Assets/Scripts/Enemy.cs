@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected void Update()
     {
         Move();
         if (!_isTouching)
@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// 移動処理
     /// </summary>
-    protected virtual void Move()
+    protected void Move()
     {
         if (!_isTouching &&
             Physics2D.Raycast(transform.position, Vector2.down, _rayLength, _groundLayer))
