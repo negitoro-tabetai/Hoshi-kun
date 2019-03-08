@@ -218,7 +218,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.98}
+  m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0
 --- !u!50 &8469415496451368770
 Rigidbody2D:
@@ -238,7 +238,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &8469415496451368774
@@ -260,11 +260,34 @@ MonoBehaviour:
   _stunningTime: 0.4
   _jumpForce: 14.6
   _knockBackForce: 10
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  _rayLength: 0.52
-  _width: 0.5
+  _upFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 1
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1536
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 250
+    maxNormalAngle: 290
+  _downFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 1
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1536
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 70
+    maxNormalAngle: 110
   _field: {fileID: 1283004725}
 --- !u!33 &8469415496451368775
 MeshFilter:
