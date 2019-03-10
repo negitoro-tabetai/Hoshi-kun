@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    new void Awake()
+    {
+        base.Awake();
+    }
     void Update()
     {
         if (Input.GetButtonDown("Pause"))

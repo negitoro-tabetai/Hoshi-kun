@@ -20,14 +20,17 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
             return instance;
         }
     }
-    virtual protected void Awake()
+    protected void Awake()
     {
         CheckInstance();
     }
     protected bool CheckInstance()
 
     {
-        if (this == Instance) { return true; }
+        if (this == Instance)
+        {
+            return true;
+        }
         Destroy(gameObject);
         return false;
     }
