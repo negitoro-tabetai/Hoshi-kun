@@ -14,6 +14,13 @@ public class DataSelect : MonoBehaviour
         UpdateText();
     }
 
+    void Update()
+    {
+        if (Input.GetButtonDown("Pause"))
+        {
+            GameManager.Instance.ReroadScene();
+        }
+    }
     void UpdateText()
     {
         for (int i = 0; i < _next.Length; i++)
