@@ -64,6 +64,12 @@ public class Player : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+        
+        // リスポーン地点から
+        if (GameManager.Instance.RespawnPoint != Vector3.zero)
+        {
+            transform.position = GameManager.Instance.RespawnPoint;
+        }
     }
 
     void Update()
