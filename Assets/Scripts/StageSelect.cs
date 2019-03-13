@@ -1,17 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class StageSelect : MonoBehaviour
 {
-    public void LoadScene(string sceneName)
+    public void Save(int stage)
     {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    public void AAAA()
-    {
-
+        DataManager.Instance.Save(stage);
     }
 }

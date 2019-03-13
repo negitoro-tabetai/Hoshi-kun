@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody2D _rigidbody2D;
+    Rigidbody2D _rigidbody;
+    Collider2D _collider;
 
     [SerializeField, Tooltip("体力")] int _hp;
     [SerializeField, Tooltip("移動速度")] float _moveSpeed;
@@ -13,26 +14,25 @@ public class Player : MonoBehaviour
     [SerializeField, Tooltip("硬直時間")] float _stunningTime;
     [SerializeField, Tooltip("ジャンプの強さ")] float _jumpForce;
     [SerializeField, Tooltip("ノックバックの強さ")] float _knockBackForce;
-    [SerializeField, Tooltip("接地判定するレイヤー")] LayerMask _groundLayer;
-    [SerializeField, Tooltip("Rayの長さ")] float _rayLength;
-    [SerializeField, Tooltip("Rayの飛ばす範囲")] float _width;
+    // [SerializeField, Tooltip("接地判定するレイヤー")] LayerMask _groundLayer;
+    // [SerializeField, Tooltip("Rayの長さ")] float _rayLength;
+    // [SerializeField, Tooltip("Rayの飛ばす範囲")] float _width;
+    [SerializeField, Tooltip("判定用フィルター")] ContactFilter2D _upFilter, _downFilter;
     [SerializeField, Tooltip("引力の範囲の表示")] GameObject _field;
     // 左右入力
     float _inputX;
     // 走っているか
     bool _isRunning;
-    // 無敵か
-    bool _isInvincible;
     // 硬直しているか
     bool _isStunning;
-    // 引力を使用しているか
-    bool _isUsingGravity;
 
     Vector3 _previousPosition;
 
     // Layer名
     const string PlayerLayer = "Player";
     const string InvincibleLayer = "InvinciblePlayer";
+
+    const int MaxHP = 100;
 
     public int Hp
     {
@@ -43,25 +43,14 @@ public class Player : MonoBehaviour
         set
         {
             _hp = value;
-            _hp = Mathf.Clamp(_hp, 0, 100);
+            _hp = Mathf.Clamp(_hp, 0, MaxHP);
         }
     }
 
-    public bool IsInvincible
-    {
-        get
-        {
-            return _isInvincible;
-        }
-    }
-
-    public bool IsUsingGravity
-    {
-        get
-        {
-            return _isUsingGravity;
-        }
-    }
+    // 無敵か
+    public bool IsInvincible { get; set; }
+    // 引力を使用しているか
+    public bool IsUsingGravity { get; set; }
 
     public bool IsMoving
     {
@@ -73,7 +62,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
+        
+        // リスポーン地点から
+        if (GameManager.Instance.RespawnPoint != Vector3.zero)
+        {
+            transform.position = GameManager.Instance.RespawnPoint;
+        }
     }
 
     void Update()
@@ -88,32 +84,32 @@ public class Player : MonoBehaviour
             _isRunning = false;
         }
 
-        if (IsGrounded())
+        if (Physics2D.IsTouching(_collider, _downFilter))
         {
             // Vキーで引力使用
             if (Input.GetButtonDown("UseGravity"))
             {
-                _isUsingGravity = true;
-                _rigidbody2D.isKinematic = true;
+                IsUsingGravity = true;
+                _rigidbody.isKinematic = true;
             }
             if (Input.GetButtonUp("UseGravity"))
             {
-                _isUsingGravity = false;
-                _rigidbody2D.isKinematic = false;
+                IsUsingGravity = false;
+                _rigidbody.isKinematic = false;
             }
         }
         else
         {
-            _rigidbody2D.isKinematic = false;
-            _isUsingGravity = false;
+            _rigidbody.isKinematic = false;
+            IsUsingGravity = false;
         }
 
-        if (Input.GetButtonDown("Jump") && IsGrounded() && !_isStunning && !_isUsingGravity)
+        if (Input.GetButtonDown("Jump") && Physics2D.IsTouching(_collider, _downFilter) && !Physics2D.IsTouching(_collider, _upFilter) && !_isStunning && !IsUsingGravity)
         {
             Jump();
         }
         // 左右入力
-        if (_isUsingGravity)
+        if (IsUsingGravity)
         {
             _inputX = 0;
         }
@@ -123,7 +119,7 @@ public class Player : MonoBehaviour
         }
 
         // 範囲表示
-        if (_isUsingGravity)
+        if (IsUsingGravity)
         {
             _field.SetActive(true);
         }
@@ -141,30 +137,30 @@ public class Player : MonoBehaviour
         {
             if (_isRunning)
             {
-                _rigidbody2D.velocity = new Vector3(_inputX * _runSpeed, _rigidbody2D.velocity.y, 0);
+                _rigidbody.velocity = new Vector3(_inputX * _runSpeed, _rigidbody.velocity.y, 0);
             }
             else
             {
-                _rigidbody2D.velocity = new Vector3(_inputX * _moveSpeed, _rigidbody2D.velocity.y, 0);
+                _rigidbody.velocity = new Vector3(_inputX * _moveSpeed, _rigidbody.velocity.y, 0);
             }
         }
     }
 
     void Jump()
     {
-        _rigidbody2D.AddForce((Vector2.up) * _jumpForce, ForceMode2D.Impulse);
+        _rigidbody.AddForce((Vector2.up) * _jumpForce, ForceMode2D.Impulse);
     }
 
     /// <param name="enemyPosition">衝突した敵の位置</param>
     void KnockBack(Vector3 enemyPosition)
     {
-        _rigidbody2D.velocity = Vector3.zero;
+        _rigidbody.velocity = Vector3.zero;
         const float VerticalForce = 2;
 
         //自分の位置と敵の位置を比較して方向を決定
         Vector3 direction = new Vector3(transform.position.x - enemyPosition.x, 0, 0).normalized;
         direction = new Vector3(direction.x, VerticalForce, 0).normalized;
-        _rigidbody2D.AddForce(direction * _knockBackForce, ForceMode2D.Impulse);
+        _rigidbody.AddForce(direction * _knockBackForce, ForceMode2D.Impulse);
     }
 
     /// <param name="attackPoint">ダメージ量</param>
@@ -183,24 +179,12 @@ public class Player : MonoBehaviour
         Hp += healPoint;
     }
 
-    /// <summary>
-    /// 左端と右端に下向きのRayを飛ばし、片方でも地面に当たればtrueを返す
-    /// </summary>
-    /// <returns>地面についているか</returns>
-    bool IsGrounded()
-    {
-        RaycastHit2D right = Physics2D.Raycast(transform.position + new Vector3(_width, 0, 0), Vector3.down, _rayLength, _groundLayer);
-        RaycastHit2D left = Physics2D.Raycast(transform.position + new Vector3(-_width, 0, 0), Vector3.down, _rayLength, _groundLayer);
-        
-        return right || left;
-    }
-
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy" && !_isInvincible)
+        if (other.gameObject.tag == "Enemy" && !IsInvincible)
         {
-            _isUsingGravity = false;
-            _rigidbody2D.isKinematic = false;
+            IsUsingGravity = false;
+            _rigidbody.isKinematic = false;
             Damage(other.gameObject.GetComponent<Enemy>().AttackPoint);
             KnockBack(other.transform.position);
             StartCoroutine(Stun());
@@ -232,10 +216,10 @@ public class Player : MonoBehaviour
     /// </summary>
     IEnumerator BecomesInvincible()
     {
-        _isInvincible = true;
+        IsInvincible = true;
         gameObject.layer = LayerMask.NameToLayer(InvincibleLayer);
         yield return new WaitForSeconds(_invincibleTime);
         gameObject.layer = LayerMask.NameToLayer(PlayerLayer);
-        _isInvincible = false;
+        IsInvincible = false;
     }
 }

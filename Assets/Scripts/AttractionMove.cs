@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AttractionMove : MonoBehaviour
 {
+    //---------------------------------------------------------------
+    //変数宣言
     [SerializeField, Tooltip("引き寄せられる速さ")] float _speed;
     [SerializeField] GrantBlock _grantBlock;
     Vector3 _convertionPosition;
@@ -11,6 +13,7 @@ public class AttractionMove : MonoBehaviour
     [SerializeField] ContactFilter2D _filter;
     [SerializeField] GameObject _player;
     bool _isTouch = false;
+    //---------------------------------------------------------------
 
 
     // Start is called before the first frame update
