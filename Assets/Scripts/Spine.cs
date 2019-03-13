@@ -5,8 +5,7 @@ using UnityEngine;
 public class Spine : MonoBehaviour
 {
     [SerializeField, Tooltip("ダメージ量")] int _attackPoint;
-    //"方向指定用フィルター"
-    ContactFilter2D _filter;
+    [SerializeField, Tooltip("方向指定用フィルター")] ContactFilter2D _filter;
     Collider2D _collider;
 
     // 前フレームの回転
@@ -40,19 +39,19 @@ public class Spine : MonoBehaviour
         {
             UpdateNormalAngle();
         }
-        _previousAngle = transform.eulerAngles.z; 
+        _previousAngle = transform.eulerAngles.z;
     }
-    
+
     /// <summary>
     /// フィルターの角度を自身の回転に合わせる。
     /// </summary>
     void UpdateNormalAngle()
     {
-        _filter.maxNormalAngle = Mathf.Repeat(UpNormalAngle + AngleRange + transform.rotation.eulerAngles.z, 360);
-        _filter.minNormalAngle = Mathf.Repeat(UpNormalAngle - AngleRange + transform.rotation.eulerAngles.z, 360);
+        _filter.maxNormalAngle = Mathf.Repeat(UpNormalAngle + AngleRange + transform.eulerAngles.z, 360);
+        _filter.minNormalAngle = Mathf.Repeat(UpNormalAngle - AngleRange + transform.eulerAngles.z, 360);
 
         //左向きなら外側の範囲を使用
-        if (LeftAngle - AngleRange < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < LeftAngle + AngleRange)
+        if (LeftAngle - AngleRange < transform.eulerAngles.z && transform.eulerAngles.z < LeftAngle + AngleRange)
         {
             _filter.useOutsideNormalAngle = true;
         }

@@ -32,12 +32,14 @@ public class MovableBlock : MonoBehaviour
     float WallCheck(Vector2 direction)
     {
         const float MaxDistance = 100;
+        const float size = 0.99f;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, MaxDistance, _wallLayer);
+        // RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, MaxDistance, _wallLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, transform.localScale * size, transform.eulerAngles.z, direction, MaxDistance, _wallLayer);
         if (hit)
         {
             Debug.DrawRay(transform.position, hit.point - (Vector2)transform.position, Color.red);
-            return hit.point.x + Mathf.Sign(transform.position.x - hit.point.x) * transform.localScale.x / 2;
+            return hit.point.x + Mathf.Sign(transform.position.x - hit.point.x) * Mathf.Abs((transform.rotation * transform.localScale).x) / 2;
         }
         Debug.DrawRay(transform.position, direction * MaxDistance, Color.red);
         return transform.position.x + direction.x * MaxDistance;

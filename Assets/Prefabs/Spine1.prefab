@@ -117,10 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d371420df26840699e5fc850f0f098e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackPoint: 0
+  _attackPoint: 100
   _filter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 1
@@ -130,5 +130,5 @@ MonoBehaviour:
       m_Bits: 1024
     minDepth: 0
     maxDepth: 0
-    minNormalAngle: 250
-    maxNormalAngle: 290
+    minNormalAngle: 265
+    maxNormalAngle: 275
