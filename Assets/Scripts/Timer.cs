@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
     {
         if (second > 0)
         {
-            second -= Time.deltaTime *10;
+            second -= Time.deltaTime ;
         }
         text.text = minute + ":" + second.ToString("0#");
         if (second < 0&&minute>0)

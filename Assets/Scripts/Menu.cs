@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
     struct Element
     {
         public Image image;
-        public UnityEvent _event;
+        public UnityEvent _decide, _select;
     }
 
     enum InputAxis
@@ -39,21 +39,35 @@ public class Menu : MonoBehaviour
         }
     }
 
-    float _previousInput;
-    float _input;
+    Vector2 _previousInput;
+    Vector2 _input;
 
-    public bool Increase
+    public bool Right
     {
         get
         {
-            return _previousInput == 0 && _previousInput < _input;
+            return _previousInput.x == 0 && _previousInput.x < _input.x;
         }
     }
-    public bool Decrease
+    public bool Left
     {
         get
         {
-            return _previousInput == 0 && _previousInput > _input;
+            return _previousInput.x == 0 && _previousInput.x > _input.x;
+        }
+    }
+    public bool Up
+    {
+        get
+        {
+            return _previousInput.y == 0 && _previousInput.y < _input.y;
+        }
+    }
+    public bool Down
+    {
+        get
+        {
+            return _previousInput.y == 0 && _previousInput.y > _input.y;
         }
     }
 
@@ -65,29 +79,42 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
+        _input.x = Input.GetAxisRaw(_inputAxis.ToString());
+        _input.y = Input.GetAxisRaw(_inputAxis.ToString());
         if (_inputAxis == InputAxis.Horizontal)
         {
-            _input = Input.GetAxisRaw(_inputAxis.ToString());
+            if (Left)
+            {
+                Cursor--;
+                UpdateImage();
+            }
+            if (Right)
+            {
+                Cursor++;
+                UpdateImage();
+            }
         }
         else
         {
-            _input = Input.GetAxisRaw(_inputAxis.ToString()) * -1;
-        }
-        if (Decrease)
-        {
-            Cursor--;
-            UpdateImage();
-        }
-        if (Increase)
-        {
-            Cursor++;
-            UpdateImage();
+            if (Up)
+            {
+                Cursor--;
+                UpdateImage();
+            }
+            if (Down)
+            {
+                Cursor++;
+                UpdateImage();
+            }
         }
 
         if (Input.GetButtonDown("Jump"))
         {
-            _elements[Cursor]._event.Invoke();
+            _elements[Cursor]._decide.Invoke();
         }
+
+        _elements[Cursor]._select.Invoke();
+
 
         //入力判定用
         _previousInput = _input;
