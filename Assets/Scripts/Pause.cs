@@ -75,36 +75,6 @@ public class Pause : MonoBehaviour
         _sliderSE.value = AudioManager.Instance.SEVolume;
         _sliderBGM.value = AudioManager.Instance.BGMVolume;
     }
-    public void ChangeVolumeSE()
-    {
-
-        if (Input.GetKey(KeyCode.RightArrow) && _sliderSE.value < 1)
-        {
-            _sliderSE.value += 0.01f;
-            AudioManager.Instance.ChangeVolumeSE(_sliderSE.value);
-
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) && _sliderSE.value > 0)
-        {
-            _sliderSE.value -= 0.01f;
-            AudioManager.Instance.ChangeVolumeSE(_sliderSE.value);
-        }
-
-    }
-    public void ChangeVolumeBGM()
-    {
-
-        if (Input.GetKey(KeyCode.RightArrow) && _sliderBGM.value < 1)
-        {
-            _sliderBGM.value += 0.01f;
-            AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) && _sliderBGM.value > 0)
-        {
-            _sliderBGM.value -= 0.01f;
-            AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
-        }
-
-    }
+  
    
 }
