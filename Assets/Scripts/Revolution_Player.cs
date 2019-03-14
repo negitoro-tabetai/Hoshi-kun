@@ -26,7 +26,7 @@ public class Revolution_Player : MonoBehaviour
     bool guruguru = false;//まわすスイッチ
     bool throw_ = false;//とんでるかどうか
     bool small = true;//ちいさくするスイッチ
-
+    bool dot=true;
     
     // Start is called before the first frame update
     void Start()
@@ -69,10 +69,14 @@ public class Revolution_Player : MonoBehaviour
                         float scaleZ = RevolutionObject[RevolutionObject.Count - 1].transform.localScale.z;
 
                         //弾道予測を表示するための点を生成
-                        for (int i = 0; i < dummyCount; i++)
+                        if (dot == true)
                         {
-                            var obj = (GameObject)Instantiate(dummyObjPref, dummyParent.transform);
-                            dummySpheres.Add(obj);
+                            for (int i = 0; i < dummyCount; i++)
+                            {
+                                var obj = (GameObject)Instantiate(dummyObjPref, dummyParent.transform);
+                                dummySpheres.Add(obj);
+                                dot = false;
+                            }
                         }
 
                         //引き寄せるスクリプトを無効に
@@ -164,7 +168,7 @@ public class Revolution_Player : MonoBehaviour
         //DestroyChildObject(dummyParent.transform);
 
 
-        RevolutionObject[0].tag = "RevolutionBlock";
+        //RevolutionObject[0].tag = "RevolutionBlock";
         RevolutionObject[0].GetComponent<BoxCollider2D>().enabled = true;//判定オンに
         RevolutionObject[0].GetComponent<BoxCollider2D>().isTrigger = true;
 
