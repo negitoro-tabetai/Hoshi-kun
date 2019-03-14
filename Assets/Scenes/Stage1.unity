@@ -883,6 +883,7 @@ GameObject:
   - component: {fileID: 194479655}
   - component: {fileID: 194479654}
   - component: {fileID: 194479653}
+  - component: {fileID: 194479652}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -890,6 +891,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &194479652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194479651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e63e0577722d043b38c9a3eaca40bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sliderSE: {fileID: 170407240}
+  _sliderBGM: {fileID: 123578507}
+  panel: {fileID: 757382961}
+  pause: {fileID: 1142321759}
+  option: {fileID: 250946697}
 --- !u!114 &194479653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,6 +1085,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205022629}
   m_CullTransparentMesh: 0
+--- !u!1 &250946697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5234355322272305944, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5234355321283154019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &259761623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3921173834140708255, guid: 075fe673c75184a0c9304249bb93db19,
@@ -2602,7 +2626,18 @@ MonoBehaviour:
   - image: {fileID: 2051887137}
     _decide:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 194479652}
+          m_MethodName: Title
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
     _select:
@@ -2614,7 +2649,7 @@ MonoBehaviour:
     _decide:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1234297416}
+        - m_Target: {fileID: 194479652}
           m_MethodName: Option
           m_Mode: 1
           m_Arguments:
@@ -2970,20 +3005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd1bcbab47574bfd886f15e01b4896e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1234297416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234297413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07e63e0577722d043b38c9a3eaca40bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sliderSE: {fileID: 170407240}
-  _sliderBGM: {fileID: 123578507}
 --- !u!4 &1260479911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 127072888, guid: 4293553b9179f4b008f87d5adccd54f1,
@@ -4780,6 +4801,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Option
       objectReference: {fileID: 0}
+    - target: {fileID: 5234355322272305944, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5234355322272305951, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4889,17 +4915,17 @@ PrefabInstance:
         type: 3}
       propertyPath: _elements.Array.data[0]._decide.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1234297416}
+      objectReference: {fileID: 0}
     - target: {fileID: 5234355322272305950, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
         type: 3}
       propertyPath: _elements.Array.data[1]._select.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1234297416}
+      objectReference: {fileID: 0}
     - target: {fileID: 5234355322272305950, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
         type: 3}
       propertyPath: _elements.Array.data[2]._select.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1234297416}
+      objectReference: {fileID: 0}
     - target: {fileID: 5234355322459259839, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
         type: 3}
       propertyPath: m_AnchorMax.y

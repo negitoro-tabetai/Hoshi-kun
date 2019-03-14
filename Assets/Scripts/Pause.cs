@@ -5,22 +5,23 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Pause : MonoBehaviour
 {
-    private GameObject pause;
-    private GameObject option;
-    private GameObject panel;
+   
     private bool _On = false;
 
    
 
     [SerializeField] Slider _sliderSE;
     [SerializeField] Slider _sliderBGM;
+    [SerializeField] GameObject panel;
+    [SerializeField] GameObject pause;
+    [SerializeField] GameObject option;
     void Start()
     {
-        panel = GameObject.Find("Panel");
-        panel.SetActive(false);
-        pause = GameObject.Find("Pause");
+      
+       panel.SetActive(false);
+       
         pause.SetActive(false);
-        option = GameObject.Find("Option");
+       
         option.SetActive(false);
 
         ValueChange();
