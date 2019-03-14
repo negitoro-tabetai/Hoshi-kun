@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
-        
+
         // リスポーン地点から
         if (GameManager.Instance.RespawnPoint != Vector3.zero)
         {
@@ -151,30 +151,39 @@ public class Player : MonoBehaviour
         _rigidbody.AddForce((Vector2.up) * _jumpForce, ForceMode2D.Impulse);
     }
 
-    /// <param name="enemyPosition">衝突した敵の位置</param>
-    void KnockBack(Vector3 enemyPosition)
-    {
-        _rigidbody.velocity = Vector3.zero;
-        const float VerticalForce = 2;
-
-        //自分の位置と敵の位置を比較して方向を決定
-        Vector3 direction = new Vector3(transform.position.x - enemyPosition.x, 0, 0).normalized;
-        direction = new Vector3(direction.x, VerticalForce, 0).normalized;
-        _rigidbody.AddForce(direction * _knockBackForce, ForceMode2D.Impulse);
-    }
-
     /// <param name="attackPoint">ダメージ量</param>
-    void Damage(int attackPoint)
+    /// <param name="enemyPosition">衝突した敵の位置</param>
+    public void Damage(int attackPoint, Vector3 enemyPosition)
     {
-        Hp -= attackPoint;
-        if (Hp == 0)
+        if (!IsInvincible)
         {
-            GameManager.Instance.ReroadScene();
+            IsUsingGravity = false;
+            _rigidbody.isKinematic = false;
+            _rigidbody.velocity = Vector3.zero;
+            const float VerticalForce = 2;
+
+            // ダメージ処理
+            Hp -= attackPoint;
+            if (Hp == 0)
+            {
+                GameManager.Instance.ReroadScene();
+            }
+
+            //自分の位置と敵の位置を比較して方向を決定
+            Vector3 direction = new Vector3(transform.position.x - enemyPosition.x, 0, 0).normalized;
+            direction = new Vector3(direction.x, VerticalForce, 0).normalized;
+
+            // ノックバック
+            _rigidbody.AddForce(direction * _knockBackForce, ForceMode2D.Impulse);
+
+            // 硬直と無敵化
+            StartCoroutine(Stun());
+            StartCoroutine(BecomesInvincible());
         }
     }
 
     /// <param name="healPoint">回復量</param>
-    void Heal(int healPoint)
+    public void Heal(int healPoint)
     {
         Hp += healPoint;
     }
@@ -183,12 +192,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && !IsInvincible)
         {
-            IsUsingGravity = false;
-            _rigidbody.isKinematic = false;
-            Damage(other.gameObject.GetComponent<Enemy>().AttackPoint);
-            KnockBack(other.transform.position);
-            StartCoroutine(Stun());
-            StartCoroutine(BecomesInvincible());
+            Damage(other.gameObject.GetComponent<Enemy>().AttackPoint, other.transform.transform.position);
         }
     }
 
