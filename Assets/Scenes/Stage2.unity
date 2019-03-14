@@ -785,12 +785,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4207c1f6b354b15b3e4507249c9430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _groundLayer:
+  _wallLayer:
     serializedVersion: 2
-    m_Bits: 512
-  _rayLength: 0.6
-  _width: 0.5
+    m_Bits: 0
 --- !u!114 &396760053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,6 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hoshikun: {fileID: 1021676355}
+  Revolution_On: 1
 --- !u!23 &396760054
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1026,6 +1024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hoshikun: {fileID: 1021676355}
+  Revolution_On: 1
 --- !u!23 &451399796
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1134,12 +1133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4207c1f6b354b15b3e4507249c9430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _groundLayer:
+  _wallLayer:
     serializedVersion: 2
-    m_Bits: 512
-  _rayLength: 0.6
-  _width: 0.5
+    m_Bits: 0
 --- !u!1 &478144325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,8 +1248,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478144325}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0738769, y: -2.874756, z: -0.76}
-  m_LocalScale: {x: 0.478, y: 5.3423815, z: 2.5548592}
+  m_LocalPosition: {x: 1.0738769, y: -2.874756, z: -0.638}
+  m_LocalScale: {x: 0.478, y: 5.3423815, z: 2.3095927}
   m_Children: []
   m_Father: {fileID: 2145364596}
   m_RootOrder: 1
@@ -1901,7 +1897,7 @@ MonoBehaviour:
   dummyObjPref: {fileID: 3998622233608966268, guid: 2f34a0b7bad239043b544683b7f6c18b,
     type: 3}
   dummyParent: {fileID: 1955425049}
-  initalvelocity: {x: 8, y: 8, z: 0}
+  initalvelocity: {x: 8, y: 16, z: 0}
   Object: []
   RevolutionObject: []
 --- !u!1 &1022732139
@@ -2060,12 +2056,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4207c1f6b354b15b3e4507249c9430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _groundLayer:
+  _wallLayer:
     serializedVersion: 2
-    m_Bits: 512
-  _rayLength: 0.6
-  _width: 0.5
+    m_Bits: 0
 --- !u!114 &1045541357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2079,6 +2072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hoshikun: {fileID: 1021676355}
+  Revolution_On: 1
 --- !u!23 &1045541358
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2537,6 +2531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hoshikun: {fileID: 1021676355}
+  Revolution_On: 1
 --- !u!111 &1258046491
 Animation:
   m_ObjectHideFlags: 0
@@ -3010,6 +3005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hoshikun: {fileID: 1021676355}
+  Revolution_On: 1
 --- !u!23 &1718298919
 MeshRenderer:
   m_ObjectHideFlags: 0

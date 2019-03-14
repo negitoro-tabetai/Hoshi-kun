@@ -6,9 +6,9 @@ public class Revolution_Player : MonoBehaviour
 {
     [SerializeField, Tooltip("弾道を表示するための点のプレファブ")] GameObject dummyObjPref;
     [SerializeField, Tooltip("点の親オブジェクト")] GameObject dummyParent;
-    [SerializeField, Tooltip("初速のベクトル")] public Vector3 initalvelocity;
+    [SerializeField, Tooltip("初速のベクトル")] Vector3 initalvelocity=new Vector3(8,16,0);
     //弾道予測の点の数   
-    int dummyCount = 50;
+    int dummyCount = 70;
     //弾道を表示する間隔の秒数
     float secInterval = 0.02f;
     //点が移動する速度
@@ -18,7 +18,6 @@ public class Revolution_Player : MonoBehaviour
     
     float offset;
   
-
     List<GameObject> dummySpheres = new List<GameObject>();//弾道予測を表示するための点のリスト
    public List<GameObject> Object = new List<GameObject>(); //公転可能なオブジェクト
    public List<GameObject> RevolutionObject = new List<GameObject>(); //公転してるオブジェクト
@@ -47,7 +46,6 @@ public class Revolution_Player : MonoBehaviour
             if (Input.GetButtonDown("Revolution") || Input.GetKeyDown(KeyCode.R))     //公転ボタン押す
             {
                 small = true;
-                Debug.Log("公転");
                 //公転可能リストから公転中リストへ
                 RevolutionObject.Add(Object[0]); 
                 Object.Remove(Object[0]);
@@ -56,7 +54,7 @@ public class Revolution_Player : MonoBehaviour
                 
                 if (throw_ == false)
                 {
-                    Debug.Log("公転その２");
+                  
                     guruguru = true;
 
                     if (small == true)
@@ -79,10 +77,13 @@ public class Revolution_Player : MonoBehaviour
 
                         //引き寄せるスクリプトを無効に
                         Destroy(RevolutionObject[RevolutionObject.Count-1]. GetComponent<MovableBlock>());
+                        //Destroy(RevolutionObject[RevolutionObject.Count - 1].GetComponent<Revolution>());
                         if (RevolutionObject[RevolutionObject.Count - 1].GetComponent<Enemy>())
                         {
                             Destroy(RevolutionObject[RevolutionObject.Count - 1].GetComponent<Enemy>());
                         }
+
+                        RevolutionObject[RevolutionObject.Count - 1].GetComponent<Revolution>().Revolution_On = false;
 
                         RevolutionObject[RevolutionObject.Count-1].GetComponent<Rigidbody2D>().isKinematic = true;
 
@@ -90,7 +91,7 @@ public class Revolution_Player : MonoBehaviour
 
                         //体積変更
                         RevolutionObject[RevolutionObject.Count - 1].transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);
-                        Debug.Log("小さくした");
+                      
                         small = false;
                     }
                 }
@@ -175,9 +176,10 @@ public class Revolution_Player : MonoBehaviour
         RevolutionObject[0].transform.rotation = new Quaternion(0, 0, 0, 0);//Rotationを戻す
 
         RevolutionObject[0].GetComponent<Rigidbody2D>().AddForce(initalvelocity, ForceMode2D.Impulse);//とばす
-        Debug.Log("投げた");
+      
         RevolutionObject.Remove(RevolutionObject[0]);
         throw_ = false;
+     
 
     }
 
@@ -197,7 +199,18 @@ public class Revolution_Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             Off();
+            initalvelocity.x = 8;
+            initalvelocity.y = 16;
         }
+        
+        //テスト
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Debug.Log("Y:" + initalvelocity.y+"X:"+initalvelocity.x);
+        }
+
+        initalvelocity =new Vector3 (Mathf.Clamp(initalvelocity.x, -8, 8), Mathf.Clamp(initalvelocity.y, 9, 28), initalvelocity.z);
+        
         //Rスティック操作
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("R_Horizontal") < 0)
         {
@@ -215,6 +228,7 @@ public class Revolution_Player : MonoBehaviour
         {
             initalvelocity.y--; On();
         }
+        
     }
 
    public void On()
@@ -224,6 +238,7 @@ public class Revolution_Player : MonoBehaviour
    public void Off()
     {
         dummyParent.SetActive(false); enter = false;
+     
     }
 
     void Test(int farst,int second)
