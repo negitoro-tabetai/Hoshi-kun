@@ -175,12 +175,12 @@ MonoBehaviour:
   _moveTime: 4
   _speed: 2.5
   _life: 1
+  _distanceLimit: 5
   _groundLayer:
     serializedVersion: 2
     m_Bits: 512
   _attackPoint: 20
   _rayLength: 1
-  _distanceLimit: 5
   _player: {fileID: 0}
 --- !u!50 &1482889473431837854
 Rigidbody2D:
@@ -241,9 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4207c1f6b354b15b3e4507249c9430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _groundLayer:
+  _wallLayer:
     serializedVersion: 2
-    m_Bits: 512
-  _rayLength: 0.6
-  _width: 0.5
+    m_Bits: 1536
