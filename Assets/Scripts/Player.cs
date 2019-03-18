@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
         {
             IsUsingGravity = false;
             _rigidbody.isKinematic = false;
-            Damage(other.gameObject.GetComponent<Enemy>().AttackPoint);
+            Damage(other.gameObject.GetComponent<BaseEnemy>().AttackPoint);
             KnockBack(other.transform.position);
             StartCoroutine(Stun());
             StartCoroutine(BecomesInvincible());
