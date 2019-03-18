@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 127072890}
   - component: {fileID: 127072887}
   - component: {fileID: 4526753233445136670}
-  - component: {fileID: 3188677367841058348}
   m_Layer: 9
-  m_Name: block
+  m_Name: Block
   m_TagString: RevolutionBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,31 +139,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1379ca8b5f9404e82bd2df330088bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyObjPref: {fileID: 0}
-  dummyObjParent: {fileID: 0}
-  dummyParent: {fileID: 0}
   Hoshikun: {fileID: 0}
-  Hoshikun_obj: {fileID: 0}
-  initalvelocity: {x: 0, y: 0, z: 0}
-  dummyCount: 0
-  secInterval: 0
-  offsetSpeed: 0.5
-  speed: 300
-  distance: 0
-  Block: {fileID: 0}
---- !u!111 &3188677367841058348
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 127072884}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 81387b1f557514b44bf42f09be228901, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 81387b1f557514b44bf42f09be228901, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  Revolution_On: 1
