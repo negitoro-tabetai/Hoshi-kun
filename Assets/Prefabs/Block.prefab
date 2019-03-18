@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 127072885}
   - component: {fileID: 127072890}
   - component: {fileID: 127072887}
-  - component: {fileID: 1093886565314698717}
+  - component: {fileID: 4526753233445136670}
   m_Layer: 9
   m_Name: Block
   m_TagString: RevolutionBlock
@@ -127,7 +127,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1093886565314698717
+--- !u!114 &4526753233445136670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
