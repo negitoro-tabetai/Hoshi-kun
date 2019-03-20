@@ -64,7 +64,7 @@ public class Change : MonoBehaviour
     }
    public void Starts()
     {
-        SceneManager.LoadScene("Stage1");
+        SceneManager.LoadScene("1-1");
     }
    public void Selecte()
     {
