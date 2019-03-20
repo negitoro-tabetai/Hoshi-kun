@@ -175,10 +175,15 @@ public class BaseEnemy : MonoBehaviour
             }
         }
 
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
         //公転で飛ばされたブロックに当たった場合ダメージを受ける
         if (other.gameObject.tag == "RevolutionBlock")
         {
             Damage();
         }
+        
     }
 }

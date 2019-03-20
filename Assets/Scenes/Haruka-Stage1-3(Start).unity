@@ -549,6 +549,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8469415496451368771, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8469415496451368774, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
         type: 3}
       propertyPath: _jumpForce
@@ -837,36 +842,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494794918 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8469415496451368769, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
-    type: 3}
-  m_PrefabInstance: {fileID: 761345736}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1494794919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8469415496451368773, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
     type: 3}
   m_PrefabInstance: {fileID: 761345736}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1494794920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494794918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fa2da8f849f75848b2c75adb63eabc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dummyObjPref: {fileID: 3998622233608966268, guid: 2f34a0b7bad239043b544683b7f6c18b,
-    type: 3}
-  dummyParent: {fileID: 1295870779}
-  initalvelocity: {x: 8, y: 16, z: 0}
-  Object: []
-  RevolutionObject: []
 --- !u!1 &1730325280
 GameObject:
   m_ObjectHideFlags: 0
