@@ -17,12 +17,13 @@ public class Revolution_Player : MonoBehaviour
 
     [SerializeField] float _distance;
     [SerializeField] float _followSpeed;
+    //公転する速さ
+    [SerializeField] float _rotateSpeed;
+    [SerializeField, Tooltip("公転オブジェクトの大きさ倍率")] float _scale;
     //弾道予測の点の数   
     [SerializeField] int _dummyCount;
     //弾道を表示する間隔の秒数
     [SerializeField] float _secInterval;
-    //公転する速さ
-    [SerializeField] float _rotateSpeed;
 
     //点が移動する速度
     [SerializeField] float _offsetSpeed;
@@ -82,7 +83,7 @@ public class Revolution_Player : MonoBehaviour
                 obj.transform.SetParent(transform);//プレイヤーの子に
 
                 //体積変更
-                obj.transform.localScale /= 2; // new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);
+                obj.transform.localScale *= _scale;
             }
         }
         if (RevolutionObject.Count > 0)
@@ -136,12 +137,14 @@ public class Revolution_Player : MonoBehaviour
     {
         int index = RevolutionObject.Count - 1;
 
-        RevolutionObject[index].transform.localScale *= 2;//大きさ戻す
+        RevolutionObject[index].transform.localScale /= _scale;//大きさ戻す
         RevolutionObject[index].transform.position = _dummyParent.transform.position;
         RevolutionObject[index].transform.rotation = Quaternion.identity;//Rotationを戻す
 
         RevolutionObject[index].GetComponent<Rigidbody2D>().isKinematic = false;//重力
         RevolutionObject[index].GetComponent<Rigidbody2D>().AddForce(_throwForce * _rightInput, ForceMode2D.Impulse);//とばす
+        // タグ変更
+        RevolutionObject[index].tag = "RevolutionBlock";
         StartCoroutine(ActivateCollider(RevolutionObject[index], 0));
         RevolutionObject.Remove(RevolutionObject[index]);
     }
