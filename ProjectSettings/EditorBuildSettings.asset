@@ -27,9 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/StageSelectTest.unity
     guid: 0453195ff58af472f8aa44dcd2609dcb
   - enabled: 1
-    path: Assets/Scenes/1-1.unity
-    guid: 610b1eadb7c3f5545b943f22e67a0ce1
+    path: Assets/Scenes/Haruka-Stage1-3.unity
+    guid: 88499cbf55d01224897fbe3d1b7ec0cf
   - enabled: 1
-    path: Assets/Scenes/1-2.unity
-    guid: dcbeb337640fa234fb6011a375602d80
+    path: Assets/Scenes/Haruka-Stage1-3(Start).unity
+    guid: 629917107f69cf34ba5439d6974208c6
+  - enabled: 1
+    path: Assets/Scenes/Haruka-Stage1-3-Boss.unity
+    guid: f890715ff1e00af46ae5162ef3194974
   m_configObjects: {}
