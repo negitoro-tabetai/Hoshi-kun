@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && !IsInvincible)
         {
-            Damage(other.gameObject.GetComponent<Enemy>().AttackPoint, other.transform.transform.position);
+            Damage(other.gameObject.GetComponent<BaseEnemy>().AttackPoint, other.transform.transform.position);
         }
     }
 
