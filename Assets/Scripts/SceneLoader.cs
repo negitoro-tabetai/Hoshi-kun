@@ -15,6 +15,6 @@ public class SceneLoader : MonoBehaviour
     }
     public void Stage3()
     {
-        SceneManager.LoadScene("1-3");
+        SceneManager.LoadScene("Stage1-3(Start)");
     }
 }
