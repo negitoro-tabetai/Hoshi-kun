@@ -5,8 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public void LoadScene(string sceneName)
+   public void Stage1()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("1-1");
+    }
+    public void Stage2()
+    {
+        SceneManager.LoadScene("1-2");
+    }
+    public void Stage3()
+    {
+        SceneManager.LoadScene("1-3");
     }
 }

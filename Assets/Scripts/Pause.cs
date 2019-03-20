@@ -30,7 +30,7 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        if (option.activeSelf == false && Input.GetKeyDown(KeyCode.P))
+        if (option.activeSelf == false && Input.GetButtonDown("Pause"))
         {
             pause.SetActive(!pause.activeSelf);
             _On = !_On;

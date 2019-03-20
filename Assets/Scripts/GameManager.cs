@@ -21,7 +21,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if (Input.GetButtonDown("Pause"))
         {
-            SceneManager.LoadScene("StageSelect");
+       
         }
     }
 
