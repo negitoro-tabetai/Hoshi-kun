@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1261507471}
   - component: {fileID: 1261507472}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1283004726}
   - component: {fileID: 1283004727}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -250,7 +250,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.78, y: 0.78}
+  m_Size: {x: 0.78, y: 0.98}
   m_EdgeRadius: 0.1
 --- !u!50 &8469415496451368770
 Rigidbody2D:
@@ -287,10 +287,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 100
   _moveSpeed: 5
-  _runSpeed: 7.5
+  _runSpeed: 8
   _invincibleTime: 1
   _stunningTime: 0.4
-  _jumpForce: 14.6
+  _jumpForce: 16
   _knockBackForce: 10
   _upFilter:
     useTriggers: 0
@@ -386,11 +386,12 @@ MonoBehaviour:
   _mask:
     serializedVersion: 2
     m_Bits: 4608
-  _distance: 1
+  _distance: 1.5
   _followSpeed: 5
+  _rotateSpeed: 1
+  _scale: 0.4
   _dummyCount: 100
-  _secInterval: 0.05
-  _rotateSpeed: 0.5
+  _secInterval: 0.025
   _offsetSpeed: 0.1
   Object: []
   RevolutionObject: []
@@ -404,7 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8469415496557474091}
   - component: {fileID: 8469415496557474092}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: GravityField
   m_TagString: Field
   m_Icon: {fileID: 0}
