@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Pause : MonoBehaviour
 {
-   
+
     private bool _On = false;
 
-   
+
 
     [SerializeField] Slider _sliderSE;
     [SerializeField] Slider _sliderBGM;
@@ -17,14 +17,14 @@ public class Pause : MonoBehaviour
     [SerializeField] GameObject option;
     void Start()
     {
-      
-       panel.SetActive(false);
-       
+
+        panel.SetActive(false);
+
         pause.SetActive(false);
-       
+
         option.SetActive(false);
 
-        ValueChange();
+      
     }
 
 
@@ -71,11 +71,36 @@ public class Pause : MonoBehaviour
         option.SetActive(false);
         pause.SetActive(true);
     }
-    public void ValueChange()
+    public void ChangeVolumeSE()
     {
-        _sliderSE.value = AudioManager.Instance.SEVolume;
-        _sliderBGM.value = AudioManager.Instance.BGMVolume;
+
+        if (Input.GetKey(KeyCode.RightArrow) && _sliderSE.value < 1)
+        {
+            _sliderSE.value += 0.01f;
+            AudioManager.Instance.ChangeVolumeSE(_sliderSE.value);
+
+        }
+        if (Input.GetKey(KeyCode.LeftArrow) && _sliderSE.value > 0)
+        {
+            _sliderSE.value -= 0.01f;
+            AudioManager.Instance.ChangeVolumeSE(_sliderSE.value);
+        }
+
     }
-  
-   
+    public void ChangeVolumeBGM()
+    {
+
+        if (Input.GetKey(KeyCode.RightArrow) && _sliderBGM.value < 1)
+        {
+            _sliderBGM.value += 0.01f;
+            AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
+        }
+        if (Input.GetKey(KeyCode.LeftArrow) && _sliderBGM.value > 0)
+        {
+            _sliderBGM.value -= 0.01f;
+            AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
+        }
+
+
+    }
 }

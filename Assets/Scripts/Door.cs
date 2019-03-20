@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField, Tooltip("対応するボタン")] ButtonObject _button;
-
+    enum ButtonType
+    {
+        // どれかひとつでも押されていれば開く
+        Any,
+        // 全て押されていれば開く
+        All
+    }
+    [SerializeField, Tooltip("対応するボタン")] ButtonObject[] _buttons;
+    [SerializeField, Tooltip("複数ボタンがある場合の開く条件")] ButtonType _buttonType;
     [SerializeField, Tooltip("動く速度")] float _moveSpeed;
 
     // 初期位置
@@ -32,7 +40,17 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        if (_button.IsPressed)
+        bool isOpen;
+        if (_buttonType == 0)
+        {
+            isOpen = _buttons.Any(button => button.IsPressed);
+        }
+        else
+        {
+            isOpen = _buttons.All(button => button.IsPressed);
+        }
+        
+        if (isOpen)
         {
             ElapsedTime += Time.deltaTime * _moveSpeed;
         }
