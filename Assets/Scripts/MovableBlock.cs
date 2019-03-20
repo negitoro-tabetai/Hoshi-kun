@@ -32,7 +32,7 @@ public class MovableBlock : MonoBehaviour
     float WallCheck(Vector2 direction)
     {
         const float MaxDistance = 100;
-        const float size = 0.99f;
+        const float size = 0.9f;
 
         // RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, MaxDistance, _wallLayer);
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, transform.localScale * size, transform.eulerAngles.z, direction, MaxDistance, _wallLayer);

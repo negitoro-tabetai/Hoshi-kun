@@ -20,10 +20,10 @@ public class BlockGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene("Stage2");
-        }
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     SceneManager.LoadScene("Stage2");
+        // }
         on =swich.Swich_;
         if (block == null && on == false)
         {
