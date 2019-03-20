@@ -9,7 +9,6 @@ public class Revolution : MonoBehaviour
     {
         if (On)
         {
-            Debug.Log(col.gameObject.name);
             Destroy(gameObject);
         }
     }
