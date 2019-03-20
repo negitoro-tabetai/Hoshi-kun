@@ -6,12 +6,13 @@ public class Enemy : BaseEnemy
 {
     //----------------------------------------------------------------------------------
     //変数宣言
+
+    //プレイヤーとの距離
+    Vector2 _playerToDistance;
     //プレイヤーと接触した後通常に戻るためのY座標
     const float _distanceLimit_X = 5;
     //プレイヤーと接触した後通常に戻るためのY座標
     const float _distanceLimit_Y = 3;
-    ////プレイヤーとの距離
-    Vector2 _playerToDistance;
     //----------------------------------------------------------------------------------
 
 
@@ -33,7 +34,8 @@ public class Enemy : BaseEnemy
             _playerToDistance = _player.transform.position - transform.position;
 
             //接触してから一定距離離れた場合通常に戻る
-            if (Mathf.Abs(_playerToDistance.x) >= _distanceLimit_X || Mathf.Abs(_playerToDistance.y) >= _distanceLimit_Y)
+            if (Mathf.Abs(_playerToDistance.x) >= _distanceLimit_X || 
+                Mathf.Abs(_playerToDistance.y) >= _distanceLimit_Y)
             {
                 _isTouching = false;
             }

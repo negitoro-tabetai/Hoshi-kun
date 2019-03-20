@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     float _inputX;
     // 走っているか
     bool _isRunning;
+    bool _isMoving;
     // 硬直しているか
     bool _isStunning;
 
@@ -52,11 +53,18 @@ public class Player : MonoBehaviour
     // 引力を使用しているか
     public bool IsUsingGravity { get; set; }
 
-    public bool IsMoving
+    public bool IsRunning
     {
         get
         {
-            return transform.position != _previousPosition || _inputX != 0;
+            return _isRunning && _isMoving;
+        }
+    }
+    public float InputX
+    {
+        get
+        {
+            return _inputX;
         }
     }
 
@@ -115,7 +123,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _inputX = Input.GetAxisRaw("Horizontal");
+            _inputX = System.Math.Sign(Input.GetAxisRaw("Horizontal"));
         }
 
         // 範囲表示
@@ -127,8 +135,7 @@ public class Player : MonoBehaviour
         {
             _field.SetActive(false);
         }
-
-        _previousPosition = transform.position;
+        _isMoving = _previousPosition.x != transform.position.x;
     }
 
     void FixedUpdate()
@@ -144,6 +151,7 @@ public class Player : MonoBehaviour
                 _rigidbody.velocity = new Vector3(_inputX * _moveSpeed, _rigidbody.velocity.y, 0);
             }
         }
+        _previousPosition = transform.position;
     }
 
     void Jump()
@@ -192,7 +200,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && !IsInvincible)
         {
-            Damage(other.gameObject.GetComponent<Enemy>().AttackPoint, other.transform.transform.position);
+            Damage(other.gameObject.GetComponent<BaseEnemy>().AttackPoint, other.transform.transform.position);
         }
     }
 

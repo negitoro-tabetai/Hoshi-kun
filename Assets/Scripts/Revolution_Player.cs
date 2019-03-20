@@ -4,268 +4,197 @@ using UnityEngine;
 
 public class Revolution_Player : MonoBehaviour
 {
-    [SerializeField, Tooltip("弾道を表示するための点のプレファブ")] GameObject dummyObjPref;
-    [SerializeField, Tooltip("点の親オブジェクト")] GameObject dummyParent;
-    [SerializeField, Tooltip("初速のベクトル")] Vector3 initalvelocity=new Vector3(8,16,0);
+    Player _player;
+    Rigidbody2D _rigidbody;
+    // 右スティック入力
+    Vector2 _rightInput;
+    List<Collider2D> _results;
+    [SerializeField, Tooltip("弾道を表示するための点のプレファブ")] GameObject _dummyPrefab;
+    [SerializeField, Tooltip("点の親オブジェクト")] GameObject _dummyParent;
+    [SerializeField, Tooltip("半径")] float _radius;
+    [SerializeField, Tooltip("初速")] float _throwForce;
+    [SerializeField, Tooltip("衝突するオブジェクトのレイヤー")] LayerMask _mask;
+
+    [SerializeField] float _distance;
+    [SerializeField] float _followSpeed;
     //弾道予測の点の数   
-    int dummyCount = 70;
+    [SerializeField] int _dummyCount;
     //弾道を表示する間隔の秒数
-    float secInterval = 0.02f;
-    //点が移動する速度
-    float offsetSpeed = 0.5f;
+    [SerializeField] float _secInterval;
     //公転する速さ
-    float speed = 300;
-    
-    float offset;
-  
+    [SerializeField] float _rotateSpeed;
+
+    //点が移動する速度
+    [SerializeField] float _offsetSpeed;
+
+    float _offset;
+
     List<GameObject> dummySpheres = new List<GameObject>();//弾道予測を表示するための点のリスト
-   public List<GameObject> Object = new List<GameObject>(); //公転可能なオブジェクト
-   public List<GameObject> RevolutionObject = new List<GameObject>(); //公転してるオブジェクト
+    public List<GameObject> Object = new List<GameObject>(); //公転可能なオブジェクト
+    public List<GameObject> RevolutionObject = new List<GameObject>(); //公転してるオブジェクト
 
     bool enter;//弾道予測を表示してるかどうか
-    bool guruguru = false;//まわすスイッチ
-    bool throw_ = false;//とんでるかどうか
-    bool small = true;//ちいさくするスイッチ
-    bool dot=true;
-    
-    // Start is called before the first frame update
     void Start()
     {
+        _player = GetComponent<Player>();
+        _rigidbody = GetComponent<Rigidbody2D>();
         Off();
+        //弾道予測を表示するための点を生成
+        for (int i = 0; i < _dummyCount; i++)
+        {
+            var obj = (GameObject)Instantiate(_dummyPrefab, _dummyParent.transform);
+            dummySpheres.Add(obj);
+        }
     }
 
     void Update()
     {
-        //点の開始位置をほしくんの現在の位置に
-        dummyParent.transform.position = this.transform.position;
-
+        _results = new List<Collider2D>(Physics2D.OverlapCircleAll(transform.position, _radius));
+        Object.Clear();
+        for (int i = 0; i < _results.Count; i++)
+        {
+            if (_results[i].GetComponent<Revolution>())
+            {
+                Object.Add(_results[i].gameObject);
+            }
+        }
         //回せるか判定
         if (Object.Count > 0)//公転可能なオブジェクトが1つでもあれば
         {
-            
+
             if (Input.GetButtonDown("Revolution") || Input.GetKeyDown(KeyCode.R))     //公転ボタン押す
             {
-                small = true;
+                // small = true;
                 //公転可能リストから公転中リストへ
-                RevolutionObject.Add(Object[0]); 
-                Object.Remove(Object[0]);
+                RevolutionObject.Add(Object[Object.Count - 1]);
+                Object.Remove(Object[Object.Count - 1]);
 
-  
-                
-                if (throw_ == false)
+                GameObject obj = RevolutionObject[RevolutionObject.Count - 1];
+                Destroy(obj.GetComponent<MovableBlock>());
+                obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                if (obj.GetComponent<Enemy>())
                 {
-                  
-                    guruguru = true;
+                    Destroy(obj.GetComponent<Enemy>());
+                }
+                obj.GetComponent<Rigidbody2D>().isKinematic = true;
+                obj.GetComponent<Revolution>().On = true;
+                obj.layer = LayerMask.NameToLayer("Forecast");
+                obj.transform.SetParent(transform);//プレイヤーの子に
 
-                    if (small == true)
+                //体積変更
+                obj.transform.localScale /= 2; // new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);
+            }
+        }
+        if (RevolutionObject.Count > 0)
+        {
+            Rotate();
+            Operate();//操作
+            RevolutionObject[RevolutionObject.Count - 1].GetComponent<BoxCollider2D>().enabled = false;//回ってる間は当たり判定オフ
+
+            bool hit = false;
+            //弾道予測の位置に点を移動
+            for (int i = 0; i < _dummyCount; i++)
+            {
+                var t = (i * _secInterval) + _offset;
+                var x = t * _rightInput.x * _throwForce;
+                var y = (_rightInput.y * _throwForce * t) - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2.0f);
+
+                dummySpheres[i].transform.localPosition = new Vector3(x, y);
+                //　↑鉛直上方投射の公式
+                if (i > 0)
+                {
+                    if (Physics2D.Linecast(dummySpheres[i - 1].transform.position, dummySpheres[i].transform.position, _mask))
                     {
-                        //位置(Y)調整
-                        RevolutionObject[RevolutionObject.Count - 1].transform.position = new Vector3(RevolutionObject[RevolutionObject.Count - 1].transform.position.x, this.transform.position.y,
-                            RevolutionObject[RevolutionObject.Count - 1].transform.position.z);
-
-
-                        float scaleX = RevolutionObject[RevolutionObject.Count - 1].transform.localScale.x;
-                        float scaleY = RevolutionObject[RevolutionObject.Count - 1].transform.localScale.y;
-                        float scaleZ = RevolutionObject[RevolutionObject.Count - 1].transform.localScale.z;
-
-                        //弾道予測を表示するための点を生成
-                        if (dot == true)
-                        {
-                            for (int i = 0; i < dummyCount; i++)
-                            {
-                                var obj = (GameObject)Instantiate(dummyObjPref, dummyParent.transform);
-                                dummySpheres.Add(obj);
-                                dot = false;
-                            }
-                        }
-
-                        //引き寄せるスクリプトを無効に
-                        Destroy(RevolutionObject[RevolutionObject.Count-1]. GetComponent<MovableBlock>());
-                        //Destroy(RevolutionObject[RevolutionObject.Count - 1].GetComponent<Revolution>());
-                        if (RevolutionObject[RevolutionObject.Count - 1].GetComponent<Enemy>())
-                        {
-                            Destroy(RevolutionObject[RevolutionObject.Count - 1].GetComponent<Enemy>());
-                        }
-
-                        RevolutionObject[RevolutionObject.Count - 1].GetComponent<Revolution>().Revolution_On = false;
-
-                        RevolutionObject[RevolutionObject.Count-1].GetComponent<Rigidbody2D>().isKinematic = true;
-
-                        RevolutionObject[RevolutionObject.Count - 1].transform.parent.gameObject.transform.parent = this.transform;//プレイヤーの子に
-
-                        //体積変更
-                        RevolutionObject[RevolutionObject.Count - 1].transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);
-                      
-                        small = false;
+                        hit = true;
+                    }
+                    if (hit)
+                    {
+                        dummySpheres[i].SetActive(false);
+                    }
+                    else
+                    {
+                        dummySpheres[i].SetActive(true);
                     }
                 }
             }
         }
 
-        //まわる！！！！！
-        if (guruguru == true)
-        {
-
-            if (RevolutionObject.Count > 0)
-            {
-                Operate();//操作
-
-
-                RevolutionObject[RevolutionObject.Count - 1].transform.RotateAround(transform.position, transform.up, 300 * Time.deltaTime);//まわす
-
-                //RevolutionObject[RevolutionObject.Count - 1].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-
-
-                if (RevolutionObject.Count == 2)
-                {
-                    RevolutionObject[RevolutionObject.Count - 2].transform.RotateAround(transform.position, transform.up, 300 * Time.deltaTime);
-                    Test(1, 2);
-                }
-                else
-                if (RevolutionObject.Count == 3)
-                {
-                    RevolutionObject[RevolutionObject.Count - 2].transform.RotateAround(transform.position, transform.up, 300 * Time.deltaTime);
-                    RevolutionObject[RevolutionObject.Count - 3].transform.RotateAround(transform.position, transform.up, 300 * Time.deltaTime);
-                    Test(2, 3); Test(1, 3);
-                }
-
-                RevolutionObject[RevolutionObject.Count - 1].GetComponent<BoxCollider2D>().enabled = false;//回ってる間は当たり判定オフ
-
-                //弾道予測の位置に点を移動
-                for (int i = 0; i < dummyCount; i++)
-                {
-                    var t = (i * secInterval) + offset;
-                    var x = t * initalvelocity.x;
-                    var z = t * initalvelocity.z;
-                    var y = (initalvelocity.y * t) - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2.0f);
-
-                    dummySpheres[i].transform.localPosition = new Vector3(x, y, z);
-                    //　↑鉛直上方投射の公式
-                }
-            }
-        }
-
-        offset = Mathf.Repeat(Time.time * offsetSpeed, secInterval);
+        _offset = Mathf.Repeat(Time.time * _offsetSpeed, _secInterval);
 
         //Enterで飛ばす
         if (enter == true)//弾道予測がでてるときしかとばせない
         {
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Throw"))
             {
-               Throw();//★★★
+                Off();
+                Throw();//★★★
             }
         }
     }
 
     public void Throw()
     {
-        RevolutionObject[0].GetComponent<Rigidbody2D>().isKinematic = false;//重力
+        int index = RevolutionObject.Count - 1;
 
-        float scaleX = RevolutionObject[0].transform.localScale.x;
-        float scaleY = RevolutionObject[0].transform.localScale.y;
-        float scaleZ = RevolutionObject[0].transform.localScale.z;
+        RevolutionObject[index].transform.localScale *= 2;//大きさ戻す
+        RevolutionObject[index].transform.position = _dummyParent.transform.position;
+        RevolutionObject[index].transform.rotation = Quaternion.identity;//Rotationを戻す
 
-        //DestroyChildObject(dummyParent.transform);
-
-
-        //RevolutionObject[0].tag = "RevolutionBlock";
-        RevolutionObject[0].GetComponent<BoxCollider2D>().enabled = true;//判定オンに
-        RevolutionObject[0].GetComponent<BoxCollider2D>().isTrigger = true;
-
-
-        throw_ = true;//とんでる
-
-        RevolutionObject[0].transform.localScale = new Vector3(scaleX * 2, scaleY * 2, scaleZ * 2);//大きさ戻す
-        RevolutionObject[0].transform.position = (dummyParent.transform.position);
-        RevolutionObject[0].transform.rotation = new Quaternion(0, 0, 0, 0);//Rotationを戻す
-
-        RevolutionObject[0].GetComponent<Rigidbody2D>().AddForce(initalvelocity, ForceMode2D.Impulse);//とばす
-      
-        RevolutionObject.Remove(RevolutionObject[0]);
-        throw_ = false;
-     
-
+        RevolutionObject[index].GetComponent<Rigidbody2D>().isKinematic = false;//重力
+        RevolutionObject[index].GetComponent<Rigidbody2D>().AddForce(_throwForce * _rightInput, ForceMode2D.Impulse);//とばす
+        StartCoroutine(ActivateCollider(RevolutionObject[index], 0));
+        RevolutionObject.Remove(RevolutionObject[index]);
     }
-
-    public static void DestroyChildObject(Transform parent_trans)
+    IEnumerator ActivateCollider(GameObject obj, float delay)
     {
-        for (int i = 0; i < parent_trans.childCount; i++)
-        {
-            GameObject.Destroy(parent_trans.GetChild(i).gameObject);
-        }
+        yield return new WaitForSeconds(delay);
+        obj.GetComponent<BoxCollider2D>().enabled = true;//判定オンに
+        obj.GetComponent<BoxCollider2D>().isTrigger = true;
     }
-
-
-
     void Operate()
     {
-        //キャンセル
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetAxisRaw("R_Horizontal") != 0 || Input.GetAxisRaw("R_Vertical") != 0)
+        {
+            _rightInput = Vector2.Lerp(_rightInput.normalized, new Vector2(Input.GetAxisRaw("R_Horizontal"), Input.GetAxisRaw("R_Vertical")).normalized, Time.deltaTime * 5);
+            On();
+        }
+        else
         {
             Off();
-            initalvelocity.x = 8;
-            initalvelocity.y = 16;
+            _rightInput = Vector2.zero;
         }
-        
-        //テスト
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Debug.Log("Y:" + initalvelocity.y+"X:"+initalvelocity.x);
-        }
-
-        initalvelocity =new Vector3 (Mathf.Clamp(initalvelocity.x, -8, 8), Mathf.Clamp(initalvelocity.y, 9, 28), initalvelocity.z);
-        
-        //Rスティック操作
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("R_Horizontal") < 0)
-        {
-            initalvelocity.x--; On();
-        }
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("R_Horizontal") > 0)
-        {
-            initalvelocity.x++; On();
-        }
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("R_Vertical") > 0)
-        {
-            initalvelocity.y++; On();
-        }
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("R_Vertical") < 0)
-        {
-            initalvelocity.y--; On();
-        }
-        
     }
 
-   public void On()
+    public void On()
     {
-        dummyParent.SetActive(true); enter = true;
+        _dummyParent.SetActive(true); enter = true;
     }
-   public void Off()
+    public void Off()
     {
-        dummyParent.SetActive(false); enter = false;
-     
+        _dummyParent.SetActive(false); enter = false;
+
     }
 
-    void Test(int farst,int second)
+    void Rotate()
     {
-       
-
-        float x = RevolutionObject[RevolutionObject.Count - farst].transform.position.x -
-                  RevolutionObject[RevolutionObject.Count - second].transform.position.x;
-        x = System.Math.Abs(x);
-
-        float z=  RevolutionObject[RevolutionObject.Count - farst].transform.position.z -
-                   RevolutionObject[RevolutionObject.Count - second].transform.position.z;
-        z = System.Math.Abs(z);
-
-
-        if (x < 1 && z < 0.3)
+        for (int i = 0; i < RevolutionObject.Count; i++)
         {
-            Debug.Log("近いので調整");
-            RevolutionObject[RevolutionObject.Count - farst].transform.position = new Vector3(RevolutionObject[RevolutionObject.Count - farst].transform.position.x + 0.2f,
-              RevolutionObject[RevolutionObject.Count - farst].transform.position.y, RevolutionObject[RevolutionObject.Count - farst].transform.position.z + 0.2f);
-
+            if (_player.IsRunning)
+            {
+                if (i == 0)
+                {
+                    RevolutionObject[i].transform.localPosition = Vector3.Lerp(RevolutionObject[i].transform.localPosition, new Vector3(-_rigidbody.velocity.normalized.x * _distance, -_rigidbody.velocity.normalized.y, 0), _followSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    RevolutionObject[i].transform.localPosition = Vector3.Lerp(RevolutionObject[i].transform.localPosition, RevolutionObject[i - 1].transform.localPosition + new Vector3(-_rigidbody.velocity.normalized.x * _distance, -_rigidbody.velocity.normalized.y, 0), _followSpeed * Time.deltaTime);
+                }
+            }
+            else
+            {
+                RevolutionObject[i].transform.localPosition = Vector3.Lerp(RevolutionObject[i].transform.localPosition, Quaternion.Euler(0, 360 * i / RevolutionObject.Count + 360 * _rotateSpeed * Time.time, 0) * Vector3.right * _distance, _followSpeed * Time.deltaTime);
+            }
+            RevolutionObject[i].transform.rotation = Quaternion.Euler(0, 360 * i / RevolutionObject.Count + Time.time * -360 * _rotateSpeed, 0);
         }
     }
-
-
 }
