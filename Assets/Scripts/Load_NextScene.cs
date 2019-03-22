@@ -27,7 +27,7 @@ public class Load_NextScene : MonoBehaviour
 
     IEnumerator Load()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         SceneManager.LoadScene(nextScene);
     }
 
