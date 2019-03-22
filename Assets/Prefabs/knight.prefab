@@ -182,17 +182,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 1
-  _time: 0
   _moveTime: 2
   _speed: 2.5
-  _life: 100
+  _time: 0
+  _life: 2
   _attackPoint: 20
   _findRayLength: 7
   _playerLayer:
     serializedVersion: 2
     m_Bits: 3072
-  k_speed: 3.5
+  followSpeed: 0
   _myArmor: armor
+  _afterMoveTime: 0
+  _afterSpeed: 0
 --- !u!1 &532780731684116256
 GameObject:
   m_ObjectHideFlags: 0

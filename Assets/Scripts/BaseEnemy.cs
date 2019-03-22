@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BaseEnemy : MonoBehaviour
 {
     //--------------------------------------------------------------------------------
@@ -83,6 +84,7 @@ public class BaseEnemy : MonoBehaviour
     {
         if (IsGround())
         {
+            
             _rigidbody.velocity = new Vector2(transform.right.x * _speed, _rigidbody.velocity.y);
             _time += Time.deltaTime;
             if (_time > _moveTime || !CanMoveForward())
@@ -153,6 +155,7 @@ public class BaseEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+
             LookAtPlayer();
             _isTouching = true;
         }
@@ -174,9 +177,13 @@ public class BaseEnemy : MonoBehaviour
                 _movable.enabled = false;
             }
         }
+    }
 
+
+    protected void OnTriggerEnter2D(Collider2D collider)
+    {
         //公転で飛ばされたブロックに当たった場合ダメージを受ける
-        if (other.gameObject.tag == "RevolutionBlock")
+        if (collider.gameObject.tag == "RevolutionBlock")
         {
             Damage();
         }
