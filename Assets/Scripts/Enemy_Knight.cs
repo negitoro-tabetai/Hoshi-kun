@@ -73,16 +73,20 @@ public class Enemy_Knight : BaseEnemy
     }
 
 
-    void OnTriggerEnter2D(Collider2D collision)
+    new void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.tag == "RevolutionBlock")
+        base.OnTriggerEnter2D(collider);
+        if (collider.gameObject.tag == "RevolutionBlock")
         {
             _damage = true;
             _animator.SetTrigger("_damage");
-        }    
+        }
     }
 
 
+    /// <summary>
+    /// Knightの子オブジェクトに鎧があった場合消す関数
+    /// </summary>
     void ArmorBreak()
     {
         foreach(Transform childTransform in transform)
