@@ -13,17 +13,21 @@ public class Timer : MonoBehaviour
     void Start()
     {
         pause = GameObject.Find("Pause");
+        //初期値
         text.text = 0 + ";" + 0;
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
+        //秒のカウント
         if (second > 0)
         {
             second -= Time.deltaTime ;
         }
+        //テキストに代入
         text.text = minute + ":" + second.ToString("0#");
+        //分の減少処理
         if (second < 0&&minute>0)
         {
             minute -= 1;
