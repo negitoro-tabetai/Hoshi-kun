@@ -178,7 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _destroyEffect: {fileID: 0}
+  _destroyEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
+    type: 3}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 512
