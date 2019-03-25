@@ -29,4 +29,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void ResetPoint()
+    {
+        RespawnPoint = Vector3.zero;
+    }
 }

@@ -19,6 +19,7 @@ public class FadeScene : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            GameManager.Instance.ResetPoint();
             FadeManager.Instance.SceneFade(Scene, 1);
         }
     }

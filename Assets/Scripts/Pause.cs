@@ -57,7 +57,7 @@ public class Pause : MonoBehaviour
     }
     public void Title()
     {
-
+        GameManager.Instance.ResetPoint();
         SceneManager.LoadScene("Title");
 
     }
