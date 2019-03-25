@@ -19,16 +19,14 @@ public class BlockGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        block = GameObject.FindGameObjectsWithTag("RevolutionBlock");//公転ブロックのタグを取得
-        if (block.Length == 0 && swich.Swich_ == false)//リスト内のオブジェクトがなくなってもスイッチがオフだったら
+        block = GameObject.FindGameObjectsWithTag("RevolutionBlock");
+        if (block.Length == 0 && swich.Swich_ == false)
         {
             
             if (stop == true)
             {
                 Debug.Log("ほい");
-                Instantiate(blockprefab, this.transform.position, Quaternion.identity);//ブロック生成
+                Instantiate(blockprefab, this.transform.position, Quaternion.identity);
                 stop = false;
             }
             stop = true;
