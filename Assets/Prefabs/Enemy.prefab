@@ -171,17 +171,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e0890b321e04c4ca76558496cd499b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _time: 0
-  _moveTime: 4
-  _speed: 2.5
-  _life: 1
-  _distanceLimit: 5
+  _player: {fileID: 0}
+  _destroyEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
+    type: 3}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  _attackPoint: 20
   _rayLength: 1
-  _player: {fileID: 0}
+  _moveTime: 4
+  _speed: 2.5
+  _time: 0
+  _life: 1
+  _attackPoint: 20
 --- !u!50 &1482889473431837854
 Rigidbody2D:
   serializedVersion: 4
