@@ -10,6 +10,7 @@ public class BaseEnemy : MonoBehaviour
     //プレイヤーと接触したか
     protected Rigidbody2D _rigidbody;
     [SerializeField] protected GameObject _player;
+    [SerializeField] protected GameObject _destroyEffect;
     [SerializeField, Tooltip("地面のレイヤーマスク")] protected LayerMask _groundLayer;
     [SerializeField, Tooltip("rayの長さ")] protected float _rayLength = 0.6f;
     [SerializeField, Tooltip("移動する制限時間")] protected float _moveTime;
@@ -118,6 +119,7 @@ public class BaseEnemy : MonoBehaviour
         }
         if (_life == 0)
         {
+            Instantiate(_destroyEffect, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
@@ -184,6 +186,5 @@ public class BaseEnemy : MonoBehaviour
         {
             Damage();
         }
-        
     }
 }
