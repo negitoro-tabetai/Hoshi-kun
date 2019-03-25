@@ -178,6 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
+  _destroyEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
+    type: 3}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -191,10 +193,10 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 3072
-  followSpeed: 0
+  followSpeed: 5
   _myArmor: armor
-  _afterMoveTime: 0
-  _afterSpeed: 0
+  _afterMoveTime: 0.5
+  _afterSpeed: 5
 --- !u!1 &532780731684116256
 GameObject:
   m_ObjectHideFlags: 0
