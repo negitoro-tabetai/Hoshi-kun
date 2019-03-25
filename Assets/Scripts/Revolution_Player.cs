@@ -60,7 +60,7 @@ public class Revolution_Player : MonoBehaviour
             }
         }
         //回せるか判定
-        if (Object.Count > 0)//公転可能なオブジェクトが1つでもあれば
+        if (Object.Count > 0 && RevolutionObject.Count < 3)//公転可能なオブジェクトが1つでもあれば
         {
 
             if (Input.GetButtonDown("Revolution") || Input.GetKeyDown(KeyCode.R))     //公転ボタン押す
