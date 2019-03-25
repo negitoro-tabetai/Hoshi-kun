@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void Stage3()
     {
-        SceneManager.LoadScene("Haruka-Stage1-3(Start)");
+        SceneManager.LoadScene("1-3");
     }
     public void Update()
     {
