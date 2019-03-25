@@ -21,8 +21,8 @@ public class Teleport : MonoBehaviour
     {
         if (collision.gameObject.tag== "Player")
         {
-            Player.transform.position = Door.transform.position;
-           Camera.transform.position = Door.transform.position;
+            Player.transform.position = new Vector3(Door.transform.position.x, Player.transform.position.y, 0);
+            Camera.transform.position = new Vector3(Door.transform.position.x, Camera.transform.position.y, Camera. transform.position.z);
         }
     }
 }
