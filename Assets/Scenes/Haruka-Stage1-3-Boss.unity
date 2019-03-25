@@ -560,6 +560,12 @@ PrefabInstance:
       propertyPath: Hoshikun
       value: 
       objectReference: {fileID: 303878493}
+    - target: {fileID: 4526753233445136670, guid: 7493b4fb6cebf4747b4de28de40f5952,
+        type: 3}
+      propertyPath: _revolutionBreakEffect
+      value: 
+      objectReference: {fileID: 6777394530414911656, guid: 72c2ba2b5ad6a77418f4f7660d1433ff,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7493b4fb6cebf4747b4de28de40f5952, type: 3}
 --- !u!4 &165829113 stripped
@@ -673,6 +679,12 @@ PrefabInstance:
       propertyPath: Hoshikun
       value: 
       objectReference: {fileID: 303878493}
+    - target: {fileID: 4526753233445136670, guid: 7493b4fb6cebf4747b4de28de40f5952,
+        type: 3}
+      propertyPath: _revolutionBreakEffect
+      value: 
+      objectReference: {fileID: 6777394530414911656, guid: 72c2ba2b5ad6a77418f4f7660d1433ff,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7493b4fb6cebf4747b4de28de40f5952, type: 3}
 --- !u!4 &237109128 stripped
@@ -1311,6 +1323,12 @@ PrefabInstance:
       propertyPath: Hoshikun
       value: 
       objectReference: {fileID: 303878493}
+    - target: {fileID: 4526753233445136670, guid: 7493b4fb6cebf4747b4de28de40f5952,
+        type: 3}
+      propertyPath: _revolutionBreakEffect
+      value: 
+      objectReference: {fileID: 6777394530414911656, guid: 72c2ba2b5ad6a77418f4f7660d1433ff,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7493b4fb6cebf4747b4de28de40f5952, type: 3}
 --- !u!4 &1042084942 stripped
@@ -1492,6 +1510,11 @@ PrefabInstance:
       propertyPath: _afterSpeed
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 381417262, guid: d6de1059e99c97d429c58063cf323b2b, type: 3}
+      propertyPath: _destroyEffect
+      value: 
+      objectReference: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6de1059e99c97d429c58063cf323b2b, type: 3}
 --- !u!1 &1319501819
@@ -1838,8 +1861,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 381417262, guid: d6de1059e99c97d429c58063cf323b2b, type: 3}
       propertyPath: _afterSpeed
-      value: 7.5
+      value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 381417262, guid: d6de1059e99c97d429c58063cf323b2b, type: 3}
+      propertyPath: _destroyEffect
+      value: 
+      objectReference: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6de1059e99c97d429c58063cf323b2b, type: 3}
 --- !u!1 &1626546303
