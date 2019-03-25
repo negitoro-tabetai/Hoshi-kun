@@ -17,4 +17,11 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("Haruka-Stage1-3(Start)");
     }
+    public void Update()
+    {
+        if (Input.GetButtonDown("UseGravity"))
+        {
+            SceneManager.LoadScene("Title");
+        }
+    }
 }
