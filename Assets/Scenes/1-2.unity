@@ -1879,18 +1879,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
---- !u!114 &737851130 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2460886604238845179, guid: b4bb616f4240b124a96fa9f61287b776,
-    type: 3}
-  m_PrefabInstance: {fileID: 772187081}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07e63e0577722d043b38c9a3eaca40bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &757478832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2127,7 +2115,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _elements.Array.data[0]._decide.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 737851130}
+      objectReference: {fileID: 0}
     - target: {fileID: 2460886605490991522, guid: b4bb616f4240b124a96fa9f61287b776,
         type: 3}
       propertyPath: _elements.Array.data[0]._decide.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -2137,7 +2125,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _elements.Array.data[1]._select.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 737851130}
+      objectReference: {fileID: 0}
     - target: {fileID: 2460886605490991522, guid: b4bb616f4240b124a96fa9f61287b776,
         type: 3}
       propertyPath: _elements.Array.data[1]._select.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -2147,11 +2135,36 @@ PrefabInstance:
         type: 3}
       propertyPath: _elements.Array.data[2]._select.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 737851130}
+      objectReference: {fileID: 0}
     - target: {fileID: 2460886605490991522, guid: b4bb616f4240b124a96fa9f61287b776,
         type: 3}
       propertyPath: _elements.Array.data[2]._select.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeVolumeBGM
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226486932336432101, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213976640044338807, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047574731293995831, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491233719451199708, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999465564966705474, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4bb616f4240b124a96fa9f61287b776, type: 3}
