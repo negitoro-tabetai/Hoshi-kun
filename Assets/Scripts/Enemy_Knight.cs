@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(MovableBlock))]
 public class Enemy_Knight : BaseEnemy
 {
     //----------------------------------------------------------
@@ -86,6 +84,7 @@ public class Enemy_Knight : BaseEnemy
 
     /// <summary>
     /// Knightの子オブジェクトに鎧があった場合消す関数
+    /// (Animationから呼び出してる)
     /// </summary>
     void ArmorBreak()
     {
@@ -96,5 +95,7 @@ public class Enemy_Knight : BaseEnemy
                 Destroy(childTransform.gameObject);
             }
         }
+        Revolution revolution = gameObject.AddComponent<Revolution>();
+        revolution.Effect = _destroyEffect;
     }
 }
