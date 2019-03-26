@@ -9,16 +9,17 @@ public class Timer : MonoBehaviour
    [SerializeField] Text text;
     [SerializeField] Text GameOverText;
     [SerializeField] int minute;
-    [SerializeField] GameObject Player;
+    [SerializeField] GameObject PlayerH;
    private float second=59;
     private GameObject pause;
-    
+    Player player;
     void Start()
     {
         pause = GameObject.Find("Pause");
         //初期値
         text.text = 0 + ";" + 0;
-      
+    
+        
     }
 
    
@@ -40,8 +41,8 @@ public class Timer : MonoBehaviour
         if (second <= 0 && minute <= 0)
         {
             GameOverText.text = "GameOver";
-            Player.GetComponent<Player>();
-     
+            PlayerH.GetComponent<Player>().enabled = false;
+
         }
     }
 }
