@@ -1745,6 +1745,7 @@ GameObject:
   - component: {fileID: 1438520319552822850}
   - component: {fileID: 1438520319552822861}
   - component: {fileID: 1438520319552822860}
+  - component: {fileID: 279886891330270798}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -1792,7 +1793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1802,7 +1803,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -1829,6 +1830,21 @@ MonoBehaviour:
   GameOverText: {fileID: 1438520319602279800}
   minute: 3
   Player: {fileID: 0}
+--- !u!114 &279886891330270798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438520319552822862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.8862745}
+  m_EffectDistance: {x: 1.6, y: 1.86}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1438520319602279802
 GameObject:
   m_ObjectHideFlags: 0

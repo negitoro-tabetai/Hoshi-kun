@@ -2368,6 +2368,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8469415496451368774, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
+        type: 3}
+      propertyPath: _runSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469415496451368774, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
+        type: 3}
+      propertyPath: _jumpForce
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8469415496451368773, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2423,32 +2433,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1283004725, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
-      propertyPath: m_Layer
-      value: 14
+    - target: {fileID: 1283004727, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283004727, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283004727, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283004727, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
+      propertyPath: m_Color.a
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261507472, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
+      propertyPath: m_IsCustomRangeActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8469415496557474090, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
         type: 3}
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 8469415496451368774, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
-        type: 3}
-      propertyPath: _runSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8469415496451368774, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
-        type: 3}
-      propertyPath: _jumpForce
-      value: 16
+    - target: {fileID: 1283004725, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1261507470, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
       propertyPath: m_Layer
       value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1261507472, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
-      propertyPath: m_IsCustomRangeActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
@@ -6156,16 +6172,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -20
       objectReference: {fileID: 0}
-    - target: {fileID: 8794769596353945150, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 831235101}
-    - target: {fileID: 8794769596353945150, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_Lens.FarClipPlane
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 8794769596051458311, guid: cbc8f75988cf54af782103c296763517,
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.data[1].X
@@ -6215,6 +6221,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.x
       value: 380.27835
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794769596353945150, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 831235101}
+    - target: {fileID: 8794769596353945150, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_Lens.FarClipPlane
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
         type: 3}
@@ -20952,6 +20968,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5625678122307138055, guid: 17a190c05cabc4b218a316686e32df10,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625678122307138055, guid: 17a190c05cabc4b218a316686e32df10,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.01
+      objectReference: {fileID: 0}
     - target: {fileID: 5625678123161793438, guid: 17a190c05cabc4b218a316686e32df10,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -20981,16 +21007,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.17999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 5625678122307138055, guid: 17a190c05cabc4b218a316686e32df10,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 5625678122307138055, guid: 17a190c05cabc4b218a316686e32df10,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 5625678123075432904, guid: 17a190c05cabc4b218a316686e32df10,
         type: 3}
@@ -23099,7 +23115,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.4
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
