@@ -26,6 +26,12 @@ public class Box : MonoBehaviour
         {
             Debug.Log("到達");
             GameObject.Find("Player").GetComponent<Player>().enabled=false;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            for (int i = 0; i < enemies.Length; i++)
+            {
+
+                enemies[i].GetComponent<BaseEnemy>().destroy();
+            }
             Goal();
         }
     }
