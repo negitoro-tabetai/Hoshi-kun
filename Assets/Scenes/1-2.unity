@@ -991,7 +991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1379ca8b5f9404e82bd2df330088bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _revolutionBreakEffect: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6,
+  _revolutionBreakEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
     type: 3}
 --- !u!1001 &444430184
 PrefabInstance:
@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1379ca8b5f9404e82bd2df330088bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _revolutionBreakEffect: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6,
+  _revolutionBreakEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
     type: 3}
 --- !u!1001 &480365861
 PrefabInstance:
@@ -1886,7 +1886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1379ca8b5f9404e82bd2df330088bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _revolutionBreakEffect: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6,
+  _revolutionBreakEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
     type: 3}
 --- !u!1001 &708614013
 PrefabInstance:
@@ -3614,7 +3614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1379ca8b5f9404e82bd2df330088bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _revolutionBreakEffect: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6,
+  _revolutionBreakEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
     type: 3}
 --- !u!1001 &1171770144
 PrefabInstance:
@@ -4058,7 +4058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1379ca8b5f9404e82bd2df330088bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _revolutionBreakEffect: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6,
+  _revolutionBreakEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
     type: 3}
 --- !u!1 &1307409700
 GameObject:
@@ -5964,7 +5964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1379ca8b5f9404e82bd2df330088bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _revolutionBreakEffect: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6,
+  _revolutionBreakEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
     type: 3}
 --- !u!1 &1941773970
 GameObject:
@@ -6627,7 +6627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1379ca8b5f9404e82bd2df330088bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _revolutionBreakEffect: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6,
+  _revolutionBreakEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
     type: 3}
 --- !u!1001 &2128786143
 PrefabInstance:
