@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Timer : MonoBehaviour
@@ -9,7 +10,7 @@ public class Timer : MonoBehaviour
    [SerializeField] Text text;
     [SerializeField] Text GameOverText;
     [SerializeField] int minute;
-    [SerializeField] GameObject PlayerH;
+    [SerializeField] GameObject Player;
    private float second=59;
     private GameObject pause;
     Player player;
@@ -41,8 +42,8 @@ public class Timer : MonoBehaviour
         if (second <= 0 && minute <= 0)
         {
             GameOverText.text = "GameOver";
-            PlayerH.GetComponent<Player>().enabled = false;
-
+            Player.GetComponent<Player>().enabled = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
