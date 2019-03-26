@@ -20,7 +20,6 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField, Tooltip("攻撃力")] int _attackPoint;
     protected bool _isTouching;
     MovableBlock _movable;
-
     //回転する角度
     const int _rotationAngle = 180;
     //--------------------------------------------------------------------------------

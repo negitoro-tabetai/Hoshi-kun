@@ -5,6 +5,15 @@ using UnityEngine;
 public class Revolution : MonoBehaviour
 {
     [SerializeField] GameObject _revolutionBreakEffect;
+
+    public GameObject Effect
+    {
+        set
+        {
+            _revolutionBreakEffect = value;
+        }
+    }
+
     public bool On { get; set; }
     void OnTriggerEnter2D(Collider2D col)
     {
