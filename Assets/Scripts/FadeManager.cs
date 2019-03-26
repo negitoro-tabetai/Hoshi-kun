@@ -30,7 +30,8 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
         SceneManager.LoadScene(sceneName);
         yield return FadeOut(fadeTime);
     }
-    IEnumerator FadeOut(float fadeTime)
+
+    public IEnumerator FadeOut(float fadeTime)
     {
         float t = 0;
         while (t < fadeTime)
@@ -42,7 +43,7 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
             yield return null;
         }
     }
-    IEnumerator FadeIn(float fadeTime)
+    public IEnumerator FadeIn(float fadeTime)
     {
         float t = 0;
         while (t < fadeTime)
