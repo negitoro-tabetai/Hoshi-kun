@@ -119,12 +119,15 @@ public class BaseEnemy : MonoBehaviour
         }
         if (_life == 0)
         {
-            Instantiate(_destroyEffect, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            destroy();
         }
     }
 
-
+    public void destroy()
+    {
+        Instantiate(_destroyEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
     /// <summary>
     /// オブジェクトの方向転換
     /// </summary>
