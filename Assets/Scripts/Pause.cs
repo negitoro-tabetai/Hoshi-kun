@@ -53,6 +53,7 @@ public class Pause : MonoBehaviour
 
     public void ReStartScene()
     {
+        GameManager.Instance.ResetPoint();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void Title()
