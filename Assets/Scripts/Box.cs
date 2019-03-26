@@ -40,6 +40,7 @@ public class Box : MonoBehaviour
 
    void Load()
     {
+        GameManager.Instance.ResetPoint();
         SceneManager.LoadScene("Title");
     }
 
