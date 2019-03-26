@@ -7,14 +7,18 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
    [SerializeField] Text text;
+    [SerializeField] Text GameOverText;
     [SerializeField] int minute;
+    [SerializeField] GameObject Player;
    private float second=59;
     private GameObject pause;
+    
     void Start()
     {
         pause = GameObject.Find("Pause");
         //初期値
         text.text = 0 + ";" + 0;
+      
     }
 
    
@@ -33,9 +37,11 @@ public class Timer : MonoBehaviour
             minute -= 1;
             second = 60;
         }
-        if (second < 0 && minute < 0)
+        if (second <= 0 && minute <= 0)
         {
-            
+            GameOverText.text = "GameOver";
+            Player.GetComponent<Player>();
+     
         }
     }
 }
