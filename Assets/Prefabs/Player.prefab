@@ -391,7 +391,7 @@ MonoBehaviour:
   _rotateSpeed: 1
   _scale: 0.4
   _dummyCount: 100
-  _secInterval: 0.025
+  _secInterval: 0.04
   _offsetSpeed: 0.1
   Object: []
   RevolutionObject: []
