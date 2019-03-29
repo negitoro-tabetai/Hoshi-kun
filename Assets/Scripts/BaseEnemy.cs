@@ -13,6 +13,7 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField] protected GameObject _destroyEffect;
     [SerializeField, Tooltip("地面のレイヤーマスク")] protected LayerMask _groundLayer;
     [SerializeField, Tooltip("rayの長さ")] protected float _rayLength = 0.6f;
+    [SerializeField] protected float _pinchRayLength = 0.5f;
     [SerializeField, Tooltip("移動する制限時間")] protected float _moveTime;
     [SerializeField, Tooltip("移動の速さ")] protected float _speed;
     [SerializeField, Tooltip("移動後の経過時間")] float _time = 0;
@@ -48,10 +49,19 @@ public class BaseEnemy : MonoBehaviour
     /// <returns>自分の目の前から下に向けてrayを打った結果</returns>
     protected bool CanMoveForward()
     {
-
         return Physics2D.Raycast(transform.position + transform.right, Vector2.down, _rayLength, _groundLayer);
-
     }
+
+    /// <summary>
+    /// 挟まれたか確認する関数
+    /// </summary>
+    protected bool PinchCheck()
+    {
+        //左右にrayを打って地面のレイヤーを持つオブジェクトに当たったらダメージを受ける
+        return Physics2D.Raycast(transform.position, Vector2.left, _pinchRayLength, _groundLayer) &&
+                Physics2D.Raycast(transform.position, Vector2.right, _pinchRayLength, _groundLayer);
+    }
+
 
     // Start is called before the first frame update
     protected void Start()
@@ -60,21 +70,6 @@ public class BaseEnemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
     
-    /// <summary>
-    /// 挟まれたか確認する関数
-    /// </summary>
-    protected void PinchCheck()
-    {
-        //左右にrayを打って地面のレイヤーを持つオブジェクトに当たったらダメージを受ける
-        if (Physics2D.Raycast(transform.position, Vector2.left / 2, _rayLength, _groundLayer) &&
-            Physics2D.Raycast(transform.position, Vector2.right / 2, _rayLength, _groundLayer))
-        {
-            Damage();
-        }
-
-    }
-
-
 
     /// <summary>
     /// 移動処理
@@ -110,7 +105,7 @@ public class BaseEnemy : MonoBehaviour
     /// <summary>
     /// ダメージ処理
     /// </summary>
-    void Damage()
+    protected void Damage()
     {
         if (_life >= 0)
         {
@@ -122,11 +117,14 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
+
     public void destroy()
     {
         Instantiate(_destroyEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
+
+
     /// <summary>
     /// オブジェクトの方向転換
     /// </summary>
@@ -180,6 +178,7 @@ public class BaseEnemy : MonoBehaviour
         }
 
     }
+
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
