@@ -132,9 +132,10 @@ public class Revolution_Player : MonoBehaviour
             }
         }
     }
-
+    
     public void Throw()
     {
+        
         int index = RevolutionObject.Count - 1;
 
         RevolutionObject[index].transform.localScale /= _scale;//大きさ戻す
@@ -146,6 +147,7 @@ public class Revolution_Player : MonoBehaviour
         // タグ変更
         RevolutionObject[index].tag = "RevolutionBlock";
         StartCoroutine(ActivateCollider(RevolutionObject[index], 0));
+        //GetComponentInChildren<ParticleSystem>().Play();
         RevolutionObject.Remove(RevolutionObject[index]);
     }
     IEnumerator ActivateCollider(GameObject obj, float delay)

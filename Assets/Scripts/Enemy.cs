@@ -15,6 +15,11 @@ public class Enemy : BaseEnemy
     const float _distanceLimit_Y = 3;
     //----------------------------------------------------------------------------------
 
+    bool Shrink()
+    {
+        return Physics2D.Raycast(transform.position, Vector2.left, _rayLength / 2, _groundLayer) &&
+                Physics2D.Raycast(transform.position, Vector2.right, _rayLength / 2, _groundLayer);
+    }
 
     
     // Start is called before the first frame update
@@ -44,7 +49,16 @@ public class Enemy : BaseEnemy
         {
             Move();
         }
-        PinchCheck();
+        if (PinchCheck())
+        {
+            Vector3 localScale = transform.localScale;
+            localScale.x -= Time.deltaTime;
+            transform.localScale = localScale;
+            if (Shrink())
+            {
+                Damage();
+            }
+        }
     }
 
 
@@ -55,15 +69,4 @@ public class Enemy : BaseEnemy
         _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
 
     }
-
-
-
-
-
-
-
-
-
-
-
 }
