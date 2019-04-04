@@ -695,10 +695,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Revolution (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
-      propertyPath: m_TagString
-      value: RevolutionBlock
-      objectReference: {fileID: 0}
     - target: {fileID: 127072888, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.161179
@@ -971,10 +967,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Revolution (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
-      propertyPath: m_TagString
-      value: RevolutionBlock
-      objectReference: {fileID: 0}
     - target: {fileID: 127072888, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 117.00595
@@ -1052,6 +1044,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -1234,6 +1227,11 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 8469415496557474092, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
+        type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1261507472, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
       propertyPath: m_IsCustomRangeActive
       value: 1
@@ -1241,11 +1239,6 @@ PrefabInstance:
     - target: {fileID: 1536772630, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8469415496557474092, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
-        type: 3}
-      propertyPath: m_UsedByEffector
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
@@ -1292,6 +1285,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: Infinity
   _speed: 0
   _time: 1
@@ -1583,10 +1577,6 @@ PrefabInstance:
     - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_Name
       value: Revolution (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
-      propertyPath: m_TagString
-      value: RevolutionBlock
       objectReference: {fileID: 0}
     - target: {fileID: 127072888, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2020,6 +2010,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -2113,10 +2104,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Revolution (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
-      propertyPath: m_TagString
-      value: RevolutionBlock
-      objectReference: {fileID: 0}
     - target: {fileID: 127072888, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 56.8524
@@ -2173,10 +2160,6 @@ PrefabInstance:
     - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_Name
       value: Revolution
-      objectReference: {fileID: 0}
-    - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
-      propertyPath: m_TagString
-      value: RevolutionBlock
       objectReference: {fileID: 0}
     - target: {fileID: 127072888, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2240,31 +2223,6 @@ PrefabInstance:
     - target: {fileID: 0}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226486932336432101, guid: b4bb616f4240b124a96fa9f61287b776,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1213976640044338807, guid: b4bb616f4240b124a96fa9f61287b776,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6047574731293995831, guid: b4bb616f4240b124a96fa9f61287b776,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3491233719451199708, guid: b4bb616f4240b124a96fa9f61287b776,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1999465564966705474, guid: b4bb616f4240b124a96fa9f61287b776,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2460886604238845180, guid: b4bb616f4240b124a96fa9f61287b776,
         type: 3}
@@ -2386,21 +2344,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -43
       objectReference: {fileID: 0}
-    - target: {fileID: 2460886604160669559, guid: b4bb616f4240b124a96fa9f61287b776,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2460886604160669559, guid: b4bb616f4240b124a96fa9f61287b776,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2460886604160669559, guid: b4bb616f4240b124a96fa9f61287b776,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2460886605404430595, guid: b4bb616f4240b124a96fa9f61287b776,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2420,11 +2363,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2460886605490991524, guid: b4bb616f4240b124a96fa9f61287b776,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2460886605490991522, guid: b4bb616f4240b124a96fa9f61287b776,
         type: 3}
@@ -2455,6 +2393,51 @@ PrefabInstance:
         type: 3}
       propertyPath: _elements.Array.data[2]._select.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeVolumeBGM
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460886605490991524, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460886604160669559, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460886604160669559, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460886604160669559, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226486932336432101, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213976640044338807, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047574731293995831, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491233719451199708, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999465564966705474, guid: b4bb616f4240b124a96fa9f61287b776,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1438520318426840904, guid: b4bb616f4240b124a96fa9f61287b776,
         type: 3}
@@ -3591,6 +3574,36 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -20
       objectReference: {fileID: 0}
+    - target: {fileID: 8794769596353945150, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 675972387}
+    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.9339623
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.86788005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.86788005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: far clip plane
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 8794769596051458311, guid: cbc8f75988cf54af782103c296763517,
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.data[0].X
@@ -3681,36 +3694,6 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 147.36563
       objectReference: {fileID: 0}
-    - target: {fileID: 8794769596353945150, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 675972387}
-    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.9339623
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.86788005
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.86788005
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794769595218746545, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: far clip plane
-      value: 1000
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbc8f75988cf54af782103c296763517, type: 3}
 --- !u!1001 &1143907717
@@ -3723,10 +3706,6 @@ PrefabInstance:
     - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_Name
       value: Revolution (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
-      propertyPath: m_TagString
-      value: RevolutionBlock
       objectReference: {fileID: 0}
     - target: {fileID: 127072888, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3799,6 +3778,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -4243,6 +4223,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -5814,10 +5795,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Revolution (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 127072884, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
-      propertyPath: m_TagString
-      value: RevolutionBlock
-      objectReference: {fileID: 0}
     - target: {fileID: 127072888, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42.106705
@@ -6149,6 +6126,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -6812,6 +6790,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1

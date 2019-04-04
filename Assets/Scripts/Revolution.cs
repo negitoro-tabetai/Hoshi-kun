@@ -20,7 +20,8 @@ public class Revolution : MonoBehaviour
         if (On)
         {
             Instantiate(_revolutionBreakEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            gameObject.GetComponentInChildren<ParticleSystem>().Stop();
+            //Destroy(gameObject);
         }
     }
 }

@@ -381,6 +381,8 @@ MonoBehaviour:
   _dummyPrefab: {fileID: 3998622233608966268, guid: 2f34a0b7bad239043b544683b7f6c18b,
     type: 3}
   _dummyParent: {fileID: 1536772629}
+  _ShootingStar: {fileID: 2365427516194011176, guid: c63d7ad4bd488014e960cde0c96f2526,
+    type: 3}
   _radius: 1
   _throwForce: 30
   _mask:
