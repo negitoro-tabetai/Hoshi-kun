@@ -33,11 +33,11 @@ public class Pause : MonoBehaviour
         if (option.activeSelf == false && Input.GetButtonDown("Pause"))
         {
             pause.SetActive(!pause.activeSelf);
-            _On = !_On;
+            GameManager.Instance.IsPausing = !GameManager.Instance.IsPausing;
         }
 
 
-        if (_On == true)
+        if (GameManager.Instance.IsPausing)
         {
             Time.timeScale = 0;
             panel.SetActive(true);
@@ -53,11 +53,13 @@ public class Pause : MonoBehaviour
 
     public void ReStartScene()
     {
+        GameManager.Instance.IsPausing = false;
         GameManager.Instance.ResetPoint();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void Title()
     {
+        GameManager.Instance.IsPausing = false;
         GameManager.Instance.ResetPoint();
         SceneManager.LoadScene("Title");
 
