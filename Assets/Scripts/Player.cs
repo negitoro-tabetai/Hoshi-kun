@@ -82,60 +82,47 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // LeftShiftキーで走る
-        if (Input.GetButton("Run"))
+        if (!GameManager.Instance.IsPausing)
         {
-            _isRunning = true;
-        }
-        else
-        {
-            _isRunning = false;
-        }
+            // LeftShiftキーで走る
+            if (Input.GetButton("Run"))
+            {
+                _isRunning = true;
+            }
+            else
+            {
+                _isRunning = false;
+            }
 
-        if (Physics2D.IsTouching(_collider, _downFilter))
-        {
             // Vキーで引力使用
             if (Input.GetButtonDown("UseGravity"))
             {
                 IsUsingGravity = true;
-                _rigidbody.isKinematic = true;
             }
             if (Input.GetButtonUp("UseGravity"))
             {
                 IsUsingGravity = false;
-                _rigidbody.isKinematic = false;
             }
-        }
-        else
-        {
-            _rigidbody.isKinematic = false;
-            IsUsingGravity = false;
-        }
 
-        if (Input.GetButtonDown("Jump") && Physics2D.IsTouching(_collider, _downFilter) && !Physics2D.IsTouching(_collider, _upFilter) && !_isStunning && !IsUsingGravity)
-        {
-            Jump();
-        }
-        // 左右入力
-        if (IsUsingGravity)
-        {
-            _inputX = 0;
-        }
-        else
-        {
+            if (Input.GetButtonDown("Jump") && Physics2D.IsTouching(_collider, _downFilter) && !Physics2D.IsTouching(_collider, _upFilter) && !_isStunning)
+            {
+                Jump();
+            }
+            // 左右入力
+
             _inputX = System.Math.Sign(Input.GetAxisRaw("Horizontal"));
-        }
 
-        // 範囲表示
-        if (IsUsingGravity)
-        {
-            _field.SetActive(true);
+            // 範囲表示
+            if (IsUsingGravity)
+            {
+                _field.SetActive(true);
+            }
+            else
+            {
+                _field.SetActive(false);
+            }
+            _isMoving = Mathf.Abs(_previousPosition.x - transform.position.x) > Time.deltaTime;
         }
-        else
-        {
-            _field.SetActive(false);
-        }
-        _isMoving = _previousPosition.x != transform.position.x;
     }
 
     void FixedUpdate()
@@ -166,7 +153,6 @@ public class Player : MonoBehaviour
         if (!IsInvincible)
         {
             IsUsingGravity = false;
-            _rigidbody.isKinematic = false;
             _rigidbody.velocity = Vector3.zero;
             const float VerticalForce = 2;
 

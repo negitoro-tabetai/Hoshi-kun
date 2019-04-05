@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    public bool IsPausing { get; set; }
     public Vector3 RespawnPoint { get; set; }
     new void Awake()
     {
@@ -19,10 +20,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
-        {
-       
-        }
+        
     }
 
     public void ReroadScene()
