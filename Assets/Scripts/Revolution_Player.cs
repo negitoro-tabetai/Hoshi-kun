@@ -11,6 +11,8 @@ public class Revolution_Player : MonoBehaviour
     List<Collider2D> _results;
     [SerializeField, Tooltip("弾道を表示するための点のプレファブ")] GameObject _dummyPrefab;
     [SerializeField, Tooltip("点の親オブジェクト")] GameObject _dummyParent;
+    //流れ星のエフェクト
+    [SerializeField] GameObject _ShootingStar; 
     [SerializeField, Tooltip("半径")] float _radius;
     [SerializeField, Tooltip("初速")] float _throwForce;
     [SerializeField, Tooltip("衝突するオブジェクトのレイヤー")] LayerMask _mask;
@@ -54,7 +56,7 @@ public class Revolution_Player : MonoBehaviour
         Object.Clear();
         for (int i = 0; i < _results.Count; i++)
         {
-            if (_results[i].GetComponent<Revolution>())
+            if (_results[i].GetComponent<BaseRevolution>())
             {
                 Object.Add(_results[i].gameObject);
             }
@@ -69,8 +71,8 @@ public class Revolution_Player : MonoBehaviour
                 //公転可能リストから公転中リストへ
                 RevolutionObject.Add(Object[Object.Count - 1]);
                 Object.Remove(Object[Object.Count - 1]);
-
                 GameObject obj = RevolutionObject[RevolutionObject.Count - 1];
+                Instantiate(_ShootingStar, obj.transform); //公転ブロックの子オブジェクトにパーティクルのオブジェクトを生成
                 Destroy(obj.GetComponent<MovableBlock>());
                 obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 if (obj.GetComponent<BaseEnemy>())
@@ -78,7 +80,7 @@ public class Revolution_Player : MonoBehaviour
                     Destroy(obj.GetComponent<BaseEnemy>());
                 }
                 obj.GetComponent<Rigidbody2D>().isKinematic = true;
-                obj.GetComponent<Revolution>().On = true;
+                obj.GetComponent<BaseRevolution>().On = true;
                 obj.layer = LayerMask.NameToLayer("Forecast");
                 obj.transform.SetParent(transform);//プレイヤーの子に
 
@@ -146,8 +148,8 @@ public class Revolution_Player : MonoBehaviour
         RevolutionObject[index].GetComponent<Rigidbody2D>().AddForce(_throwForce * _rightInput, ForceMode2D.Impulse);//とばす
         // タグ変更
         RevolutionObject[index].tag = "RevolutionBlock";
+        RevolutionObject[index].GetComponentInChildren<ParticleSystem>().Play();//子オブジェクトのパーティクルを再生
         StartCoroutine(ActivateCollider(RevolutionObject[index], 0));
-        //GetComponentInChildren<ParticleSystem>().Play();
         RevolutionObject.Remove(RevolutionObject[index]);
     }
     IEnumerator ActivateCollider(GameObject obj, float delay)
