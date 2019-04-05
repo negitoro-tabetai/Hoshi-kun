@@ -1038,7 +1038,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4ca651da3cba5a4d989a81f3e82d30c, type: 2}
+  - {fileID: 2100000, guid: f58f9a1597cb40746979d0f784f780bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3586,6 +3586,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -4091,6 +4092,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: Infinity
   _speed: 0
   _time: 1
@@ -6139,6 +6141,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -10467,6 +10470,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 8794769595218746544, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.907745
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794769595218746544, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794769595218746544, guid: cbc8f75988cf54af782103c296763517,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 8794769594803242915, guid: cbc8f75988cf54af782103c296763517,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10521,21 +10539,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794769595218746544, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 9.907745
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794769595218746544, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794769595218746544, guid: cbc8f75988cf54af782103c296763517,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 8794769596353945149, guid: cbc8f75988cf54af782103c296763517,
         type: 3}
@@ -10972,6 +10975,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -12023,6 +12027,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -13146,7 +13151,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4ca651da3cba5a4d989a81f3e82d30c, type: 2}
+  - {fileID: 2100000, guid: f58f9a1597cb40746979d0f784f780bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13843,7 +13848,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4ca651da3cba5a4d989a81f3e82d30c, type: 2}
+  - {fileID: 2100000, guid: f58f9a1597cb40746979d0f784f780bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18475,6 +18480,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -20290,6 +20296,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
+  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
@@ -20533,7 +20540,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4ca651da3cba5a4d989a81f3e82d30c, type: 2}
+  - {fileID: 2100000, guid: f58f9a1597cb40746979d0f784f780bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
