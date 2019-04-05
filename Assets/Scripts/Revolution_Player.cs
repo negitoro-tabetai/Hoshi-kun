@@ -11,7 +11,8 @@ public class Revolution_Player : MonoBehaviour
     List<Collider2D> _results;
     [SerializeField, Tooltip("弾道を表示するための点のプレファブ")] GameObject _dummyPrefab;
     [SerializeField, Tooltip("点の親オブジェクト")] GameObject _dummyParent;
-    [SerializeField] GameObject _ShootingStar;
+    //流れ星のエフェクト
+    [SerializeField] GameObject _ShootingStar; 
     [SerializeField, Tooltip("半径")] float _radius;
     [SerializeField, Tooltip("初速")] float _throwForce;
     [SerializeField, Tooltip("衝突するオブジェクトのレイヤー")] LayerMask _mask;
@@ -55,7 +56,7 @@ public class Revolution_Player : MonoBehaviour
         Object.Clear();
         for (int i = 0; i < _results.Count; i++)
         {
-            if (_results[i].GetComponent<Revolution>())
+            if (_results[i].GetComponent<BaseRevolution>())
             {
                 Object.Add(_results[i].gameObject);
             }
@@ -79,7 +80,7 @@ public class Revolution_Player : MonoBehaviour
                     Destroy(obj.GetComponent<BaseEnemy>());
                 }
                 obj.GetComponent<Rigidbody2D>().isKinematic = true;
-                obj.GetComponent<Revolution>().On = true;
+                obj.GetComponent<BaseRevolution>().On = true;
                 obj.layer = LayerMask.NameToLayer("Forecast");
                 obj.transform.SetParent(transform);//プレイヤーの子に
 
