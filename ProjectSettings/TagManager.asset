@@ -11,6 +11,7 @@ TagManager:
   - Stage
   - RevolutionBlock
   - GrantBlock
+  - Pendulum
   layers:
   - Default
   - TransparentFX
