@@ -317,7 +317,12 @@ PrefabInstance:
     - target: {fileID: 2901931504588683381, guid: 4a2eeebfd07064f20a4a33f104d51bda,
         type: 3}
       propertyPath: _buttonType
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901931504588683381, guid: 4a2eeebfd07064f20a4a33f104d51bda,
+        type: 3}
+      propertyPath: _hitLayer.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a2eeebfd07064f20a4a33f104d51bda, type: 3}
@@ -1431,7 +1436,7 @@ PrefabInstance:
     - target: {fileID: 8469415496451368774, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
         type: 3}
       propertyPath: _hp
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8469415496451368773, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
         type: 3}
