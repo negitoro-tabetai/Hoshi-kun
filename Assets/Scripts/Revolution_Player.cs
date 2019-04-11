@@ -49,7 +49,7 @@ public class Revolution_Player : MonoBehaviour
             dummySpheres.Add(obj);
         }
     }
-
+    
     void Update()
     {
         _results = new List<Collider2D>(Physics2D.OverlapCircleAll(transform.position, _radius));
