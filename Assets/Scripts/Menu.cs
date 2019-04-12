@@ -19,6 +19,8 @@ public class Menu : MonoBehaviour
         Vertical
     }
     [SerializeField] InputAxis _inputAxis;
+    [SerializeField] GameObject Player;
+    [SerializeField] bool PlayerCursor;
 
     [SerializeField] Element[] _elements;
     [SerializeField] Color _normalColor;
@@ -129,11 +131,23 @@ public class Menu : MonoBehaviour
         {
             if (i == Cursor)
             {
-                _elements[i].image.color = _selectedColor;
+                if (PlayerCursor == true)
+                {
+                    Player.transform.position = new Vector3(_elements[i].image.transform.position.x + 20,
+                       _elements[i].image.transform.position.y + 20, Player.transform.position.z);
+                }
+                else
+                {
+                    _elements[i].image.color = _selectedColor;
+                }
             }
             else
             {
-                _elements[i].image.color = _normalColor;
+                if (PlayerCursor == false)
+                {
+                    _elements[i].image.color = _normalColor;
+
+                }
             }
         }
     }

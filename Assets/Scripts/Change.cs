@@ -68,6 +68,6 @@ public class Change : MonoBehaviour
     }
    public void Selecte()
     {
-        SceneManager.LoadScene("StageSelect");
+        SceneManager.LoadScene("PlanetSelect");
     }
 }

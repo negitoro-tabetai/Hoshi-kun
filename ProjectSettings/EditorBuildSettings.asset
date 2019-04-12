@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/StageSelect.unity
     guid: 51d17e0a80ce14dd5a87ff2d971d453b
   - enabled: 1
+    path: Assets/Scenes/StageSelect2.unity
+    guid: 3eea27abb6325bc44a14f0f90da01e67
+  - enabled: 1
+    path: Assets/Scenes/StageSelect3.unity
+    guid: f445c3b38fddf394f8fed123920740c7
+  - enabled: 1
     path: Assets/Scenes/Stage1.unity
     guid: ca68ca152cad9974484a660740176cfa
   - enabled: 1
@@ -41,4 +47,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1-2.unity
     guid: dcbeb337640fa234fb6011a375602d80
+  - enabled: 1
+    path: Assets/Scenes/2-1.unity
+    guid: 726e3a4bcb9fe8b47a12e0574a19aa48
+  - enabled: 1
+    path: Assets/Scenes/2-2.unity
+    guid: 28eda8bf6a8b1c34a93d8d0686354253
+  - enabled: 1
+    path: Assets/Scenes/3-1.unity
+    guid: 107b01e0957a4a840a7681336ad3eab8
+  - enabled: 1
+    path: Assets/Scenes/3-2.unity
+    guid: 12c2f988b0fde13478587c2a2b82d574
+  - enabled: 1
+    path: Assets/Scenes/PlanetSelect.unity
+    guid: 4d733014114c15a43b0c361004a46a52
   m_configObjects: {}
