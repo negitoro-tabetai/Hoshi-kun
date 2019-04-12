@@ -79,6 +79,7 @@ public class BaseEnemy : MonoBehaviour
         if (IsGround())
         {
             _rigidbody.velocity = new Vector2(transform.right.x * _speed, _rigidbody.velocity.y);
+
             _time += Time.deltaTime;
             if (_time > _moveTime || !CanMoveForward())
             {

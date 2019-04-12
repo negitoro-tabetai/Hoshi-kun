@@ -8,6 +8,6 @@ public class Sphere : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         //パーティクル出す
-        Instantiate(effect, transform.position, transform.rotation);
+        Instantiate( effect, transform.position, transform.rotation);
     }
 }
