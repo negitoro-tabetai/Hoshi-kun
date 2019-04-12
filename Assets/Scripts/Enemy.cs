@@ -15,12 +15,6 @@ public class Enemy : BaseEnemy
     const float _distanceLimit_Y = 3;
     //----------------------------------------------------------------------------------
 
-    bool Shrink()
-    {
-        return Physics2D.Raycast(transform.position, Vector2.left, _rayLength / 2, _groundLayer) &&
-                Physics2D.Raycast(transform.position, Vector2.right, _rayLength / 2, _groundLayer);
-    }
-
     
     // Start is called before the first frame update
     new void Start()
@@ -49,19 +43,22 @@ public class Enemy : BaseEnemy
         {
             Move();
         }
-        if (PinchCheck())
-        {
-            Vector3 localScale = transform.localScale;
-            localScale.x -= Time.deltaTime;
-            transform.localScale = localScale;
-            if (Shrink())
-            {
-                Damage();
-            }
-        }
+        //if (PinchCheck())
+        //{
+        //    Vector3 localScale = transform.localScale;
+        //    localScale.x -= Time.deltaTime;
+        //    transform.localScale = localScale;
+        //    if (Pinch())
+        //    {
+        //        Damage();
+        //    }
+        //}
     }
 
 
+    /// <summary>
+    /// 敵の動きを止める関数
+    /// </summary>
     void Stop()
     {
         //プレイヤーの方向を向く関数を呼び出す
