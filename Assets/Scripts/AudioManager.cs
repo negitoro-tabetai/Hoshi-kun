@@ -13,7 +13,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     const float BGMVolumeDefault = 1.0f;
     const float SEVolumeDefault = 1.0f;
 
-   
+    public static float MainSE, MainBGM;
 
     public float BGMVolume
     {
@@ -103,15 +103,25 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 	public void ChangeVolumeSE( float SEVolume)
     {      
         _SESource.volume = SEVolume;      
-        PlayerPrefs.SetFloat(SEVolumeKey, SEVolume); 
-        
-       // Pause
+        PlayerPrefs.SetFloat(SEVolumeKey, SEVolume);
+
+        MainSE = _SESource.volume;
     }
     public void ChangeVolumeBGM(float BGMVolume)
     {
         _BGMSource.volume = BGMVolume;
         PlayerPrefs.SetFloat(BGMVolumeKey, BGMVolume);
+        MainBGM = _BGMSource.volume;
     }
-    
+    public static float getVolumeSE()
+    {
+       
+        return MainSE;
+    }
+    public static float getVolumeBGM()
+    {
+        return MainBGM;
+    }
+
 }
 

@@ -43,7 +43,7 @@ public class Timer : MonoBehaviour
         {
             GameOverText.text = "GameOver";
             Player.GetComponent<Player>().enabled = false;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("StageSelect");
         }
     }
 }
