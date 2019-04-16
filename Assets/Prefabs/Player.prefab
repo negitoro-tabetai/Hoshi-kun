@@ -266,7 +266,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8285177397364269077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -76.7, y: 1.43, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3456212088417923340}
@@ -429,6 +429,7 @@ MonoBehaviour:
   _dummyPrefab: {fileID: 3998622233608966268, guid: 2f34a0b7bad239043b544683b7f6c18b,
     type: 3}
   _dummyParent: {fileID: 6343312276306311195}
+  _ShootingStar: {fileID: 0}
   _radius: 1
   _throwForce: 30
   _mask:

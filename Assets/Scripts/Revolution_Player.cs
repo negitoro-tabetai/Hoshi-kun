@@ -73,7 +73,7 @@ public class Revolution_Player : MonoBehaviour
                 Object.Remove(Object[Object.Count - 1]);
                 GameObject obj = RevolutionObject[RevolutionObject.Count - 1];
                 Instantiate(_ShootingStar, obj.transform); //公転ブロックの子オブジェクトにパーティクルのオブジェクトを生成
-                Destroy(obj.GetComponent<MovableBlock>());
+               // Destroy(obj.GetComponent<MovableBlock>());
                 obj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 if (obj.GetComponent<BaseEnemy>())
                 {
