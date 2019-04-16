@@ -6,7 +6,7 @@ public class MovableBlock : MonoBehaviour
 {
     //プレイヤー
     Player _player;
-    float _speed = 5;
+    [SerializeField, Tooltip("速度")] float _speed = 5;
     //移動スピード
     [SerializeField, Tooltip("壁レイヤー")] LayerMask _wallLayer;
 
@@ -25,7 +25,7 @@ public class MovableBlock : MonoBehaviour
 
     void Move()
     {
-        float posX = Mathf.Clamp((Vector3.MoveTowards(transform.position, _player.transform.position - (_player.transform.position - transform.position).normalized, _speed * Time.deltaTime).x), WallCheck(Vector2.left), WallCheck(Vector2.right));
+        float posX = Mathf.Clamp((Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime).x), WallCheck(Vector2.left), WallCheck(Vector2.right));
         transform.position = new Vector3(posX, transform.position.y);
     }
 
@@ -62,6 +62,15 @@ public class MovableBlock : MonoBehaviour
             {
                 _isMoving = false;
             }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Field")
+        {
+
+            _isMoving = false;
         }
     }
 }
