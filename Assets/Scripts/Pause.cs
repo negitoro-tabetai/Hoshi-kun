@@ -8,7 +8,7 @@ public class Pause : MonoBehaviour
 
     private bool _On = false;
 
-
+ 
 
     [SerializeField] Slider _sliderSE;
     [SerializeField] Slider _sliderBGM;
@@ -24,7 +24,9 @@ public class Pause : MonoBehaviour
 
         option.SetActive(false);
 
-      
+        //AudioManagerと同じ値にしておく
+        _sliderSE.value = AudioManager.getVolumeSE();
+        _sliderBGM.value = AudioManager.getVolumeBGM();
     }
 
 
@@ -72,6 +74,7 @@ public class Pause : MonoBehaviour
         option.SetActive(false);
         pause.SetActive(true);
     }
+    //SliderでSE変更
     public void ChangeVolumeSE()
     {
 
@@ -88,6 +91,7 @@ public class Pause : MonoBehaviour
         }
 
     }
+    //SliderでBGM変更
     public void ChangeVolumeBGM()
     {
 
