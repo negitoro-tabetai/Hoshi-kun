@@ -26,7 +26,7 @@ public class Car : MonoBehaviour
 
         if (_player)
         {
-            if (_isPulling)
+            if (_isPulling && !_isTouching)
             {
                 if ((_direction == Direction.Right && _player.transform.position.x - transform.position.x < 0) ||
                     (_direction == Direction.Left && _player.transform.position.x - transform.position.x > 0))
@@ -59,7 +59,7 @@ public class Car : MonoBehaviour
 
     void Move()
     {
-        float posX = Mathf.Clamp((Vector3.MoveTowards(transform.position, transform.position + transform.right * (_direction == 0 ? -1 : 1) , _velocity * Time.deltaTime).x), WallCheck(Vector2.left), WallCheck(Vector2.right));
+        float posX = Mathf.Clamp((Vector3.MoveTowards(transform.position, transform.position + transform.right * (_direction == 0 ? -1 : 1), _velocity * Time.deltaTime).x), WallCheck(Vector2.left), WallCheck(Vector2.right));
         transform.position = new Vector3(posX, transform.position.y);
     }
 
@@ -101,17 +101,22 @@ public class Car : MonoBehaviour
     {
         if (other.tag == "Field")
         {
-
             _isPulling = false;
         }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        _isTouching = true;
+        if (other.gameObject.tag == "Player")
+        {
+            _isTouching = true;
+        }
     }
     void OnCollisionExit2D(Collision2D other)
     {
-
+        if (other.gameObject.tag == "Player")
+        {
+            _isTouching = false;
+        }
     }
 }
