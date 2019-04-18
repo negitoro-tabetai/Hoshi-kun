@@ -18,6 +18,7 @@ public class Pendulum : MonoBehaviour
     float _angle;
     // 角速度
     float _angleVelocity;
+    MoveGround _moveGround;
     [SerializeField, Tooltip("減衰係数"), Range(0, 1)] float damping = 0.995f;
 
 
@@ -28,6 +29,7 @@ public class Pendulum : MonoBehaviour
         _lineRenderer.endWidth = 0.1f;
 
         _angle = 180.0f;
+        _moveGround = GetComponent<MoveGround>();
     }
 
     void Update()
@@ -35,7 +37,7 @@ public class Pendulum : MonoBehaviour
         _lineRenderer.SetPosition(0, _pivot.position);
         _lineRenderer.SetPosition(1, transform.position);
 
-        if (_isMoving)
+        if (_isMoving && !_moveGround.IsTouching)
         {
             _angle = Mathf.LerpAngle(_angle, Mathf.Atan2(_player.transform.position.x - _pivot.position.x, _player.transform.position.y - _pivot.position.y) * Mathf.Rad2Deg, Time.deltaTime);
 
