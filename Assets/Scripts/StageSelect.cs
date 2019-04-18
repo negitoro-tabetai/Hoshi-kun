@@ -7,5 +7,6 @@ public class StageSelect : MonoBehaviour
     public void Save(int stage)
     {
         DataManager.Instance.Save(stage);
+
     }
 }

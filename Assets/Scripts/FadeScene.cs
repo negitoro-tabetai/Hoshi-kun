@@ -21,6 +21,7 @@ public class FadeScene : MonoBehaviour
         {
             GameManager.Instance.ResetPoint();
             FadeManager.Instance.SceneFade(Scene, 1);
+            
         }
     }
 
