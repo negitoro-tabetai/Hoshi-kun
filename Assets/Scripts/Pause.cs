@@ -6,10 +6,6 @@ using UnityEngine.UI;
 public class Pause : MonoBehaviour
 {
 
-    private bool _On = false;
-
- 
-
     [SerializeField] Slider _sliderSE;
     [SerializeField] Slider _sliderBGM;
     [SerializeField] GameObject panel;

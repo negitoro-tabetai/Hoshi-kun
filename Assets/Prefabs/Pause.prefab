@@ -1057,6 +1057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputAxis: 0
+  Player: {fileID: 0}
+  PlayerCursor: 0
   _elements:
   - image: {fileID: 1438520319059066975}
     _decide:
@@ -1769,7 +1771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67, y: -46}
+  m_AnchoredPosition: {x: -50, y: -24}
   m_SizeDelta: {x: 283.5, y: 120.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1438520319552822850
@@ -1830,6 +1832,7 @@ MonoBehaviour:
   GameOverText: {fileID: 1438520319602279800}
   minute: 3
   Player: {fileID: 0}
+  Scene: 
 --- !u!114 &279886891330270798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1978,6 +1981,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputAxis: 1
+  Player: {fileID: 0}
+  PlayerCursor: 0
   _elements:
   - image: {fileID: 1438520319057052512}
     _decide:
