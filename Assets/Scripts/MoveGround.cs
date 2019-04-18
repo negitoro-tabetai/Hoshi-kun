@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveGround : MonoBehaviour
 {
     Collider2D _collider;
-    bool _isTouching;
+    public bool IsTouching { get; set; }
     [SerializeField, Tooltip("上方向フィルター")] ContactFilter2D _filter;
 
     void Start()
@@ -17,14 +17,14 @@ public class MoveGround : MonoBehaviour
     {
         if (Physics2D.IsTouching(_collider, _filter))
         {
-            
+
         }
     }
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player" && Physics2D.IsTouching(_collider, _filter))
         {
-            _isTouching = true;
+            IsTouching = true;
             other.transform.SetParent(transform);
         }
     }
@@ -33,7 +33,7 @@ public class MoveGround : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _isTouching = false;
+            IsTouching = false;
             other.transform.SetParent(null);
         }
     }
