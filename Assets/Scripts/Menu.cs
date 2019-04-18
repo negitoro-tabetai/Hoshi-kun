@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+    [SerializeField] GameObject ScreenImage;
+   
     [System.Serializable]
     struct Element
     {
         public Image image;
+        public Sprite Screenimage;
         public UnityEvent _decide, _select;
+        public string StageTitle;
     }
 
     enum InputAxis
@@ -20,13 +24,17 @@ public class Menu : MonoBehaviour
     }
     [SerializeField] InputAxis _inputAxis;
     [SerializeField] GameObject Player;
+    [SerializeField] GameObject StageTitleText;
+    [SerializeField]  bool Image;
     [SerializeField] bool PlayerCursor;
+    [SerializeField] bool _StageTitleText;
 
     [SerializeField] Element[] _elements;
     [SerializeField] Color _normalColor;
     [SerializeField] Color _selectedColor;
 
     int _cursor;
+    
 
     public int Cursor
     {
@@ -77,6 +85,7 @@ public class Menu : MonoBehaviour
     {
         Cursor = 0;
         UpdateImage();
+
     }
 
     void Update()
@@ -131,6 +140,18 @@ public class Menu : MonoBehaviour
         {
             if (i == Cursor)
             {
+
+
+                if (Image == true)
+                {
+                    ScreenImage.GetComponent<Image>().sprite = _elements[i].Screenimage;
+                }
+
+                if (_StageTitleText == true)
+                {
+                    StageTitleText.GetComponent<Text>().text = _elements[i].StageTitle;
+                }
+
                 if (PlayerCursor == true)
                 {
                     Player.transform.position = new Vector3(_elements[i].image.transform.position.x + 20,
@@ -140,6 +161,9 @@ public class Menu : MonoBehaviour
                 {
                     _elements[i].image.color = _selectedColor;
                 }
+
+
+
             }
             else
             {
