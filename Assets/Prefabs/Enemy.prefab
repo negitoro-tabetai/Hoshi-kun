@@ -178,11 +178,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 1
+  _pinchRayLength: 0.5
   _moveTime: 4
   _speed: 2.5
   _time: 0
   _life: 1
-  _attackPoint: 20
+  _attackPoint: 1
 --- !u!50 &1482889473431837854
 Rigidbody2D:
   serializedVersion: 4

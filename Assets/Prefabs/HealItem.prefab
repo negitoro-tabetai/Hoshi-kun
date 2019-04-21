@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f3164e3659b4be38b129f3403f156c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healPoint: 50
+  _healPoint: 2
 --- !u!70 &6542947383598508287
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
