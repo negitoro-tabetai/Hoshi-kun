@@ -13,20 +13,47 @@ public class Car : MonoBehaviour
     [SerializeField] Direction _direction;
     [SerializeField] float _pullSpeed;
     [SerializeField] float _speed;
-    [SerializeField] float _velocity = 0;
+    [SerializeField] float _velocity;
+    [SerializeField] float _attackThreshold;
     [SerializeField, Tooltip("壁レイヤー")] LayerMask _wallLayer;
+    [SerializeField, Tooltip("進行方向のフィルター")] ContactFilter2D _filter;
+
+    MoveGround _moveGround;
+    Collider2D _collider;
 
     bool _isPulling;
-    bool _isMoving;
-    bool _isTouching;
+    bool _isHitFront;
     float _power;
     Vector3 _previousPosition;
+
+    // フィルターの上向き
+    const float UpNormalAngle = 270;
+    // フィルターの範囲(±)
+    const float AngleRange = 5;
+
+    void Start()
+    {
+        _collider = GetComponent<Collider2D>();
+        if (_direction == Direction.Right)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            _filter.useOutsideNormalAngle = false;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            _filter.useOutsideNormalAngle = true;
+        }
+        _filter.maxNormalAngle = Mathf.Repeat(180 + transform.eulerAngles.y + AngleRange, 360);
+        _filter.minNormalAngle = Mathf.Repeat(180 + transform.eulerAngles.y - AngleRange, 360);
+        _moveGround = GetComponent<MoveGround>();
+    }
+
     void Update()
     {
-
         if (_player)
         {
-            if (_isPulling)
+            if (_isPulling && !_moveGround.IsTouching)
             {
                 if ((_direction == Direction.Right && _player.transform.position.x - transform.position.x < 0) ||
                     (_direction == Direction.Left && _player.transform.position.x - transform.position.x > 0))
@@ -42,12 +69,22 @@ public class Car : MonoBehaviour
             }
         }
 
-        if (_power != 0 && !_isPulling)
+        if (_power != 0 && !_isPulling && !_isHitFront)
         {
-            _velocity += _power * Time.deltaTime * 10;
+            _velocity += _power * Time.deltaTime * _speed;
             Move();
             _velocity *= 0.99f;
-            _power = Mathf.SmoothStep(_power, 0, Time.deltaTime * 10);
+            _power = Mathf.SmoothStep(_power, 0, Time.deltaTime);
+        }
+
+        if (Physics2D.IsTouching(_collider, _filter))
+        {
+            _isHitFront = true;
+            _velocity = 0;
+        }
+        else
+        {
+            _isHitFront = false;
         }
         _previousPosition = transform.position;
     }
@@ -59,7 +96,7 @@ public class Car : MonoBehaviour
 
     void Move()
     {
-        float posX = Mathf.Clamp((Vector3.MoveTowards(transform.position, transform.position + transform.right * (_direction == 0 ? -1 : 1) , _velocity * Time.deltaTime).x), WallCheck(Vector2.left), WallCheck(Vector2.right));
+        float posX = Mathf.Clamp((transform.position.x - _velocity * Time.deltaTime), WallCheck(Vector2.left), WallCheck(Vector2.right));
         transform.position = new Vector3(posX, transform.position.y);
     }
 
@@ -101,17 +138,15 @@ public class Car : MonoBehaviour
     {
         if (other.tag == "Field")
         {
-
             _isPulling = false;
         }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        _isTouching = true;
-    }
-    void OnCollisionExit2D(Collision2D other)
-    {
-
+        if (other.gameObject.tag == "Enemy" && Mathf.Abs(_velocity) > _attackThreshold)
+        {
+            other.gameObject.GetComponent<BaseEnemy>().destroy();
+        }
     }
 }
