@@ -6,14 +6,13 @@ public class Enemy_Knight : BaseEnemy
 {
     //----------------------------------------------------------
     //変数宣言
-    [SerializeField] float _findRayLength;
-    [SerializeField] LayerMask _playerLayer;
-    [SerializeField, Tooltip("プレイヤーに追尾する速度")] float followSpeed;
     [SerializeField, Tooltip("knightの鎧の名前")] string _myArmor = "armor";
-    [SerializeField, Tooltip("ダメージ後の方向転換の速度")] float _afterMoveTime;
-    [SerializeField, Tooltip("ダメージ後の動きの速さ")] float _afterSpeed;
-    Animator _animator;
-    bool _damage;
+    [SerializeField] float _findRayLength;
+    [SerializeField, Tooltip("ダメージ後の方向転換の速度")]protected float _afterMoveTime;
+    [SerializeField, Tooltip("ダメージ後の動きの速さ")]protected float _afterSpeed;
+    [SerializeField, Tooltip("プレイヤーに追尾する速度")]protected float _followSpeed;
+    protected bool _damage;
+    [SerializeField] LayerMask _playerLayer;
     //----------------------------------------------------------
 
     /// <summary>
@@ -29,11 +28,10 @@ public class Enemy_Knight : BaseEnemy
     new void Start()
     {
         base.Start();
-        _animator = GetComponent<Animator>();
     }
 
 
-    void Update()
+    protected void Update()
     { 
         if (!_damage)
         {
@@ -56,16 +54,14 @@ public class Enemy_Knight : BaseEnemy
 
 
     // Update is called once per frame
-    void Follow()
+    protected virtual void Follow()
     {
-        //float moveCheck = find.point.x + Mathf.Sign(transform.position.x - find.point.x) * transform.localScale.x;
-        //Debug.Log(moveCheck);
         //Debug.Log("ナイトの移動です");
-        _rigidbody.velocity = new Vector2(transform.right.x * followSpeed, _rigidbody.velocity.y);
+        _rigidbody.velocity = new Vector2(transform.right.x * _followSpeed, _rigidbody.velocity.y);
     }
 
 
-    void DamageMove()
+    protected virtual void DamageMove()
     {
         Move(_afterSpeed, _afterMoveTime);
     }
@@ -77,16 +73,15 @@ public class Enemy_Knight : BaseEnemy
         if (collider.gameObject.tag == "RevolutionBlock")
         {
             _damage = true;
-            _animator.SetTrigger("_damage");
+            ArmorBreak();
         }
     }
 
 
     /// <summary>
     /// Knightの子オブジェクトに鎧があった場合消す関数
-    /// (Animationから呼び出してる)
     /// </summary>
-    void ArmorBreak()
+    protected void ArmorBreak()
     {
         foreach(Transform childTransform in transform)
         {
@@ -95,7 +90,9 @@ public class Enemy_Knight : BaseEnemy
                 Destroy(childTransform.gameObject);
             }
         }
-        Revolution revolution = gameObject.AddComponent<Revolution>();
+
+
+        EnemyRevolution revolution = gameObject.AddComponent<EnemyRevolution>();
         revolution.Effect = _destroyEffect;
     }
 }

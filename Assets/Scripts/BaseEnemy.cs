@@ -10,16 +10,16 @@ public class BaseEnemy : MonoBehaviour
     //プレイヤーと接触したか
     protected Rigidbody2D _rigidbody;
     [SerializeField] protected GameObject _player;
-    [SerializeField] protected GameObject _destroyEffect;
+    [SerializeField, Tooltip("Destroy時に出現するエフェクト")] protected GameObject _destroyEffect;  
     [SerializeField, Tooltip("地面のレイヤーマスク")] protected LayerMask _groundLayer;
     [SerializeField, Tooltip("rayの長さ")] protected float _rayLength = 0.6f;
-    [SerializeField] protected float _pinchRayLength = 0.5f;
+    //[SerializeField] protected float _pinchRayLength = 0.5f;
     [SerializeField, Tooltip("移動する制限時間")] protected float _moveTime;
     [SerializeField, Tooltip("移動の速さ")] protected float _speed;
-    [SerializeField, Tooltip("移動後の経過時間")] float _time = 0;
+    [SerializeField, Tooltip("移動後の経過時間")] protected float _time = 0;
     [SerializeField, Tooltip("ライフポイント")] int _life;
     [SerializeField, Tooltip("攻撃力")] int _attackPoint;
-    protected bool _isTouching;
+    protected bool _isTouching;　//プレイヤーに触れたか判定する変数
     MovableBlock _movable;
     //回転する角度
     const int _rotationAngle = 180;
@@ -43,6 +43,7 @@ public class BaseEnemy : MonoBehaviour
         return Physics2D.Raycast(transform.position, Vector2.down, _rayLength, _groundLayer);
     }
 
+
     /// <summary>
     /// 前に道が続いているか確認する関数
     /// </summary>
@@ -52,15 +53,16 @@ public class BaseEnemy : MonoBehaviour
         return Physics2D.Raycast(transform.position + transform.right, Vector2.down, _rayLength, _groundLayer);
     }
 
-    /// <summary>
-    /// 挟まれたか確認する関数
-    /// </summary>
-    protected bool PinchCheck()
-    {
-        //左右にrayを打って地面のレイヤーを持つオブジェクトに当たったらダメージを受ける
-        return Physics2D.Raycast(transform.position, Vector2.left, _pinchRayLength, _groundLayer) &&
-                Physics2D.Raycast(transform.position, Vector2.right, _pinchRayLength, _groundLayer);
-    }
+
+    ///// <summary>
+    ///// 挟まれたか確認する関数
+    ///// </summary>
+    //protected bool PinchCheck()
+    //{
+    //    //左右にrayを打って地面のレイヤーを持つオブジェクトに当たったらダメージを受ける
+    //    return Physics2D.Raycast(transform.position, Vector2.left, _pinchRayLength, _groundLayer) &&
+    //            Physics2D.Raycast(transform.position, Vector2.right, _pinchRayLength, _groundLayer);
+    //}
 
 
     // Start is called before the first frame update
@@ -73,13 +75,14 @@ public class BaseEnemy : MonoBehaviour
 
     /// <summary>
     /// 移動処理
+    /// 地面に着いている場合に向いている方向に進む。
     /// </summary>
-    protected void Move()
+    protected virtual void Move()
     {
         if (IsGround())
         {
             _rigidbody.velocity = new Vector2(transform.right.x * _speed, _rigidbody.velocity.y);
-
+            // 時間を計測し、進む方向を変える関数を呼び出す
             _time += Time.deltaTime;
             if (_time > _moveTime || !CanMoveForward())
             {
@@ -88,7 +91,7 @@ public class BaseEnemy : MonoBehaviour
             }
         }
     }
-    protected void Move(float speed, float moveTime)
+    protected virtual void Move(float speed, float moveTime)
     {
         if (IsGround())
         {
@@ -106,7 +109,7 @@ public class BaseEnemy : MonoBehaviour
     /// <summary>
     /// ダメージ処理
     /// </summary>
-    protected void Damage()
+    protected virtual void Damage()
     {
         if (_life >= 0)
         {

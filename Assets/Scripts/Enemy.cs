@@ -6,7 +6,7 @@ public class Enemy : BaseEnemy
 {
     //----------------------------------------------------------------------------------
     //変数宣言
-
+    
     //プレイヤーとの距離
     Vector2 _playerToDistance;
     //プレイヤーと接触した後通常に戻るためのY座標
@@ -26,23 +26,7 @@ public class Enemy : BaseEnemy
     // Update is called once per frame
     void Update()
     {
-        if (_isTouching)      
-        {
-            Stop();
-            //プレイヤーとの距離
-            _playerToDistance = _player.transform.position - transform.position;
-
-            //接触してから一定距離離れた場合通常に戻る
-            if (Mathf.Abs(_playerToDistance.x) >= _distanceLimit_X || 
-                Mathf.Abs(_playerToDistance.y) >= _distanceLimit_Y)
-            {
-                _isTouching = false;
-            }
-        }
-        else
-        {
-            Move();
-        }
+        TouchCheck();
         //if (PinchCheck())
         //{
         //    Vector3 localScale = transform.localScale;
@@ -56,10 +40,30 @@ public class Enemy : BaseEnemy
     }
 
 
+    protected void TouchCheck()
+    {
+        if (_isTouching)
+        {
+            Stop();
+            //プレイヤーとの距離
+            _playerToDistance = _player.transform.position - transform.position;
+
+            //接触してから一定距離離れた場合通常に戻る
+            if (Mathf.Abs(_playerToDistance.x) >= _distanceLimit_X ||
+                Mathf.Abs(_playerToDistance.y) >= _distanceLimit_Y)
+            {
+                _isTouching = false;
+            }
+        }
+        else
+        {
+            Move();
+        }
+    }
     /// <summary>
     /// 敵の動きを止める関数
     /// </summary>
-    void Stop()
+    protected void Stop()
     {
         //プレイヤーの方向を向く関数を呼び出す
         LookAtPlayer();
