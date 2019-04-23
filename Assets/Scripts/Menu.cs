@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
         public Sprite Screenimage;
         public UnityEvent _decide, _select;
         public string StageTitle;
+        //public bool Clear;
     }
 
     enum InputAxis
@@ -140,28 +141,31 @@ public class Menu : MonoBehaviour
         {
             if (i == Cursor)
             {
+           
+                    if (Image == true)
+                    {
+                        ScreenImage.GetComponent<Image>().sprite = _elements[i].Screenimage;  //ステージのイメージ表示
+                    }
 
 
-                if (Image == true)
-                {
-                    ScreenImage.GetComponent<Image>().sprite = _elements[i].Screenimage;
-                }
 
-                if (_StageTitleText == true)
-                {
-                    StageTitleText.GetComponent<Text>().text = _elements[i].StageTitle;
-                }
 
-                if (PlayerCursor == true)
-                {
-                    Player.transform.position = new Vector3(_elements[i].image.transform.position.x + 20,
-                       _elements[i].image.transform.position.y + 20, Player.transform.position.z);
-                }
-                else
-                {
-                    _elements[i].image.color = _selectedColor;
-                }
+                    if (_StageTitleText == true)
+                    {
+                        StageTitleText.GetComponent<Text>().text = _elements[i].StageTitle;  //ステージのタイトル表示
+                    }
 
+                    if (PlayerCursor == true)
+                    {
+                        Player.transform.position = new Vector3(_elements[i].image.transform.position.x + 20,
+                           _elements[i].image.transform.position.y + 20, Player.transform.position.z);   //ほしくんの位置移動
+                    }
+
+                    else
+                    {
+
+                        _elements[i].image.color = _selectedColor;  //色変更
+                    }
 
 
             }
@@ -169,7 +173,7 @@ public class Menu : MonoBehaviour
             {
                 if (PlayerCursor == false)
                 {
-                    _elements[i].image.color = _normalColor;
+                    _elements[i].image.color = _normalColor;  //デフォルトの色に変更
 
                 }
             }
