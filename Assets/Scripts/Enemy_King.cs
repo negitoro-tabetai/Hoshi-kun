@@ -8,7 +8,7 @@ public class Enemy_King : Enemy_Knight
     //-----------------------------------------------
     //変数宣言
     [SerializeField, Tooltip("ジャンプする高さ")] float _jumpPower;
-    [SerializeField] Collider2D _childCollider;
+    [SerializeField] ContactFilter2D contactfilter;
     //-----------------------------------------------
 
 
@@ -23,6 +23,12 @@ public class Enemy_King : Enemy_Knight
     new void Update()
     {
         base.Update();
+
+        if (_rigidbody.IsTouching(contactfilter))
+        {
+            _damage = true;
+            Damage();
+        }
     }
 
 
@@ -72,16 +78,5 @@ public class Enemy_King : Enemy_Knight
     protected override void DamageMove()
     {
         Move(_afterSpeed, _afterMoveTime);
-    }
-
-
-    new void OnTriggerEnter2D(Collider2D collider)
-    {
-        if(collider.gameObject.tag == "RevolutionBlock")
-        {
-            base.OnTriggerEnter2D(collider);
-            _damage = true;
-            ArmorBreak();
-        }
     }
 }

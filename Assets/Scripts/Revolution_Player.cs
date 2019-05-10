@@ -140,6 +140,7 @@ public class Revolution_Player : MonoBehaviour
         
         int index = RevolutionObject.Count - 1;
 
+        RevolutionObject[index].transform.SetParent(null);
         RevolutionObject[index].transform.localScale /= _scale;//大きさ戻す
         RevolutionObject[index].transform.position = _dummyParent.transform.position;
         RevolutionObject[index].transform.rotation = Quaternion.identity;//Rotationを戻す

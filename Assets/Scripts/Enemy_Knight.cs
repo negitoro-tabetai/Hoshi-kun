@@ -81,7 +81,7 @@ public class Enemy_Knight : BaseEnemy
     /// <summary>
     /// Knightの子オブジェクトに鎧があった場合消す関数
     /// </summary>
-    protected void ArmorBreak()
+    public void ArmorBreak()
     {
         foreach(Transform childTransform in transform)
         {

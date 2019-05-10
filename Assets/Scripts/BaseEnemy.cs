@@ -155,13 +155,14 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             LookAtPlayer();
             _isTouching = true;
         }
+
     }
 
 
@@ -184,12 +185,14 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
-    protected void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other )
     {
         //公転で飛ばされたブロックに当たった場合ダメージを受ける
         if (other.gameObject.tag == "RevolutionBlock")
         {
+            Debug.Log("うんちぶり");
             Damage();
         }
     }
+
 }

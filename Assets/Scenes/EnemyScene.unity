@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127072888, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.69101
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 127072888, guid: b82a9ecc99cb1471a9b13b73696acec6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -273,12 +273,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &471953587 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8469415496451368769, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
-    type: 3}
-  m_PrefabInstance: {fileID: 1417271354}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1055389820
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +571,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1282479523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8285177397364269077, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
+    type: 3}
+  m_PrefabInstance: {fileID: 1417271354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1417271354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -594,6 +594,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -8.16
       objectReference: {fileID: 0}
+    - target: {fileID: 8285177397694437898, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285177397694437898, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2972816687141114589, guid: 9ce06e352fcd940a6aa4b7b0ac046474,
+        type: 3}
+      propertyPath: _ShootingStar
+      value: 
+      objectReference: {fileID: 2365427516194011176, guid: c63d7ad4bd488014e960cde0c96f2526,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ce06e352fcd940a6aa4b7b0ac046474, type: 3}
 --- !u!1 &1479222044
@@ -643,7 +659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 957675390, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.88
+      value: 1.47
       objectReference: {fileID: 0}
     - target: {fileID: 957675390, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
       propertyPath: m_LocalPosition.z
@@ -684,7 +700,63 @@ PrefabInstance:
     - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 471953587}
+      objectReference: {fileID: 1282479523}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.useNormalAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.layerMask.m_Bits
+      value: 65536
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.useOutsideNormalAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.minDepth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.maxDepth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.minNormalAngle
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.maxNormalAngle
+      value: 290
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.useOutsideDepth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.useLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: _jumpPower
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: _followSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: _life
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 957675384, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
+      propertyPath: contactfilter.useTriggers
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7db0a56bbd9bf4281c9f015d5afd53, type: 3}
 --- !u!1 &1967997932
