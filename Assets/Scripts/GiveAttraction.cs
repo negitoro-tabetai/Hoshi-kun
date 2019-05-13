@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GiveAttraction : MonoBehaviour
 {
-    [SerializeField] GameObject _player;
+    
     [SerializeField] GameObject AttractionFieldCenter;
     [SerializeField, Tooltip("壁レイヤー")] LayerMask _wallLayer;
     private Rigidbody2D rigidbody;
@@ -12,13 +12,15 @@ public class GiveAttraction : MonoBehaviour
     float ACspeed = 9.81f;
     Player player;
     bool Moving = false;
+    bool _on;
 
-    [SerializeField] GameObject field;
+    
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
-       
+       // AttractionFieldCenter.transform.position = transform.position;
+    //    AttractionFieldCenter.SetActive(false);
     }
     //埋まらないようにする
     float WallCheck(Vector2 direction)
@@ -54,6 +56,7 @@ public class GiveAttraction : MonoBehaviour
 
     void Update()
     {
+       
         Debug.Log(_speed);
         //引き寄せられてるか
         if (Moving)
@@ -75,10 +78,18 @@ public class GiveAttraction : MonoBehaviour
           
             rigidbody.gravityScale = 1f;
         }
+     
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-          field.SetActive(false);
-            Moving = false;
+            _on = !_on;
+        }
+        if (_on)
+        {
+          
+        }
+        else
+        {
+           
         }
     }
     //引き寄せられてるとき
@@ -93,7 +104,7 @@ public class GiveAttraction : MonoBehaviour
 
         float posY = Mathf.Clamp((Vector3.MoveTowards(transform.position, AttractionFieldCenter.transform.position, _speed * Time.deltaTime).y),
             WallCheckY(Vector2.down), WallCheckY(Vector2.up));
-        _player.transform.position = new Vector3(posX, posY);
+        transform.position = new Vector3(posX, posY);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -101,6 +112,7 @@ public class GiveAttraction : MonoBehaviour
         if (collision.tag == "Afield")
         {
             Moving = true;
+            AttractionFieldCenter.GetComponent<Attractionfield>().enabled=false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
