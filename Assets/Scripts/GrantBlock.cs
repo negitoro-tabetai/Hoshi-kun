@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GrantBlock : MonoBehaviour
 {
     [SerializeField] GameObject[] _blockPrefab = new GameObject[3];
     bool _isOn = false;
 
+    [SerializeField] Image Star;
 
     public bool IsOn
     {
@@ -25,19 +26,20 @@ public class GrantBlock : MonoBehaviour
     {
         if (isTouch)
         {
-            GetComponent<Renderer>().material.color = Color.blue;
+            //GetComponent<Renderer>().material.color = Color.blue;
+          //  Star.sprite = On;
         }
         else
         {
-            GetComponent<Renderer>().material.color = Color.black;
+            //GetComponent<Renderer>().material.color = Color.black;
+       //     Star.sprite = Off;
         }
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
-        if((collision.gameObject.tag == "Player" || 
-            collision.gameObject.tag == "RevolutionBlock"))
+        if(collision.gameObject.tag == "Player")
         {
             _isOn = !_isOn;
             Switch(_isOn);
