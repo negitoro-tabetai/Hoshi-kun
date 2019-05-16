@@ -15,7 +15,7 @@ public class Pendulum : MonoBehaviour
     bool _isMoving;
 
     // 角度
-    float _angle;
+    [SerializeField] float _angle;
     // 角速度
     float _angleVelocity;
     MoveGround _moveGround;
@@ -28,7 +28,6 @@ public class Pendulum : MonoBehaviour
         _lineRenderer.startWidth = 0.1f;
         _lineRenderer.endWidth = 0.1f;
 
-        _angle = 180.0f;
         _moveGround = GetComponent<MoveGround>();
     }
 
