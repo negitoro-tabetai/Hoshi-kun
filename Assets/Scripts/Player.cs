@@ -6,23 +6,18 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
     Collider2D _collider;
+    GravitySource _gravitySource;
 
     [SerializeField, Tooltip("体力")] int _hp;
     [SerializeField, Tooltip("移動速度")] float _moveSpeed;
-    [SerializeField, Tooltip("走る速度")] float _runSpeed;
     [SerializeField, Tooltip("無敵時間")] float _invincibleTime;
     [SerializeField, Tooltip("硬直時間")] float _stunningTime;
     [SerializeField, Tooltip("ジャンプの強さ")] float _jumpForce;
     [SerializeField, Tooltip("ノックバックの強さ")] float _knockBackForce;
-    // [SerializeField, Tooltip("接地判定するレイヤー")] LayerMask _groundLayer;
-    // [SerializeField, Tooltip("Rayの長さ")] float _rayLength;
-    // [SerializeField, Tooltip("Rayの飛ばす範囲")] float _width;
     [SerializeField, Tooltip("判定用フィルター")] ContactFilter2D _upFilter, _downFilter;
-    [SerializeField, Tooltip("引力の範囲の表示")] GameObject _field;
     // 左右入力
     float _inputX;
     // 走っているか
-    bool _isRunning;
     bool _isMoving;
     // 硬直しているか
     bool _isStunning;
@@ -33,7 +28,7 @@ public class Player : MonoBehaviour
     const string PlayerLayer = "Player";
     const string InvincibleLayer = "InvinciblePlayer";
 
-    const int MaxHP = 100;
+    const int MaxHP = 5;
 
     public int Hp
     {
@@ -51,15 +46,7 @@ public class Player : MonoBehaviour
     // 無敵か
     public bool IsInvincible { get; set; }
     // 引力を使用しているか
-    public bool IsUsingGravity { get; set; }
 
-    public bool IsRunning
-    {
-        get
-        {
-            return _isRunning && _isMoving;
-        }
-    }
     public float InputX
     {
         get
@@ -72,6 +59,7 @@ public class Player : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+        _gravitySource = GetComponent<GravitySource>();
 
         // リスポーン地点から
         if (GameManager.Instance.RespawnPoint != Vector3.zero)
@@ -84,24 +72,15 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.Instance.IsPausing)
         {
-            // LeftShiftキーで走る
-            if (Input.GetButton("Run"))
-            {
-                _isRunning = true;
-            }
-            else
-            {
-                _isRunning = false;
-            }
 
             // Vキーで引力使用
             if (Input.GetButtonDown("UseGravity"))
             {
-                IsUsingGravity = true;
+                _gravitySource.IsUsingGravity = true;
             }
             if (Input.GetButtonUp("UseGravity"))
             {
-                IsUsingGravity = false;
+                _gravitySource.IsUsingGravity = false;
             }
 
             if (Input.GetButtonDown("Jump") && Physics2D.IsTouching(_collider, _downFilter) && !Physics2D.IsTouching(_collider, _upFilter) && !_isStunning)
@@ -112,15 +91,7 @@ public class Player : MonoBehaviour
 
             _inputX = System.Math.Sign(Input.GetAxisRaw("Horizontal"));
 
-            // 範囲表示
-            if (IsUsingGravity)
-            {
-                _field.SetActive(true);
-            }
-            else
-            {
-                _field.SetActive(false);
-            }
+
             _isMoving = Mathf.Abs(_previousPosition.x - transform.position.x) > Time.deltaTime;
         }
     }
@@ -129,14 +100,7 @@ public class Player : MonoBehaviour
     {
         if (!_isStunning)
         {
-            if (_isRunning)
-            {
-                _rigidbody.velocity = new Vector3(_inputX * _runSpeed, _rigidbody.velocity.y, 0);
-            }
-            else
-            {
-                _rigidbody.velocity = new Vector3(_inputX * _moveSpeed, _rigidbody.velocity.y, 0);
-            }
+            _rigidbody.velocity = new Vector3(_inputX * _moveSpeed, _rigidbody.velocity.y, 0);
         }
         _previousPosition = transform.position;
     }
@@ -152,7 +116,7 @@ public class Player : MonoBehaviour
     {
         if (!IsInvincible)
         {
-            IsUsingGravity = false;
+            _gravitySource.IsUsingGravity = false;
             _rigidbody.velocity = Vector3.zero;
             const float VerticalForce = 2;
 

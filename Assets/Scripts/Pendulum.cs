@@ -10,7 +10,7 @@ public class Pendulum : MonoBehaviour
     [SerializeField, Tooltip("重さ, スピードに関係")] float _mass = 3;
     [SerializeField, Tooltip("紐の長さ")] float _length = 7;
 
-    Player _player;
+    GravitySource _gravitySource;
 
     bool _isMoving;
 
@@ -39,7 +39,7 @@ public class Pendulum : MonoBehaviour
 
         if (_isMoving && !_moveGround.IsTouching)
         {
-            _angle = Mathf.LerpAngle(_angle, Mathf.Atan2(_player.transform.position.x - _pivot.position.x, _player.transform.position.y - _pivot.position.y) * Mathf.Rad2Deg, Time.deltaTime);
+            _angle = Mathf.LerpAngle(_angle, Mathf.Atan2(_gravitySource.transform.position.x - _pivot.position.x, _gravitySource.transform.position.y - _pivot.position.y) * Mathf.Rad2Deg, Time.deltaTime);
 
             _angleVelocity = 0;
         }
@@ -56,12 +56,9 @@ public class Pendulum : MonoBehaviour
     {
         if (other.tag == "Field")
         {
-            if (!_player)
-            {
-                _player = other.transform.root.GetComponent<Player>();
-            }
+            _gravitySource = other.transform.root.GetComponent<GravitySource>();
 
-            if (_player.IsUsingGravity)
+            if (_gravitySource.IsUsingGravity)
             {
                 _isMoving = true;
             }

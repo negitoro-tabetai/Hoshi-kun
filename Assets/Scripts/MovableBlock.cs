@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovableBlock : MonoBehaviour
 {
     //プレイヤー
-    Player _player;
+    GravitySource _gravitySource;
     [SerializeField, Tooltip("速度")] float _speed = 5;
     //移動スピード
     [SerializeField, Tooltip("壁レイヤー")] LayerMask _wallLayer;
@@ -14,7 +14,7 @@ public class MovableBlock : MonoBehaviour
 
     void Update()
     {
-        if (_player)
+        if (_gravitySource)
         {
             if (_isMoving)
             {
@@ -25,7 +25,7 @@ public class MovableBlock : MonoBehaviour
 
     void Move()
     {
-        float posX = Mathf.Clamp((Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime).x), WallCheck(Vector2.left), WallCheck(Vector2.right));
+        float posX = Mathf.Clamp(Vector3.MoveTowards(transform.position, _gravitySource.transform.position, _speed * Time.deltaTime).x, WallCheck(Vector2.left), WallCheck(Vector2.right));
         transform.position = new Vector3(posX, transform.position.y);
     }
 
@@ -49,12 +49,9 @@ public class MovableBlock : MonoBehaviour
     {
         if (other.tag == "Field")
         {
-            if (!_player)
-            {
-                _player = other.transform.root.GetComponent<Player>();
-            }
+            _gravitySource = other.transform.root.GetComponent<GravitySource>();
 
-            if (_player.IsUsingGravity)
+            if (_gravitySource.IsUsingGravity)
             {
                 _isMoving = true;
             }

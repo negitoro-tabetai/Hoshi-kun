@@ -43,4 +43,13 @@ public class GrantBlock : MonoBehaviour
             Switch(_isOn);
         }
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if((collision.gameObject.tag == "Player" || 
+            collision.gameObject.tag == "RevolutionBlock"))
+        {
+            _isOn = !_isOn;
+            Switch(_isOn);
+        }
+    }
 }
