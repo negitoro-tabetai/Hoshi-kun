@@ -20,23 +20,15 @@ public class Enemy : BaseEnemy
     new void Start()
     {
         base.Start();
+        _animator = GetComponent<Animator>();
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        _animator.SetBool("isWalk", true);
         TouchCheck();
-        //if (PinchCheck())
-        //{
-        //    Vector3 localScale = transform.localScale;
-        //    localScale.x -= Time.deltaTime;
-        //    transform.localScale = localScale;
-        //    if (Pinch())
-        //    {
-        //        Damage();
-        //    }
-        //}
     }
 
 
@@ -68,6 +60,6 @@ public class Enemy : BaseEnemy
         //プレイヤーの方向を向く関数を呼び出す
         LookAtPlayer();
         _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
-
+        _animator.SetBool("isWalk", false);
     }
 }

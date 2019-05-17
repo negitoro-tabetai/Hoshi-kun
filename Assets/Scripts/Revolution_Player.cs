@@ -29,17 +29,7 @@ public class Revolution_Player : MonoBehaviour
 
     //点が移動する速度
     [SerializeField] float _offsetSpeed;
-    //付与弾用
-    [SerializeField] GameObject Attractions;
-    //モード-----------
-    [SerializeField]
-    private Mode mode;
-    private enum Mode
-    {
-        Revolution,
-        Attraction
-    };
-    //-----------------
+
     float _offset;
 
     List<GameObject> dummySpheres = new List<GameObject>();//弾道予測を表示するための点のリスト
@@ -47,9 +37,6 @@ public class Revolution_Player : MonoBehaviour
     public List<GameObject> RevolutionObject = new List<GameObject>(); //公転してるオブジェクト
 
     bool enter;//弾道予測を表示してるかどうか
-    bool hit = false;
-    bool ability = true;
-    bool Using = false;
     void Start()
     {
         _player = GetComponent<Player>();
@@ -61,12 +48,10 @@ public class Revolution_Player : MonoBehaviour
             var obj = (GameObject)Instantiate(_dummyPrefab, _dummyParent.transform);
             dummySpheres.Add(obj);
         }
-       // Attractions.transform.localPosition = _player.transform.localPosition;
     }
-
+    
     void Update()
     {
-      
         _results = new List<Collider2D>(Physics2D.OverlapCircleAll(transform.position, _radius));
         Object.Clear();
         for (int i = 0; i < _results.Count; i++)
@@ -77,7 +62,7 @@ public class Revolution_Player : MonoBehaviour
             }
         }
         //回せるか判定
-        if (Object.Count > 0 && RevolutionObject.Count < 3&&mode==Mode.Revolution)//公転可能なオブジェクトが1つでもあれば
+        if (Object.Count > 0 && RevolutionObject.Count < 3)//公転可能なオブジェクトが1つでもあれば
         {
 
             if (Input.GetButtonDown("Revolution") || Input.GetKeyDown(KeyCode.R))     //公転ボタン押す
@@ -103,51 +88,14 @@ public class Revolution_Player : MonoBehaviour
                 obj.transform.localScale *= _scale;
             }
         }
-        Rotate();
         if (RevolutionObject.Count > 0)
         {
-             hit = false;
-
-            if (mode == Mode.Revolution)
-            {
-                Operate();//操作
-                RevolutionObject[RevolutionObject.Count - 1].GetComponent<BoxCollider2D>().enabled = false;//回ってる間は当たり判定オフ
-
-
-                //弾道予測の位置に点を移動
-                for (int i = 0; i < _dummyCount; i++)
-                {
-                    var t = (i * _secInterval) + _offset;
-                    var x = t * _rightInput.x * _throwForce;
-                    var y = (_rightInput.y * _throwForce * t) - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2.0f);
-
-                    dummySpheres[i].transform.localPosition = new Vector3(x, y);
-                    //　↑鉛直上方投射の公式
-                    if (i > 0)
-                    {
-                        if (Physics2D.Linecast(dummySpheres[i - 1].transform.position, dummySpheres[i].transform.position, _mask))
-                        {
-                            hit = true;
-                        }
-                        if (hit)
-                        {
-                            dummySpheres[i].SetActive(false);
-                        }
-                        else
-                        {
-                            dummySpheres[i].SetActive(true);
-                        }
-                    }
-                }
-            }
-        }
-        //-----------------------------------------------------------------------------------------------------------------------
-        if (mode == Mode.Attraction)
-        {
-
+            Rotate();
             Operate();//操作
-            hit = false;
-            ability = false;
+            RevolutionObject[RevolutionObject.Count - 1].GetComponent<BoxCollider2D>().enabled = false;//回ってる間は当たり判定オフ
+
+            bool hit = false;
+            //弾道予測の位置に点を移動
             for (int i = 0; i < _dummyCount; i++)
             {
                 var t = (i * _secInterval) + _offset;
@@ -172,9 +120,8 @@ public class Revolution_Player : MonoBehaviour
                     }
                 }
             }
-
         }
-        //-----------------------------------------------------------------------------------------------------------------------
+
         _offset = Mathf.Repeat(Time.time * _offsetSpeed, _secInterval);
 
         //Enterで飛ばす
@@ -184,50 +131,28 @@ public class Revolution_Player : MonoBehaviour
             {
                 Off();
                 Throw();//★★★
-                ability = false;
             }
-        }
-       
-        if (Input.GetButtonDown("ModeChange"))
-        {
-            Using = !Using;
-        }
-        if (!Using)
-        {
-            mode = Mode.Revolution;
-        }
-        else
-        {
-            mode = Mode.Attraction;
         }
     }
     
-     void Throw()
+    public void Throw()
     {
-        if (mode == Mode.Revolution)
-        {
-            int index = RevolutionObject.Count - 1;
+        
+        int index = RevolutionObject.Count - 1;
 
-            RevolutionObject[index].transform.localScale /= _scale;//大きさ戻す
-            RevolutionObject[index].transform.position = _dummyParent.transform.position;
-            RevolutionObject[index].transform.rotation = Quaternion.identity;//Rotationを戻す
+        RevolutionObject[index].transform.SetParent(null);
+        RevolutionObject[index].transform.localScale /= _scale;//大きさ戻す
+        RevolutionObject[index].transform.position = _dummyParent.transform.position;
+        RevolutionObject[index].transform.rotation = Quaternion.identity;//Rotationを戻す
 
-            RevolutionObject[index].GetComponent<Rigidbody2D>().isKinematic = false;//重力
-            RevolutionObject[index].GetComponent<Rigidbody2D>().AddForce(_throwForce * _rightInput, ForceMode2D.Impulse);//とばす
-                                                                                                                         // タグ変更
-            RevolutionObject[index].tag = "RevolutionBlock";
-            RevolutionObject[index].GetComponentInChildren<ParticleSystem>().Play();//子オブジェクトのパーティクルを再生
-            StartCoroutine(ActivateCollider(RevolutionObject[index], 0));
-            RevolutionObject.Remove(RevolutionObject[index]);
-        }
-
-        if (mode == Mode.Attraction)
-        {
-         
-           Attractions.GetComponent<Rigidbody2D>().AddForce(_throwForce * _rightInput, ForceMode2D.Impulse);//とばす
-        }
+        RevolutionObject[index].GetComponent<Rigidbody2D>().isKinematic = false;//重力
+        RevolutionObject[index].GetComponent<Rigidbody2D>().AddForce(_throwForce * _rightInput, ForceMode2D.Impulse);//とばす
+        // タグ変更
+        RevolutionObject[index].tag = "RevolutionBlock";
+        RevolutionObject[index].GetComponentInChildren<ParticleSystem>().Play();//子オブジェクトのパーティクルを再生
+        StartCoroutine(ActivateCollider(RevolutionObject[index], 0));
+        RevolutionObject.Remove(RevolutionObject[index]);
     }
-   
     IEnumerator ActivateCollider(GameObject obj, float delay)
     {
         yield return new WaitForSeconds(delay);

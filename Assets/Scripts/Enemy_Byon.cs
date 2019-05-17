@@ -10,6 +10,12 @@ public class Enemy_Byon : Enemy
     //--------------------------------------
 
 
+    new void Start()
+    {
+        base.Start();
+    }
+
+
     protected override void Move()
     {
         _time += Time.deltaTime;

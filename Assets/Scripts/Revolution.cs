@@ -23,8 +23,8 @@ public class Revolution : BaseRevolution
             else
             {
                 Debug.Log(_throwCount);
-                gameObject.GetComponentInChildren<ParticleSystem>().Stop();
                 gameObject.GetComponent<Collider2D>().isTrigger = false;
+                gameObject.GetComponentInChildren<ParticleSystem>().Stop();
                 gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
                 gameObject.layer = LayerMask.NameToLayer(_groundLayer);
                 On = false;
@@ -32,4 +32,13 @@ public class Revolution : BaseRevolution
 
         }
     }
+
+    //void OnTriggerExit2D(Collider2D col)
+    //{
+    //    if(col.gameObject.tag == "Player")
+    //    {
+            
+    //    }
+            
+    //}
 }
