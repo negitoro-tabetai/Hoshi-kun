@@ -1176,6 +1176,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
         type: 3}
       propertyPath: _moveTime
@@ -1191,11 +1196,6 @@ PrefabInstance:
       propertyPath: _speed
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     m_RemovedComponents:
     - {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
@@ -3586,12 +3586,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
-  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
   _life: 1
-  _attackPoint: 20
+  _attackPoint: 0
 --- !u!4 &430111396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4834801873316322045, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
@@ -4119,12 +4118,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
-  _pinchRayLength: 0.5
   _moveTime: Infinity
   _speed: 0
   _time: 1
   _life: 1
-  _attackPoint: 20
+  _attackPoint: 0
 --- !u!4 &477479841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4834801873316322045, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
@@ -4212,6 +4210,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
         type: 3}
       propertyPath: _time
@@ -4232,11 +4235,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     m_RemovedComponents:
     - {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
@@ -6162,12 +6160,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
-  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
   _life: 1
-  _attackPoint: 20
+  _attackPoint: 0
 --- !u!4 &708439003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4834801873316322045, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
@@ -8568,6 +8565,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
         type: 3}
       propertyPath: _player
@@ -8583,11 +8585,6 @@ PrefabInstance:
       propertyPath: _speed
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     m_RemovedComponents:
     - {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
@@ -10996,12 +10993,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
-  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
   _life: 1
-  _attackPoint: 20
+  _attackPoint: 0
 --- !u!4 &1166965462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4834801873316322045, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
@@ -12048,12 +12044,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
-  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
   _life: 1
-  _attackPoint: 20
+  _attackPoint: 0
 --- !u!4 &1305188282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4834801873316322045, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
@@ -13039,6 +13034,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
         type: 3}
       propertyPath: _player
@@ -13054,11 +13054,6 @@ PrefabInstance:
       propertyPath: _speed
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     m_RemovedComponents:
     - {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
@@ -16532,6 +16527,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
         type: 3}
       propertyPath: _player
@@ -16547,11 +16547,6 @@ PrefabInstance:
       propertyPath: _speed
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     m_RemovedComponents:
     - {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
@@ -18506,12 +18501,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
-  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
   _life: 1
-  _attackPoint: 20
+  _attackPoint: 0
 --- !u!4 &1882313204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4834801873316322045, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
@@ -19720,6 +19714,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
         type: 3}
       propertyPath: _moveTime
@@ -19735,11 +19734,6 @@ PrefabInstance:
       propertyPath: _speed
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     m_RemovedComponents:
     - {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
@@ -20322,12 +20316,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _rayLength: 0.6
-  _pinchRayLength: 0.5
   _moveTime: 2
   _speed: 3
   _time: 1
   _life: 1
-  _attackPoint: 20
+  _attackPoint: 0
 --- !u!4 &2094002259 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4834801873316322045, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
@@ -20494,6 +20487,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     - target: {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
         type: 3}
       propertyPath: _time
@@ -20509,11 +20507,6 @@ PrefabInstance:
       propertyPath: _speed
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4834801873316322047, guid: bab6fbaeee6a4cc4b8ab5e07b936476a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ed9e6269f83edc8479f6ae6c8dbaf136, type: 2}
     m_RemovedComponents:
     - {fileID: 4834801873316322043, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bab6fbaeee6a4cc4b8ab5e07b936476a, type: 3}

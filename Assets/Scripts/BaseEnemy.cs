@@ -20,6 +20,7 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField, Tooltip("ライフポイント")] int _life;
     [SerializeField, Tooltip("攻撃力")] int _attackPoint;
     protected bool _isTouching;　//プレイヤーに触れたか判定する変数
+    protected Animator _animator;
     MovableBlock _movable;
     //回転する角度
     const int _rotationAngle = 180;
@@ -70,6 +71,7 @@ public class BaseEnemy : MonoBehaviour
     {
         _movable = GetComponent<MovableBlock>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
     
 
@@ -185,12 +187,11 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
-    protected void OnTriggerEnter2D(Collider2D other )
+    protected virtual void OnTriggerEnter2D(Collider2D other )
     {
         //公転で飛ばされたブロックに当たった場合ダメージを受ける
         if (other.gameObject.tag == "RevolutionBlock")
         {
-            Debug.Log("うんちぶり");
             Damage();
         }
     }

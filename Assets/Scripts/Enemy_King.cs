@@ -24,11 +24,7 @@ public class Enemy_King : Enemy_Knight
     {
         base.Update();
 
-        if (_rigidbody.IsTouching(contactfilter))
-        {
-            _damage = true;
-            Damage();
-        }
+        
     }
 
 
@@ -78,5 +74,14 @@ public class Enemy_King : Enemy_Knight
     protected override void DamageMove()
     {
         Move(_afterSpeed, _afterMoveTime);
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D other)
+    {
+        if (_rigidbody.IsTouching(contactfilter))
+        {
+            _damage = true;
+            base.OnTriggerEnter2D(other);
+        }
     }
 }
