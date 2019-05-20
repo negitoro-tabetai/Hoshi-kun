@@ -49,11 +49,11 @@ public class SceneLoader : MonoBehaviour
     {
         if (Input.GetButtonDown("UseGravity"))
         {
-            if(SceneManager.GetActiveScene().name=="PlanetSelect")
+            if(SceneManager.GetActiveScene().name=="StageSelect")
             SceneManager.LoadScene("Title");
             else if (SceneManager.GetActiveScene().name != "Title")
             {
-                SceneManager.LoadScene("PlanetSelect");
+                SceneManager.LoadScene("StageSelect");
 
             }
         }
