@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -152,7 +153,7 @@ public class Menu : MonoBehaviour
 
                     if (_StageTitleText == true)
                     {
-                        StageTitleText.GetComponent<Text>().text = _elements[i].StageTitle;  //ステージのタイトル表示
+                        StageTitleText.GetComponent<TextMeshProUGUI>().text = _elements[i].StageTitle;  //ステージのタイトル表示
                     }
 
                     if (PlayerCursor == true)
