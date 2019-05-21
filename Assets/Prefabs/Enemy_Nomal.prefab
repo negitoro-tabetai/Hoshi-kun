@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1318510133506449668}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_yokoasi_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1976924698947443331}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_usiroasi_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9174635347315398907}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: asi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5712575475819680389}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_te
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4965482162656894730}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_yokoasi_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2182793031997610975}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: asi_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8479556276899193601}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: asi_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3653943952326606199}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_ude
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4314859342617821516}
   - component: {fileID: 1252006282775479621}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: nomal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7717269642371694198}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lyokoasi_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,9 +340,9 @@ GameObject:
   - component: {fileID: 2637411978510463484}
   - component: {fileID: 2637411978510463485}
   - component: {fileID: 6654913457962538012}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Enemy_Nomal
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -458,7 +458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9134320418994853804}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ataama
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1413481271539386434}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_yokoasi_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6208820759123867894}
   - component: {fileID: 3430396287099111895}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3386130139396298211}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_usiroasi_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2766019109125707677}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: zentai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2353882312003347348}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_te
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1279751774305873300}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_usiroasi_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3766018755221994567}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_ude
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2424217911311556573}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_usiroasi_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
