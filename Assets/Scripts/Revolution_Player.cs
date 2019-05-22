@@ -6,6 +6,7 @@ public class Revolution_Player : MonoBehaviour
 {
     Player _player;
     Rigidbody2D _rigidbody;
+    Animator _animator;
     // 右スティック入力
     Vector2 _rightInput;
     List<Collider2D> _results;
@@ -47,6 +48,7 @@ public class Revolution_Player : MonoBehaviour
     {
         _player = GetComponent<Player>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>();
         //弾道予測を表示するための点を生成
         for (int i = 0; i < _pointCount; i++)
         {
@@ -146,13 +148,14 @@ public class Revolution_Player : MonoBehaviour
             {
                 Throw();
                 _trajectory.SetActive(false);
+                _animator.SetTrigger("Throw");
             }
 
-            if (Input.GetButtonDown("Give"))
-            {
-                Give();
-                _trajectory.SetActive(false);
-            }
+            //if (Input.GetButtonDown("Give"))
+            //{
+            //    Give();
+            //    _trajectory.SetActive(false);
+            //}
         }
     }
 

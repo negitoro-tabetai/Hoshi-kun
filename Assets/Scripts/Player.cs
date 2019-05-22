@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
     Rigidbody2D _rigidbody;
     Collider2D _collider;
     GravitySource _gravitySource;
+    Animator _animator;
 
+    [SerializeField, Tooltip("モデルのオブジェクト")] GameObject _model;
     [SerializeField, Tooltip("体力")] int _hp;
     [SerializeField, Tooltip("移動速度")] float _moveSpeed;
     [SerializeField, Tooltip("無敵時間")] float _invincibleTime;
@@ -60,6 +62,7 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _gravitySource = GetComponent<GravitySource>();
+        _animator = GetComponentInChildren<Animator>();
 
         // リスポーン地点から
         if (GameManager.Instance.RespawnPoint != Vector3.zero)
@@ -76,10 +79,12 @@ public class Player : MonoBehaviour
             // Vキーで引力使用
             if (Input.GetButtonDown("UseGravity"))
             {
+                _animator.SetBool("Gravity", true);
                 _gravitySource.IsUsingGravity = true;
             }
             if (Input.GetButtonUp("UseGravity"))
             {
+                _animator.SetBool("Gravity", false);
                 _gravitySource.IsUsingGravity = false;
             }
 
@@ -87,10 +92,17 @@ public class Player : MonoBehaviour
             {
                 Jump();
             }
+
             // 左右入力
-
             _inputX = System.Math.Sign(Input.GetAxisRaw("Horizontal"));
-
+            if (_inputX > 0)
+            {
+                _model.transform.localScale = new Vector3(1, 1, 1);
+            }
+            if (_inputX < 0)
+            {
+                _model.transform.localScale = new Vector3(-1, 1, 1);
+            }
 
             _isMoving = Mathf.Abs(_previousPosition.x - transform.position.x) > Time.deltaTime;
         }
@@ -107,6 +119,7 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
+        _animator.SetTrigger("Jump");
         _rigidbody.AddForce((Vector2.up) * _jumpForce, ForceMode2D.Impulse);
     }
 
@@ -116,6 +129,7 @@ public class Player : MonoBehaviour
     {
         if (!IsInvincible)
         {
+            _animator.SetTrigger("Damage");
             _gravitySource.IsUsingGravity = false;
             _rigidbody.velocity = Vector3.zero;
             const float VerticalForce = 2;

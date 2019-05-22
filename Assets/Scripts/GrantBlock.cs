@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class GrantBlock : MonoBehaviour
 {
-    [SerializeField] GameObject[] _blockPrefab = new GameObject[3];
-    bool _isOn = false;
-
-
-    public bool IsOn
-    {
-        get
-        {
-            return _isOn;
-        }
-    }
-
+    public bool IsOn { get; set; }
 
     /// <summary>
     /// スイッチonとoffで色を変える
@@ -39,8 +28,8 @@ public class GrantBlock : MonoBehaviour
         if((collision.gameObject.tag == "Player" || 
             collision.gameObject.tag == "RevolutionBlock"))
         {
-            _isOn = !_isOn;
-            Switch(_isOn);
+            IsOn = !IsOn;
+            Switch(IsOn);
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -48,8 +37,8 @@ public class GrantBlock : MonoBehaviour
         if((collision.gameObject.tag == "Player" || 
             collision.gameObject.tag == "RevolutionBlock"))
         {
-            _isOn = !_isOn;
-            Switch(_isOn);
+            IsOn = !IsOn;
+            Switch(IsOn);
         }
     }
 }

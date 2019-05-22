@@ -49,7 +49,7 @@ public class MovableBlock : MonoBehaviour
     {
         if (other.tag == "Field")
         {
-            _gravitySource = other.transform.root.GetComponent<GravitySource>();
+            _gravitySource = other.transform.root.GetComponentInChildren<GravitySource>();
 
             if (_gravitySource.IsUsingGravity)
             {
