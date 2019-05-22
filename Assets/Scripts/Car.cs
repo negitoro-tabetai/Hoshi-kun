@@ -9,7 +9,7 @@ public class Car : MonoBehaviour
         Right,
         Left
     }
-    Player _player;
+    GravitySource _gravitySource;
     [SerializeField] Direction _direction;
     [SerializeField] float _pullSpeed;
     [SerializeField] float _speed;
@@ -51,12 +51,12 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-        if (_player)
+        if (_gravitySource)
         {
             if (_isPulling && !_moveGround.IsTouching)
             {
-                if ((_direction == Direction.Right && _player.transform.position.x - transform.position.x < 0) ||
-                    (_direction == Direction.Left && _player.transform.position.x - transform.position.x > 0))
+                if ((_direction == Direction.Right && _gravitySource.transform.position.x - transform.position.x < 0) ||
+                    (_direction == Direction.Left && _gravitySource.transform.position.x - transform.position.x > 0))
                 {
                     PullMove(_pullSpeed);
                     float moveX = (transform.position.x - _previousPosition.x);
@@ -90,7 +90,7 @@ public class Car : MonoBehaviour
     }
     void PullMove(float speed)
     {
-        float posX = Mathf.Clamp((Vector3.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime).x), WallCheck(Vector2.left), WallCheck(Vector2.right));
+        float posX = Mathf.Clamp((Vector3.MoveTowards(transform.position, _gravitySource.transform.position, speed * Time.deltaTime).x), WallCheck(Vector2.left), WallCheck(Vector2.right));
         transform.position = new Vector3(posX, transform.position.y);
     }
 
@@ -118,12 +118,12 @@ public class Car : MonoBehaviour
     {
         if (other.tag == "Field")
         {
-            if (!_player)
+            if (!_gravitySource)
             {
-                _player = other.transform.root.GetComponent<Player>();
+                _gravitySource = other.transform.root.GetComponentInChildren<GravitySource>();
             }
 
-            if (_player.IsUsingGravity)
+            if (_gravitySource.IsUsingGravity)
             {
                 _isPulling = true;
             }

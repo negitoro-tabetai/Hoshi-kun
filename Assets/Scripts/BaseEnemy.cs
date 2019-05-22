@@ -172,7 +172,7 @@ public class BaseEnemy : MonoBehaviour
     {
         if (other.tag == "Field")
         {
-            if (other.transform.parent.GetComponent<Player>().IsUsingGravity)
+            if (other.transform.parent.GetComponent<GravitySource>().IsUsingGravity)
             {
                 enabled = false;
                 _movable.enabled = true;

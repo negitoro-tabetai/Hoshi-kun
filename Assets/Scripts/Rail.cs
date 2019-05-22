@@ -10,7 +10,7 @@ public class Rail : MonoBehaviour
     [SerializeField] ContactFilter2D _contactFilter2D;
 
     LineRenderer _lineRenderer;
-    Player _player;
+    GravitySource _gravitySource;
     bool _isMoving;
     bool _isTouching;
     Rigidbody2D _rigidbody2D;
@@ -33,7 +33,7 @@ public class Rail : MonoBehaviour
 
         if (_isMoving && !_isTouching)
         {
-            transform.position = Vector3.MoveTowards(transform.position, NearestPosition(_start.position, _end.position, _player.transform.position), step);
+            transform.position = Vector3.MoveTowards(transform.position, NearestPosition(_start.position, _end.position, _gravitySource.transform.position), step);
         }
         else
         {
@@ -44,13 +44,12 @@ public class Rail : MonoBehaviour
     {
         if (other.tag == "Field")
         {
-            if (!_player)
+
+            _gravitySource = other.transform.root.GetComponent<GravitySource>();
+
+            if (_gravitySource)
             {
-                _player = other.transform.root.GetComponent<Player>();
-            }
-            if (_player)
-            {
-                if (_player.IsUsingGravity)
+                if (_gravitySource.IsUsingGravity)
                 {
                     _isMoving = true;
                 }

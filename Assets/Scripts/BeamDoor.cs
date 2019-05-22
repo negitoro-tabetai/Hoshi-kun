@@ -50,7 +50,6 @@ public class BeamDoor : MonoBehaviour
         {
             isOpen = _switch.All(s => s.IsOn);
         }
-        Debug.Log(isOpen);
 
         if (isOpen)
         {

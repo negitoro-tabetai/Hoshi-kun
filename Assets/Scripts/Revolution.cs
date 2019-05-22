@@ -15,6 +15,7 @@ public class Revolution : BaseRevolution
         if (On)
         {
             _throwCount++;
+            if (col.tag == "GrantBlock") _throwCount++;
             if (_throwCount >= _throwCountLimit)
             {
                 Instantiate(_revolutionBreakEffect, transform.position, Quaternion.identity);
