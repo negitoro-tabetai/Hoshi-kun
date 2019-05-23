@@ -88,6 +88,8 @@ public class Enemy_Knight : BaseEnemy
             if(childTransform.name == _myArmor)
             {
                 Destroy(childTransform.gameObject);
+                AudioManager.Instance.PlaySE("Metal");
+
             }
         }
 

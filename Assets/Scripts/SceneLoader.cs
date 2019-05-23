@@ -49,7 +49,9 @@ public class SceneLoader : MonoBehaviour
     {
         if (Input.GetButtonDown("UseGravity"))
         {
-            if(SceneManager.GetActiveScene().name=="StageSelect")
+            AudioManager.Instance.PlaySE("Cursor");
+
+            if (SceneManager.GetActiveScene().name=="StageSelect")
             SceneManager.LoadScene("Title");
             else if (SceneManager.GetActiveScene().name != "Title")
             {

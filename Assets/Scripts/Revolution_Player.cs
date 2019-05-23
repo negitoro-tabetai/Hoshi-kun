@@ -137,7 +137,8 @@ public class Revolution_Player : MonoBehaviour
     
     public void Throw()
     {
-        
+        AudioManager.Instance.PlaySE("Throw");//★
+
         int index = RevolutionObject.Count - 1;
 
         RevolutionObject[index].transform.SetParent(null);

@@ -11,6 +11,7 @@ public class Pause : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] GameObject pause;
     [SerializeField] GameObject option;
+    bool _IsPause=false;
     void Start()
     {
 
@@ -32,6 +33,17 @@ public class Pause : MonoBehaviour
         {
             pause.SetActive(!pause.activeSelf);
             GameManager.Instance.IsPausing = !GameManager.Instance.IsPausing;
+
+            //★
+            if (!_IsPause)
+            {
+                AudioManager.Instance.PlaySE("Pause"); _IsPause = true;
+            }
+            else if (_IsPause)
+            {
+                AudioManager.Instance.PlaySE("PauseCancel"); _IsPause = false;
+            }
+
         }
 
 
@@ -39,11 +51,13 @@ public class Pause : MonoBehaviour
         {
             Time.timeScale = 0;
             panel.SetActive(true);
+
         }
         else
         {
             Time.timeScale = 1;
             panel.SetActive(false);
+
         }
 
 

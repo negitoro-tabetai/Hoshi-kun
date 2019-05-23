@@ -127,6 +127,8 @@ public class BaseEnemy : MonoBehaviour
     public void destroy()
     {
         Instantiate(_destroyEffect, transform.position, Quaternion.identity);
+        AudioManager.Instance.PlaySE("Die");
+
         Destroy(gameObject);
     }
 
@@ -192,6 +194,8 @@ public class BaseEnemy : MonoBehaviour
         //公転で飛ばされたブロックに当たった場合ダメージを受ける
         if (other.gameObject.tag == "RevolutionBlock")
         {
+            AudioManager.Instance.PlaySE("Damage");
+
             Damage();
         }
     }

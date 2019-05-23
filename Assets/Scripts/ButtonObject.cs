@@ -12,6 +12,8 @@ public class ButtonObject : MonoBehaviour
     // 触れているコライダーを格納する配列
     Collider2D[] _contacts;
 
+    bool _sound=true;
+
     [SerializeField, Tooltip("押せるオブジェクトの設定")] ContactFilter2D _filter;
 
     // 経過時間
@@ -50,10 +52,17 @@ public class ButtonObject : MonoBehaviour
         if (0 < _collider.OverlapCollider(_filter, _contacts))
         {
             ElapsedTime += Time.deltaTime * _pressSpeed;
+            if (_sound)
+            {
+                AudioManager.Instance.PlaySE("ButtonPush");
+                _sound = false;
+            }
+
         }
         else
         {
             ElapsedTime -= Time.deltaTime * _pressSpeed;
+            _sound = true;
         }
         
         // 経過時間に合わせてスケールを変更
