@@ -171,6 +171,7 @@ public class Revolution_Player : MonoBehaviour
         // タグ変更
         go.tag = "RevolutionBlock";
         go.GetComponentInChildren<ParticleSystem>().Play();//子オブジェクトのパーティクルを再生
+        AudioManager.Instance.PlaySE("Throw");//★
         StartCoroutine(ActivateCollider(go));
         _revolutionObject.Remove(go);
     }

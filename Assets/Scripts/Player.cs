@@ -121,6 +121,8 @@ public class Player : MonoBehaviour
     {
         _animator.SetTrigger("Jump");
         _rigidbody.AddForce((Vector2.up) * _jumpForce, ForceMode2D.Impulse);
+        AudioManager.Instance.PlaySE("Jump");//★
+
     }
 
     /// <param name="attackPoint">ダメージ量</param>
@@ -133,11 +135,14 @@ public class Player : MonoBehaviour
             _gravitySource.IsUsingGravity = false;
             _rigidbody.velocity = Vector3.zero;
             const float VerticalForce = 2;
+            AudioManager.Instance.PlaySE("Damage");//★
 
             // ダメージ処理
             Hp -= attackPoint;
             if (Hp == 0)
             {
+                AudioManager.Instance.PlaySE("Die");
+
                 GameManager.Instance.ReroadScene();
             }
 
@@ -165,6 +170,8 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && !IsInvincible)
         {
             Damage(other.gameObject.GetComponent<BaseEnemy>().AttackPoint, other.transform.transform.position);
+           
+
         }
     }
 
@@ -174,6 +181,8 @@ public class Player : MonoBehaviour
         {
             Heal(other.GetComponent<HealItem>().HealPoint);
             Destroy(other.gameObject);
+            AudioManager.Instance.PlaySE("Heal");
+
         }
     }
 

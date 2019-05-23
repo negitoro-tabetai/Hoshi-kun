@@ -20,6 +20,8 @@ public class Revolution : BaseRevolution
             {
                 Instantiate(_revolutionBreakEffect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+                AudioManager.Instance.PlaySE("Block");
+
             }
             else
             {

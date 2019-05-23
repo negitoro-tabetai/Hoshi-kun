@@ -1,0 +1,21 @@
+(全て編集、合成など手を加えています)
+
+ザ・マッチメイカァズ2nd　http://osabisi.sakura.ne.jp/m2/
+
+Jump
+Die
+Throw
+Damage
+Metal
+Cursor_Enter
+Cursor
+ButtonPush
+Heal
+
+無料効果音で遊ぼう！　http://taira-komori.jpn.org/
+Block
+
+ソースなし(手作り)
+Cursor
+Pause
+PauseCansel

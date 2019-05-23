@@ -100,11 +100,14 @@ public class Menu : MonoBehaviour
             {
                 Cursor--;
                 UpdateImage();
+                AudioManager.Instance.PlaySE("Cursor");
             }
             if (Right)
             {
                 Cursor++;
                 UpdateImage();
+                AudioManager.Instance.PlaySE("Cursor");
+
             }
         }
         else
@@ -113,17 +116,23 @@ public class Menu : MonoBehaviour
             {
                 Cursor--;
                 UpdateImage();
+                AudioManager.Instance.PlaySE("Cursor");
+
             }
             if (Down)
             {
                 Cursor++;
                 UpdateImage();
+                AudioManager.Instance.PlaySE("Cursor");
+
             }
         }
 
         if (Input.GetButtonDown("Jump"))
         {
             _elements[Cursor]._decide.Invoke();
+            AudioManager.Instance.PlaySE("Cursor_Enter");
+
         }
 
         _elements[Cursor]._select.Invoke();

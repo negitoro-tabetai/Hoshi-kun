@@ -55,8 +55,9 @@ public class Change : MonoBehaviour
     {
         A.SetActive(true);
         B.SetActive(false);
+
     }
-   public void Tsugi()
+    public void Tsugi()
     {
        
         A.SetActive(false);
