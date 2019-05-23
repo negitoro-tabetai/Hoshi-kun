@@ -13,9 +13,13 @@ public class  Audio : MonoBehaviour
     }
      void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            AudioManager.Instance.PlaySE("Jump");
+        }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            AudioManager.Instance.PlaySE("bomb1");
+            AudioManager.Instance.PlaySE("Pause");
         }
     }
 }
