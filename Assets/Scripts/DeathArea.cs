@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathArea : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class DeathArea : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameManager.Instance.ReroadScene();
+            AudioManager.Instance.PlaySE("Die");
+
+            FadeManager.Instance.SceneFade(SceneManager.GetActiveScene().name, 0.2f);
         }
     }
 }

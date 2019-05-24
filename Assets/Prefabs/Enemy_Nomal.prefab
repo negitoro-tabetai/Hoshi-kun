@@ -287,7 +287,7 @@ Animator:
   m_GameObject: {fileID: 2164649373196453007}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 49edbc0ecefca2a488b2c70ddf16f7e5, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 440a08864dfb7b049b9841f0beecb455, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 2637411978510463484}
   - component: {fileID: 2637411978510463485}
   - component: {fileID: 6654913457962538012}
+  - component: {fileID: 269524834}
   m_Layer: 12
   m_Name: Enemy_Nomal
   m_TagString: Enemy
@@ -449,6 +450,20 @@ MonoBehaviour:
   _wallLayer:
     serializedVersion: 2
     m_Bits: 1536
+--- !u!114 &269524834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2637411978510463486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad9cf15ff5898640afb40194de9175b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _revolutionBreakEffect: {fileID: 6283180566967848489, guid: bb5ef9675268d4c4691498633317364b,
+    type: 3}
 --- !u!1 &3494601948283843250
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class Change : MonoBehaviour
     {
         A.SetActive(true);
         B.SetActive(false);
+        _sliderBGM.value = AudioManager.Instance.BGMVolume;
+        _sliderSE.value = AudioManager.Instance.SEVolume;
     }
 
     
@@ -23,15 +25,10 @@ public class Change : MonoBehaviour
     public void ChangeVolumeSE()
     {
 
-        if (Input.GetKey(KeyCode.RightArrow) && _sliderSE.value < 1)
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            _sliderSE.value += 0.01f;
-            AudioManager.Instance.ChangeVolumeSE(_sliderSE.value);
-
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) && _sliderSE.value > 0)
-        {
-            _sliderSE.value -= 0.01f;
+            _sliderSE.value += Mathf.Sign(Input.GetAxisRaw("Horizontal")) * 0.01f;
+            Mathf.Clamp01(_sliderSE.value);
             AudioManager.Instance.ChangeVolumeSE(_sliderSE.value);
         }
 
@@ -39,17 +36,12 @@ public class Change : MonoBehaviour
     public void ChangeVolumeBGM()
     {
 
-        if (Input.GetKey(KeyCode.RightArrow) && _sliderBGM.value < 1)
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            _sliderBGM.value += 0.01f;
+            _sliderBGM.value += Mathf.Sign(Input.GetAxisRaw("Horizontal")) * 0.01f;
+            Mathf.Clamp01(_sliderBGM.value);
             AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && _sliderBGM.value > 0)
-        {
-            _sliderBGM.value -= 0.01f;
-            AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
-        }
-
     }
    public void Modoru()
     {

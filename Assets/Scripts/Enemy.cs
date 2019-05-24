@@ -20,7 +20,7 @@ public class Enemy : BaseEnemy
     new void Start()
     {
         base.Start();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
 

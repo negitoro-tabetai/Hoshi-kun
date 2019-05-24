@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -143,7 +144,7 @@ public class Player : MonoBehaviour
             {
                 AudioManager.Instance.PlaySE("Die");
 
-                GameManager.Instance.ReroadScene();
+                FadeManager.Instance.SceneFade(SceneManager.GetActiveScene().name, 0.2f);
             }
 
             //自分の位置と敵の位置を比較して方向を決定

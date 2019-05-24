@@ -22,8 +22,8 @@ public class Pause : MonoBehaviour
         option.SetActive(false);
 
         //AudioManagerと同じ値にしておく
-        _sliderSE.value = AudioManager.getVolumeSE();
-        _sliderBGM.value = AudioManager.getVolumeBGM();
+        _sliderSE.value = AudioManager.Instance.SEVolume;
+        _sliderBGM.value = AudioManager.Instance.BGMVolume;
     }
 
 
@@ -86,38 +86,25 @@ public class Pause : MonoBehaviour
         option.SetActive(false);
         pause.SetActive(true);
     }
-    //SliderでSE変更
     public void ChangeVolumeSE()
     {
 
-        if (Input.GetKey(KeyCode.RightArrow) && _sliderSE.value < 1)
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            _sliderSE.value += 0.01f;
-            AudioManager.Instance.ChangeVolumeSE(_sliderSE.value);
-
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) && _sliderSE.value > 0)
-        {
-            _sliderSE.value -= 0.01f;
+            _sliderSE.value += Mathf.Sign(Input.GetAxisRaw("Horizontal")) * 0.01f;
+            Mathf.Clamp01(_sliderSE.value);
             AudioManager.Instance.ChangeVolumeSE(_sliderSE.value);
         }
 
     }
-    //SliderでBGM変更
     public void ChangeVolumeBGM()
     {
 
-        if (Input.GetKey(KeyCode.RightArrow) && _sliderBGM.value < 1)
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            _sliderBGM.value += 0.01f;
+            _sliderBGM.value += Mathf.Sign(Input.GetAxisRaw("Horizontal")) * 0.01f;
+            Mathf.Clamp01(_sliderBGM.value);
             AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && _sliderBGM.value > 0)
-        {
-            _sliderBGM.value -= 0.01f;
-            AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
-        }
-
-
     }
 }
