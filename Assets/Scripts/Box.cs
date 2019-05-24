@@ -40,7 +40,11 @@ public class Box : MonoBehaviour
 
     void Goal()
     {
-            _playerAnimator.SetBool("Clear", true);
+        GameObject.Find("BGM").SetActive(false);
+        
+        AudioManager.Instance.PlayBGM("Clear");
+
+        _playerAnimator.SetBool("Clear", true);
             Text.SetActive(true);
             _boxAnimator.SetTrigger("Open");
     }
