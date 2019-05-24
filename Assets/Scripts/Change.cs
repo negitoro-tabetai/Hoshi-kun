@@ -57,7 +57,7 @@ public class Change : MonoBehaviour
     }
    public void Starts()
     {
-        SceneManager.LoadScene("1-1");
+        FadeManager.Instance.SceneFade("1-1", 0.5f);
     }
    public void Selecte()
     {

@@ -67,13 +67,13 @@ public class Pause : MonoBehaviour
     {
         GameManager.Instance.IsPausing = false;
         GameManager.Instance.ResetPoint();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FadeManager.Instance.SceneFade(SceneManager.GetActiveScene().name, 0.2f);
     }
     public void Title()
     {
         GameManager.Instance.IsPausing = false;
         GameManager.Instance.ResetPoint();
-        SceneManager.LoadScene("Title");
+        FadeManager.Instance.SceneFade("Title", 0.5f);
 
     }
     public void Option()

@@ -7,16 +7,22 @@ using UnityEngine.SceneManagement;
 public class Box : MonoBehaviour
 {
     [SerializeField] GameObject Text;
+    Animator _boxAnimator;
+    Animator _playerAnimator;
     // Start is called before the first frame update
     void Start()
     {
         Text.SetActive(false);
+        _boxAnimator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.Instance.IsGoal && Input.GetButtonDown("Jump"))
+        {
+            Load();
+        }
     }
 
 
@@ -24,30 +30,25 @@ public class Box : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            Debug.Log("到達");
-            GameObject.Find("Player").GetComponent<Player>().enabled=false;
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            for (int i = 0; i < enemies.Length; i++)
-            {
-
-                enemies[i].GetComponent<BaseEnemy>().destroy();
-            }
-            Goal();
+            GameManager.Instance.IsGoal = true;
+            col.GetComponent<Player>().enabled=false;
+            _playerAnimator = col.GetComponentInChildren<Animator>();
+            _playerAnimator.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            Invoke("Goal", 0.5f);
         }
     }
 
     void Goal()
     {
-        Text.SetActive(true);
-        Text.GetComponent<TextMeshProUGUI>().text = "Game Clear!!";
-        Debug.Log("テキスト表示");
-        Invoke("Load", 3.0f);
+            _playerAnimator.SetBool("Clear", true);
+            Text.SetActive(true);
+            _boxAnimator.SetTrigger("Open");
     }
-
    void Load()
     {
         GameManager.Instance.ResetPoint();
-        SceneManager.LoadScene("Title");
+        GameManager.Instance.IsGoal = false;
+        FadeManager.Instance.SceneFade("Title", 2);
     }
 
 }

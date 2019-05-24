@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     public bool IsPausing { get; set; }
+    public bool IsGoal { get; set; }
     public Vector3 RespawnPoint { get; set; }
     new void Awake()
     {
