@@ -9,7 +9,7 @@ public class Enemy_Byon : Enemy
     [SerializeField, Tooltip("ジャンプする高さ")] float _jumpPower;
     //--------------------------------------
 
-
+    
     new void Start()
     {
         base.Start();
