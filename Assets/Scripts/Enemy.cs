@@ -15,6 +15,11 @@ public class Enemy : BaseEnemy
     const float _distanceLimit_Y = 3;
     //----------------------------------------------------------------------------------
 
+
+    bool CanMoveBack()
+    {
+        return Physics2D.Raycast(transform.position - transform.right, Vector2.down, _rayLength, _groundLayer);
+    }
     
     // Start is called before the first frame update
     new void Start()
@@ -28,7 +33,11 @@ public class Enemy : BaseEnemy
     void Update()
     {
         _animator.SetBool("isWalk", true);
-        TouchCheck();
+        if(CanMoveForward() && CanMoveBack())
+        {
+
+            TouchCheck();
+        }
     }
 
 
