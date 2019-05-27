@@ -88,6 +88,7 @@ public class Revolution_Player : MonoBehaviour
                     Destroy(go.GetComponent<BaseEnemy>());
                 }
                 go.GetComponent<Rigidbody2D>().isKinematic = true;
+                go.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
                 go.GetComponent<BaseRevolution>().On = true;
                 go.layer = LayerMask.NameToLayer("Forecast");
                 go.transform.SetParent(transform);//プレイヤーの子に
