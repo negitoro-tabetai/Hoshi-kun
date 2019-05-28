@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     [SerializeField] int minute;
     [SerializeField] GameObject Player;
     [SerializeField] string Scene;
-    private float second=59;
+    [SerializeField]float second;
     private GameObject pause;
     Player player;
     void Start()
@@ -40,12 +40,16 @@ public class Timer : MonoBehaviour
             minute -= 1;
             second = 60;
         }
-        if (second <= 0 && minute <= 0)
+        if ( minute <= 0&& second <= 0)
         {
-            GameOverText.text = "GameOver";
-            Player.GetComponent<Player>().enabled = false;
-            // SceneManager.LoadScene("StageSelect");
-            FadeManager.Instance.SceneFade(Scene, 1);
+           
+                GameOverText.text = "GameOver";
+                Player.GetComponent<Player>().enabled = false;
+                // SceneManager.LoadScene("StageSelect");
+                FadeManager.Instance.SceneFade(Scene, 1);
+            
+           
         }
+        
     }
 }
