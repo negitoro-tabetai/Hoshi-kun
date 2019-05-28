@@ -7,12 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-   [SerializeField] Text text;
-    [SerializeField] Text GameOverText;
+    [SerializeField] Text text;
     [SerializeField] int minute;
     [SerializeField] GameObject Player;
     [SerializeField] string Scene;
-    [SerializeField]float second;
+    [SerializeField] float second;
     private GameObject pause;
     Player player;
     void Start()
@@ -20,36 +19,38 @@ public class Timer : MonoBehaviour
         pause = GameObject.Find("Pause");
         //初期値
         text.text = 0 + ";" + 0;
-    
-        
+
+
     }
 
-   
+
     void Update()
     {
-        //秒のカウント
-        if (second > 0)
-        {
-            second -= Time.deltaTime ;
-        }
+        if (!GameManager.Instance.IsGoal)
+            //秒のカウント
+            if (second > 0)
+            {
+                second -= Time.deltaTime;
+            }
         //テキストに代入
         text.text = minute + ":" + second.ToString("0#");
         //分の減少処理
-        if (second < 0&&minute>0)
         {
-            minute -= 1;
-            second = 60;
-        }
-        if ( minute <= 0&& second <= 0)
-        {
-           
-                GameOverText.text = "GameOver";
-                Player.GetComponent<Player>().enabled = false;
+
+            if (second < 0 && minute > 0)
+            {
+                minute -= 1;
+                second = 60;
+            }
+            if (minute <= 0 && second <= 0)
+            {
+
                 // SceneManager.LoadScene("StageSelect");
                 FadeManager.Instance.SceneFade(Scene, 1);
-            
-           
+
+            }
+
         }
-        
+
     }
 }

@@ -29,7 +29,7 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Pause") && !option.activeSelf && Input.GetButtonDown("Pause") && !FadeManager.Instance.IsFading)
+        if (Input.GetButtonDown("Pause") && !option.activeSelf && Input.GetButtonDown("Pause") && !FadeManager.Instance.IsFading && !GameManager.Instance.IsGoal)
         {
             pause.SetActive(!pause.activeSelf);
             GameManager.Instance.IsPausing = !GameManager.Instance.IsPausing;
