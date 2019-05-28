@@ -33,11 +33,7 @@ public class Enemy : BaseEnemy
     void Update()
     {
         _animator.SetBool("isWalk", true);
-        if(CanMoveForward() && CanMoveBack())
-        {
-
-            TouchCheck();
-        }
+        TouchCheck();
     }
 
 

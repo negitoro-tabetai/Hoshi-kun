@@ -10,7 +10,7 @@ public class BaseEnemy : MonoBehaviour
     //プレイヤーと接触したか
     protected Rigidbody2D _rigidbody;
     [SerializeField] protected GameObject _player;
-    [SerializeField, Tooltip("Destroy時に出現するエフェクト")] protected GameObject _destroyEffect;  
+    [SerializeField, Tooltip("Destroy時に出現するエフェクト")] protected GameObject _destroyEffect;
     [SerializeField, Tooltip("地面のレイヤーマスク")] protected LayerMask _groundLayer;
     [SerializeField, Tooltip("rayの長さ")] protected float _rayLength = 0.6f;
     //[SerializeField] protected float _pinchRayLength = 0.5f;
@@ -55,6 +55,12 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
+    bool CanMoveBack()
+    {
+        return Physics2D.Raycast(transform.position - transform.right, Vector2.down, _rayLength, _groundLayer);
+    }
+
+
     ///// <summary>
     ///// 挟まれたか確認する関数
     ///// </summary>
@@ -73,7 +79,7 @@ public class BaseEnemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
-    
+
 
     /// <summary>
     /// 移動処理
@@ -88,7 +94,14 @@ public class BaseEnemy : MonoBehaviour
             _time += Time.deltaTime;
             if (_time > _moveTime || !CanMoveForward())
             {
-                Direction();
+                if (CanMoveBack())
+                {
+                    Direction();
+                }
+                else
+                {
+                    _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+                }
                 _time = 0;
             }
         }
@@ -189,7 +202,7 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
-    protected virtual void OnTriggerEnter2D(Collider2D other )
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         //公転で飛ばされたブロックに当たった場合ダメージを受ける
         if (other.gameObject.tag == "RevolutionBlock")
