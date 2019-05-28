@@ -41,8 +41,8 @@ public class Box : MonoBehaviour
     void Goal()
     {
         GameObject.Find("BGM").SetActive(false);
-        
-        AudioManager.Instance.PlayBGM("Clear");
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySE("Clear");
 
         _playerAnimator.SetBool("Clear", true);
             Text.SetActive(true);
