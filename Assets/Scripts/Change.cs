@@ -43,13 +43,13 @@ public class Change : MonoBehaviour
             AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
         }
     }
-   public void Modoru()
+   public void Back()
     {
         A.SetActive(true);
         B.SetActive(false);
 
     }
-    public void Tsugi()
+    public void Next()
     {
        
         A.SetActive(false);
@@ -61,6 +61,6 @@ public class Change : MonoBehaviour
     }
    public void Selecte()
     {
-        SceneManager.LoadScene("StageSelect");
+        SceneManager.LoadScene("TimeTrial");
     }
 }
