@@ -25,6 +25,7 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
     {
         if (!IsFading)
         {
+            Debug.Log("SceneFade " + sceneName);
             IsFading = true;
             StartCoroutine(SceneFadeCoroutine(sceneName, fadeTime));
         }
