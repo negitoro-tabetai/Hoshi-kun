@@ -61,7 +61,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         _BGMSource.volume = BGMVolume;
         _SESource.volume = SEVolume;
-      _BGMSource.volume =0.3f;
+        _BGMSource.volume = 0.3f;
         _SESource.volume = 0.3f;
     }
 
@@ -89,19 +89,26 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
             Debug.Log(bgmName + "という名前のBGMがありません");
             return;
         }
+        if (_BGMSource.clip != _BGMDictionaly[bgmName] as AudioClip)
+        {
             _BGMSource.clip = _BGMDictionaly[bgmName] as AudioClip;
-            _BGMSource.Play();      
+            _BGMSource.Play();
+        }
     }
-    void Update()
+    /// <summary>
+    /// BGMを止める
+    /// </summary>
+    public void StopBGM()
     {
-
+        _BGMSource.Stop();
     }
+
     /// <summary>
 	/// BGMとSEのボリュームを別々に変更&保存
 	/// </summary>
-	public void ChangeVolumeSE( float SEVolume)
-    {      
-        _SESource.volume = SEVolume;      
+	public void ChangeVolumeSE(float SEVolume)
+    {
+        _SESource.volume = SEVolume;
         PlayerPrefs.SetFloat(SEVolumeKey, SEVolume);
     }
     public void ChangeVolumeBGM(float BGMVolume)

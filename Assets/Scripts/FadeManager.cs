@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class FadeManager : SingletonMonoBehaviour<FadeManager>
 {
     [SerializeField, Tooltip("フェード用のイメージ")] Image _fadeImage;
-    
+
+    public bool IsFading { get; set; }
+
     new void Awake()
     {
         base.Awake();
@@ -21,7 +23,11 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
     /// <param name="fadeTime">フェードイン/アウトにかける時間</param>
     public void SceneFade(string sceneName, float fadeTime)
     {
-        StartCoroutine(SceneFadeCoroutine(sceneName, fadeTime));
+        if (!IsFading)
+        {
+            IsFading = true;
+            StartCoroutine(SceneFadeCoroutine(sceneName, fadeTime));
+        }
     }
 
     IEnumerator SceneFadeCoroutine(string sceneName, float fadeTime)
@@ -29,6 +35,7 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
         yield return FadeIn(fadeTime);
         SceneManager.LoadScene(sceneName);
         yield return FadeOut(fadeTime);
+        IsFading = false;
     }
 
     public IEnumerator FadeOut(float fadeTime)

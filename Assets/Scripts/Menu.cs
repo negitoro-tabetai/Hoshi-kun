@@ -130,9 +130,11 @@ public class Menu : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+            if (!FadeManager.Instance.IsFading)
+            {
+                AudioManager.Instance.PlaySE("Cursor_Enter");
+            }
             _elements[Cursor]._decide.Invoke();
-            AudioManager.Instance.PlaySE("Cursor_Enter");
-
         }
 
         _elements[Cursor]._select.Invoke();
