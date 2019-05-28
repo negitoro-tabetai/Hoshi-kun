@@ -61,8 +61,6 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         _BGMSource.volume = BGMVolume;
         _SESource.volume = SEVolume;
-        _BGMSource.volume = 0.3f;
-        _SESource.volume = 0.3f;
     }
 
     /// <summary>
