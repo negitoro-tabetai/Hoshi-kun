@@ -61,6 +61,6 @@ public class Change : MonoBehaviour
     }
    public void Selecte()
     {
-        SceneManager.LoadScene("TimeTrial");
+        FadeManager.Instance.SceneFade("TimeTrial", 0.5f);
     }
 }

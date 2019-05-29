@@ -144,6 +144,13 @@ public class BaseEnemy : MonoBehaviour
 
         Destroy(gameObject);
     }
+    public void destroyMute()
+    {
+        Instantiate(_destroyEffect, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
+    }
+
 
 
     /// <summary>

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1-1.unity
     guid: 610b1eadb7c3f5545b943f22e67a0ce1
+  - enabled: 1
+    path: Assets/Scenes/TimeTrial.unity
+    guid: f6320327a89de6b4295a010bd239cec3
   m_configObjects: {}

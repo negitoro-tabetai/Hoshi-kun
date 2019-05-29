@@ -8,13 +8,13 @@ public class BGM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == "1-1")
-        {
-            AudioManager.Instance.PlayBGM("Stage");
-        }
-        else if (SceneManager.GetActiveScene().name == "Title")
+        if (SceneManager.GetActiveScene().name == "Title")
         {
             AudioManager.Instance.PlayBGM("Title");
+        }
+        else
+        {
+            AudioManager.Instance.PlayBGM("Stage");
         }
     }
 

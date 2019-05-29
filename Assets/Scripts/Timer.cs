@@ -26,7 +26,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.IsGoal)
+        if (!GameManager.Instance.IsGoal && !FadeManager.Instance.IsFading)
             //秒のカウント
             if (second > 0)
             {

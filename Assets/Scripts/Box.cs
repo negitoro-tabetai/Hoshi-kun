@@ -9,6 +9,7 @@ public class Box : MonoBehaviour
     [SerializeField] GameObject Text;
     Animator _boxAnimator;
     Animator _playerAnimator;
+    [SerializeField] GameObject _enemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,8 @@ public class Box : MonoBehaviour
         GameObject.Find("BGM").SetActive(false);
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlaySE("Clear");
+
+        _enemy.GetComponent<BaseEnemy>().destroyMute();
 
         _playerAnimator.SetBool("Clear", true);
             Text.SetActive(true);
