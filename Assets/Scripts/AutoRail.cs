@@ -9,13 +9,11 @@ public class AutoRail : MonoBehaviour
     [SerializeField, Tooltip("スピード")] float _speed;
     [SerializeField] ContactFilter2D _contactFilter2D;
 
+    Rigidbody2D _rigidbody2D;
     LineRenderer _lineRenderer;
     Player _player;
     bool _isMoving;
     bool _isTouching;
-    Rigidbody2D _rigidbody2D;
-
-  
 
     void Start()
     {
@@ -29,13 +27,9 @@ public class AutoRail : MonoBehaviour
         _lineRenderer.SetPosition(1, _end.position);
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-
-        float t = Mathf.PingPong(Time.time * _speed/ Vector3.Distance(_start.position, _end.position), 1);
-
-       transform.position = Vector3.Lerp(_start.position,_end.position,t);
+      float t = Mathf.PingPong(Time.time * _speed/ Vector3.Distance(_start.position, _end.position), 1);
+      transform.position = Vector3.Lerp(_start.position,_end.position,t);
     }
 }

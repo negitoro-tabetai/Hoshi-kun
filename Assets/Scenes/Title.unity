@@ -578,8 +578,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sliderSE: {fileID: 1575889086}
   _sliderBGM: {fileID: 1575889085}
-  A: {fileID: 873814396}
-  B: {fileID: 870890006}
+  TitleObject: {fileID: 873814396}
+  OptionObject: {fileID: 870890006}
 --- !u!1 &634313999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,6 +2013,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5234355322272305950, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
         type: 3}
+      propertyPath: _elements.Array.data[0]._select.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234355322272305950, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
+        type: 3}
       propertyPath: _elements.Array.data[0]._decide.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 612035331}
@@ -2099,6 +2104,16 @@ PrefabInstance:
     - target: {fileID: 5234355322272305950, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
         type: 3}
       propertyPath: _elements.Array.data[1]._decide.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234355322272305950, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
+        type: 3}
+      propertyPath: _elements.Array.data[0]._select.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234355322272305950, guid: e9350adb0deb07b429a4ea42f5ebcbf5,
+        type: 3}
+      propertyPath: _elements.Array.data[0]._select.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5234355322330507721, guid: e9350adb0deb07b429a4ea42f5ebcbf5,

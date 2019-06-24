@@ -7,35 +7,32 @@ public class Change : MonoBehaviour
 {
     [SerializeField] Slider _sliderSE;
     [SerializeField] Slider _sliderBGM;
-    [SerializeField] GameObject A;
-    [SerializeField] GameObject B;
+    [SerializeField] GameObject TitleObject;
+    [SerializeField] GameObject OptionObject;
+
     void Start()
     {
-        A.SetActive(true);
-        B.SetActive(false);
+        TitleObject.SetActive(true);
+        OptionObject.SetActive(false);
+
+        //保存されているSE,BGMの値参照、それをスライダーのvalueに入れる
         _sliderBGM.value = AudioManager.Instance.BGMVolume;
         _sliderSE.value = AudioManager.Instance.SEVolume;
     }
-
-    
-    void Update()
-    {
-        
-    }
+    //タイトルシーンでのオプション画面中の、SE変更用
     public void ChangeVolumeSE()
     {
-
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             _sliderSE.value += Mathf.Sign(Input.GetAxisRaw("Horizontal")) * 0.01f;
             Mathf.Clamp01(_sliderSE.value);
             AudioManager.Instance.ChangeVolumeSE(_sliderSE.value);
         }
-
     }
+
+    //タイトルシーンでのオプション画面中の、BGM変更用
     public void ChangeVolumeBGM()
     {
-
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             _sliderBGM.value += Mathf.Sign(Input.GetAxisRaw("Horizontal")) * 0.01f;
@@ -43,23 +40,29 @@ public class Change : MonoBehaviour
             AudioManager.Instance.ChangeVolumeBGM(_sliderBGM.value);
         }
     }
+
+    //オプション画面からタイトルに戻る
    public void Back()
     {
-        A.SetActive(true);
-        B.SetActive(false);
+        TitleObject.SetActive(true);
+        OptionObject.SetActive(false);
+    }
 
-    }
+    //タイトルからオプション画面に進む
     public void Next()
-    {
-       
-        A.SetActive(false);
-        B.SetActive(true);
+    {      
+        TitleObject.SetActive(false);
+        OptionObject.SetActive(true);
     }
+
+    //ステージ1-1シーンにFadeManagerで遷移する
    public void Starts()
     {
         FadeManager.Instance.SceneFade("1-1", 0.5f);
     }
-   public void Selecte()
+
+    //ステージTimeTrialシーンにFadeManagerで遷移する
+    public void Selecte()
     {
         FadeManager.Instance.SceneFade("TimeTrial", 0.5f);
     }

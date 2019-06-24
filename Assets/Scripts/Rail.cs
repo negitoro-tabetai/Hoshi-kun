@@ -11,14 +11,17 @@ public class Rail : MonoBehaviour
 
     LineRenderer _lineRenderer;
     GravitySource _gravitySource;
+    Rigidbody2D _rigidbody2D;
+
     bool _isMoving;
     bool _isTouching;
-    Rigidbody2D _rigidbody2D;
 
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _lineRenderer = GetComponent<LineRenderer>();
+
+        //_startと_endをつなぐ線の設定
         _lineRenderer.startWidth = 0.1f;
         _lineRenderer.endWidth = 0.1f;
         _lineRenderer.positionCount = 2;
@@ -40,6 +43,7 @@ public class Rail : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _start.position, step);
         }
     }
+    //プレイヤーの能力(引力)で引き寄せられるように
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Field")
@@ -67,7 +71,7 @@ public class Rail : MonoBehaviour
         Vector3 ap = p - a;
 
         float r = Vector3.Dot(ab, ap) / Vector3.Dot(ab, ab);
-
+      
         if (r <= 0)
         {
             return a;
@@ -82,6 +86,7 @@ public class Rail : MonoBehaviour
         }
     }
 
+    //プレイヤーが乗った時に落ちないように
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player" && _rigidbody2D.IsTouching(_contactFilter2D))
@@ -90,7 +95,7 @@ public class Rail : MonoBehaviour
             other.transform.SetParent(transform);
         }
     }
-
+    //降りたときに独立するように
     void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
