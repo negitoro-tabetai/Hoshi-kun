@@ -39,7 +39,7 @@ public class Timer : MonoBehaviour
             second = 60;
         }
 
-        //テキストに代入
+        //テキストに代入する
         text.text = minute + ":" + second.ToString("0#");
 
         //残り時間が0になったら
