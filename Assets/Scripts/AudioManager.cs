@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioManager : SingletonMonoBehaviour<AudioManager>
 {
+    //BGMとSEのフォルダーパス
     const string BGMPath = "Audio/BGM";
     const string SEPath = "Audio/SE";
 
@@ -13,7 +14,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     const float BGMVolumeDefault = 1.0f;
     const float SEVolumeDefault = 1.0f;
 
-
+//BGMの数値を保存
     public float BGMVolume
     {
         get
@@ -21,6 +22,8 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
             return PlayerPrefs.GetFloat(BGMVolumeKey, BGMVolumeDefault);
         }
     }
+
+    //SEの数値を保存
     public float SEVolume
     {
         get
@@ -46,17 +49,17 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         object[] bgmList = Resources.LoadAll(BGMPath);
         object[] seList = Resources.LoadAll(SEPath);
 
-
         foreach (AudioClip bgm in bgmList)
         {
             _BGMDictionaly[bgm.name] = bgm;
         }
+
         foreach (AudioClip se in seList)
         {
             _SEDictionaly[se.name] = se;
         }
-
     }
+
     void Start()
     {
         _BGMSource.volume = BGMVolume;
@@ -72,7 +75,6 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         {
             Debug.Log(seName + "という名前のSEがありません");
             return;
-
         }
         _SESource.PlayOneShot(_SEDictionaly[seName] as AudioClip);
     }
